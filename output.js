@@ -15,7 +15,7 @@ var updater = function() {
     document.getElementById("m0-val").innerHTML = (prop['m0'] * 1e18).toPrecision(3);
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
     document.getElementById("rho100-valo").innerHTML = Math.round(rho100);
-
+    
     var dve = dm2dve(dm, rh, true, chi)
     var dves = dm2dve(dm, rh, false, chi)
     var da = dm2da(dm, rh, true, chi, dve)
@@ -23,7 +23,7 @@ var updater = function() {
     
     document.getElementById("m-val").innerHTML = m.toPrecision(3);
     document.getElementById("rho-val").innerHTML = Math.round(rh);
-    document.getElementById("Cc-val").innerHTML = C.toPrecision(3);
+    document.getElementById("Cc-val").innerHTML = Cc(dm * 1e-9).toPrecision(3);
     document.getElementById("Cca-val").innerHTML = Cc(da * 1e-9).toPrecision(3);
     document.getElementById("dve-val").innerHTML = dve.toPrecision(3);
     document.getElementById("dves-val").innerHTML = dves.toPrecision(3);
