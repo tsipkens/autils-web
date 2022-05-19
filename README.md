@@ -4,4 +4,4 @@
 
  An opne source web app designed to compute and convert aerosol properties.
 
-Web app is available at tsipkens.github.io/autils-web. 
+Web app is available at https://tsipkens.github.io/autils-web. 
