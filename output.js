@@ -10,7 +10,7 @@ var updater = function() {
     prop = massmob(zet, rho100, 'rho100');
     m = dm2mp(dm, prop) * 1e18;
     rh = rho(dm * 1e-9, m * 1e-18);
-    C = Cc(dm * 1e-9, 273, 1);
+    C = Cc(dm * 1e-9);
     
     document.getElementById("m0-val").innerHTML = (prop['m0'] * 1e18).toPrecision(3);
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
@@ -24,7 +24,7 @@ var updater = function() {
     document.getElementById("m-val").innerHTML = m.toPrecision(3);
     document.getElementById("rho-val").innerHTML = Math.round(rh);
     document.getElementById("Cc-val").innerHTML = C.toPrecision(3);
-    document.getElementById("Cca-val").innerHTML = Cc(da* 1e-9).toPrecision(3);
+    document.getElementById("Cca-val").innerHTML = Cc(da * 1e-9).toPrecision(3);
     document.getElementById("dve-val").innerHTML = dve.toPrecision(3);
     document.getElementById("dves-val").innerHTML = dves.toPrecision(3);
     document.getElementById("da-val").innerHTML = da.toPrecision(3);
