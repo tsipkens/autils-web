@@ -33,15 +33,15 @@ var Cc = function(d, T=null, p=null) {
 }
 
 var massmob = function(zet, val, field='rho100') {
-    prop = {
+    var prop = {
         zet: zet,
         rho100: 0,
         rho0: 0,
         m100: 0,
         m0: 0
     };
-    if (field =='rho100') {
-        prop['m100'] = rho100 * pi / 6 * (100e-9) ** 3;
+    if (field=='rho100') {
+        prop['m100'] = val * pi / 6 * (100e-9) ** 3;
         prop['m0'] = prop['m100'] * (1 / 100) ** prop['zet'];
     }
 
@@ -65,13 +65,13 @@ var rho = function(dm, m) {
 }
 
 var dm2dve = function(dm, rho=1800, fl=true, chi=1) {
-    dve = dm / chi;  // volume equivalent diameter
+    var dve = dm / chi;  // volume equivalent diameter
     
     if (fl) {
         var fun_ve = function(dve) {
             return ((dm / chi * Cc(dve * 1e-9) / Cc(dm * 1e-9) - dve)) ** 2
         }
-        a = optimjs.minimize_Powell(fun_ve, [dve])
+        var a = optimjs.minimize_Powell(fun_ve, [dve])
         dve = a.argument[0]
     }
 
@@ -83,17 +83,25 @@ var dm2da = function(dm, rho=1800, fl=true, chi=1, dve=dm2dve(dm, rho, fl, chi))
     
     // Compute simple volume-equivalent and aerodynamic diameters, 
     // that is without iteration. 
-    da = dve * Math.sqrt(rho / rho0 / chi);  // aerodynamic diameter
+    var da = dve * Math.sqrt(rho / rho0 / chi);  // aerodynamic diameter
 
     if (fl) {
         var fun_a = function(da) {
             return ((dve * Math.sqrt(rho / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - da)) ** 2
         }
-        a = optimjs.minimize_Powell(fun_a, [da])
+        var a = optimjs.minimize_Powell(fun_a, [da])
         da = a.argument[0]
     }
 
     return da;
 }
 
+// Hatch-Choate (for moments)
+var hc = function (mu, sg, q) {
+    return mu * Math.exp(q * (Math.log(sg) ** 2))
+}
 
+// Hatch-Choate (integration over distribution)
+var hci = function (mu, sg, q, a) {
+    return a * mu ** q * Math.exp(1/2 * q ** 2 * (Math.log(sg) ** 2))
+}
