@@ -23,8 +23,8 @@ var dmax = 2e3;
 var d_vec = logspace(dmin, dmax, 225);
 
 // Define color scheme.
-var colors = ["#2525C6", "#D64161", "#222222", "#01686f"];
-var lcolors = ["", "rgba(214, 65, 97, 0.1)", "", "rgba(1, 104, 111, 0.1)"]
+var colors = ["#2525C6", "#1264B2", "#222222", "#B2325A"];
+var lcolors = ["", "rgba(18, 100, 178, 0.03)", "", "rgba(178, 50, 90, 0.03)"]
 
 var $container = $('#my_dataviz'),
     width_a = 0.95 * Math.min($container.width(), 870),
@@ -117,7 +117,7 @@ svg.append('path')
         })
         .y0(0))
     .attr('stroke', colors[1])
-    .attr("stroke-width", 2.75)
+    .attr("stroke-width", 2)
     .attr('fill', lcolors[1]);
 svg.append('path')
     .datum(data)
@@ -131,7 +131,7 @@ svg.append('path')
         })
         .y0(0))
     .attr('stroke', colors[3])
-    .attr("stroke-width", 2.75)
+    .attr("stroke-width", 2)
     .attr('fill', lcolors[3]);
 
 var plotter = function (dg, mg, sg) {
