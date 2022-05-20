@@ -22,12 +22,13 @@ var logspace = function (v1, v2, n) {
     return arr;
 }
 
-var dmin = 10;
-var dmax = 1e3;
-var d_vec = logspace(dmin, dmax, 100);
+var dmin = 5;
+var dmax = 2e3;
+var d_vec = logspace(dmin, dmax, 225);
 
 // Define color scheme.
-var colors = ["#2525C6", "#FFBE0B", "#222222", "#D64161"];
+var colors = ["#2525C6", "#D64161", "#222222", "#01686f"];
+var lcolors = ["", "rgba(214, 65, 97, 0.1)", "", "rgba(1, 104, 111, 0.1)"]
 
 var $container = $('#my_dataviz'),
   width_a = 0.95 * Math.min($container.width(), 870),
@@ -52,10 +53,6 @@ var svg = d3.select("#my_dataviz")
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//-- Add background rectangle --//
-svg.append("rect")
-  .attr("width", width).attr("class", "plot-fill")
-  .attr("height", height);
 
 // Add X axis
 var x = d3.scaleLog()
@@ -65,13 +62,10 @@ var xAxis = svg.append("g")
   .attr("transform", "translate(0," + height + ")")
   .attr("class", "axis")
   .call(d3.axisBottom(x).ticks(3).tickFormat(x => `${x.toFixed(0)}`));
-var xAxis2 = svg.append("g")
-  .attr("class", "axis")
-  .call(d3.axisTop(x).ticks(0));
 
 // Add Y axis
 var yMax = 1.05,
-    yMin = -0.05;
+    yMin = 0;
 
 var y = d3.scaleLinear()
   .domain([yMin, yMax])
@@ -79,26 +73,31 @@ var y = d3.scaleLinear()
 var yAxis = svg.append("g")
   .attr("class", "axis")
   .call(d3.axisLeft(y).ticks(5));
-var yAxis2 = svg.append("g")
-  .attr("transform", "translate(" + width + ",0)")
-  .attr("class", "axis")
-  .call(d3.axisRight(y).ticks(0))
 
 //-- Add axis labels --//
 // Add X axis label:
 svg.append("text")
-  .attr("text-anchor", "middle")
-  .attr('x', width / 2)
-  .attr('y', height + 35)
-  .attr("class", "legend-label")
-  .text("Mobility diameter [nm]");
+    .attr("text-anchor", "middle")
+    .attr('x', width / 2)
+    .attr('y', height + 35)
+    .attr("class", "legend-label")
+    .text("Mobility diameter [nm]");
 
 // Y axis label:
 svg.append("text")
-  .attr("text-anchor", "middle")
-  .attr("class", "legend-label")
-  .attr('transform', 'translate(-40,' + height / 2 + ')rotate(-90)')
-  .text("Normalized distribution")
+    .attr("text-anchor", "middle")
+    .attr("class", "legend-label")
+    .attr('transform', 'translate(-40,' + height / 2 + ')rotate(-90)')
+    .text("Normalized distribution")
+
+// Add a clipPath: everything out of this area won't be drawn.
+var clip = svg.append("defs").append("svg:clipPath")
+    .attr("id", "clip")
+    .append("svg:rect")
+    .attr("width", width )
+    .attr("height", height )
+    .attr("x", 0)
+    .attr("y", 0);
 
 // Generate plot.
 var data = [];
@@ -109,34 +108,27 @@ for (ii = 0; ii < d_vec.length; ii++) {
         m: 0
         })
 }
-svg.append("path")
+
+svg.append('path')
     .datum(data)
-    .attr("id", "curve-n")
-    .attr("fill", "none")
-    .attr("stroke", colors[1])
+    .attr("id", "area-n")
+    .attr("d", d3.area()
+        .x(function(d) { return x(d.x) })
+        .y1(function(d) { return y(d.n) })
+        .y0(0) )
+    .attr('stroke', colors[1])
     .attr("stroke-width", 2.75)
-    .attr("d", d3.line()
-        .x(function(d) {
-        return x(d.x)
-        })
-        .y(function(d) {
-        return y(d.n)
-        })
-    )
-svg.append("path")
+    .attr('fill', lcolors[1]);
+svg.append('path')
     .datum(data)
-    .attr("id", "curve-m")
-    .attr("fill", "none")
-    .attr("stroke", colors[3])
+    .attr("id", "area-m")
+    .attr("d", d3.area()
+        .x(function(d) { return x(d.x) })
+        .y1(function(d) { return y(d.m) })
+        .y0(0) )
+    .attr('stroke', colors[3])
     .attr("stroke-width", 2.75)
-    .attr("d", d3.line()
-        .x(function(d) {
-        return x(d.x)
-        })
-        .y(function(d) {
-        return y(d.m)
-        })
-    )
+    .attr('fill', lcolors[3]);
 
 var plotter = function (dg, mg, sg) {
     var p_vec = logn(dg, sg, d_vec)  // number pdf
@@ -153,27 +145,28 @@ var plotter = function (dg, mg, sg) {
     }
 
     // Update plot.
-    d3.select("#curve-n")
+    // prepare a helper function
+    var curveFunc = d3.area()
+        .x(function(d) { return x(d.x) })      // Position of both line breaks on the X axis
+        .y1(function(d) { return y(d.n) })     // Y position of top line breaks
+        .y0(0)                                // Y position of bottom line breaks (0 = bottom of svg area)
+
+    
+    d3.select("#area-n")
         .datum(data)
         .transition()
-        .attr("d", d3.line()
-            .x(function(d) {
-                return x(d.x)
-            })
-            .y(function(d) {
-                return y(d.n)
-            })
+        .attr("d", d3.area()
+            .x(function(d) { return x(d.x) })
+            .y1(function(d) { return y(d.n) })
+            .y0(y(0)) 
         )
-    d3.select("#curve-m")
+    d3.select("#area-m")
         .datum(data)
         .transition()
-        .attr("d", d3.line()
-            .x(function(d) {
-                return x(d.x)
-            })
-            .y(function(d) {
-                return y(d.m)
-            })
+        .attr("d", d3.area()
+            .x(function(d) { return x(d.x) })
+            .y1(function(d) { return y(d.m) })
+            .y0(y(0)) 
         )
 }
 

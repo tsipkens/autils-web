@@ -1,18 +1,65 @@
+<!DOCTYPE html>
+<html>
 
 <head>
+  <meta charset="utf-8">
+  <title>tfer-pma | PMA transfer function evaluator</title>
+  <meta name="description" content="Viz demonstrating the transfer function of the particle mass analyer (PMA) from Sipkens et al. (2020).">
+  <meta name="keywords" content="aerosol, particle mass analyzer, PMA, centrifugal particle mass analyzer, CPMA, aerosol particle mass analyzer, APM, particle mass, sipkens">
+
+  <meta name="title" property="og:title" content="PMA transfer function evaluator">
+  <meta name="image" property="og:image" content="docs/imgs/pytferpma_preview.png">
+  <meta name="author" content="Timothy Sipkens">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <!-- Used for math and optimization -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="https://unpkg.com/mathjs/lib/browser/math.js" type="text/javascript"></script>
   <script src="https://unpkg.com/optimization-js@latest/dist/optimization.js" type="text/javascript"></script>
+
+  <script src="https://kit.fontawesome.com/58cf1bb60d.js" crossorigin="anonymous"></script>
   
   <!-- Load style -->
   <link href="style.css" rel="stylesheet">
+
+  <meta name="theme-color" content="#121212">
+  <meta name="color-scheme" content="light dark" />
+
+  <script>
+    // Initialize light/dark mode.
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    var dark = prefersDarkScheme.matches;
+
+    // Apply appropriate theme.
+    function toggleNight() {
+       // Swap CSS.
+       document.body.classList.toggle("dark-theme");
+
+       // Update background color
+       if (dark) {
+          document.querySelector(':root').style.setProperty('--background-color', '#242526');
+       } else {
+          document.querySelector(':root').style.setProperty('--background-color', '#FCFCFC');
+       }
+    };
+ </script>
 </head>
 
 
-<body>
+<body onload="if (dark) { toggleNight(); }">
+
     <div class="main">
+        <div id="btn-toggle">
+            <a>
+               <div>
+                  <span><i class="fas fa-moon" id="moon"></i></span>
+                  <span><i class="fas fa-sun" id="sun"></i></span>
+                  <span></span> <!-- placeholder for dark/light theme toggle -->
+               </div>
+            </a>
+         </div>
 
         <h3>Input properties</h3>
 
@@ -140,5 +187,16 @@
     </div>
 
 </body>
+
+<!-- theme toggle -->
+<script>
+    const btn = document.querySelector("#btn-toggle");
+    btn.addEventListener("click", function () {
+       // Toggle dark theme.
+       dark = !dark;
+ 
+       toggleNight(); // apply theme
+    })
+ </script>
 
 
