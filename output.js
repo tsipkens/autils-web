@@ -39,7 +39,7 @@ var margin = {
         left: 65
     },
     width = width_a - margin.left - margin.right,
-    height = 350 - margin.top - margin.bottom;
+    height = 250 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -50,25 +50,18 @@ var svg = d3.select("#my_dataviz")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-// Add X axis
+// Add X scale
 var x = d3.scaleLog()
     .domain([dmin, dmax])
     .range([0, width]);
-var xAxis = svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .attr("class", "axis")
-    .call(d3.axisBottom(x).ticks(3).tickFormat(x => `${x.toFixed(0)}`));
 
 // Add Y axis
-var yMax = 1.05,
+var yMax = 1.1,
     yMin = 0;
 
 var y = d3.scaleLinear()
     .domain([yMin, yMax])
     .range([height, 0]);
-var yAxis = svg.append("g")
-    .attr("class", "axis")
-    .call(d3.axisLeft(y).ticks(5));
 
 //-- Add axis labels --//
 // Add X axis label:
@@ -105,6 +98,41 @@ for (ii = 0; ii < d_vec.length; ii++) {
     })
 }
 
+svg.append("line")
+    .attr("id", "cmd-line")
+    .attr("x1", x(dmin))
+    .attr("y1", y(yMin))
+    .attr("x2", x(dmin))
+    .attr("y2", y(yMax))
+    .style("stroke-width", 1.5)
+    .style("stroke-dasharray", ("3, 3"))
+    .style("stroke", colors[1])
+    .style("fill", "none");
+svg.append("line")
+    .attr("id", "mmd-line")
+    .attr("x1", x(dmin))
+    .attr("y1", y(yMin))
+    .attr("x2", x(dmin))
+    .attr("y2", y(yMax))
+    .style("stroke-width", 1.5)
+    .style("stroke-dasharray", ("3, 3"))
+    .style("stroke", colors[3])
+    .style("fill", "none");
+svg.append("text")
+    .attr("id", "cmd-label")
+    .attr("text-anchor", "middle")
+    .attr("class", "legend-label")
+    .attr("x", x(75))
+    .attr("y", y(1.05))
+    .text("0")
+svg.append("text")
+    .attr("id", "mmd-label")
+    .attr("text-anchor", "middle")
+    .attr("class", "legend-label")
+    .attr("x", x(75))
+    .attr("y", y(1.05))
+    .text("0")
+
 svg.append('path')
     .datum(data)
     .attr("id", "area-n")
@@ -117,7 +145,7 @@ svg.append('path')
         })
         .y0(0))
     .attr('stroke', colors[1])
-    .attr("stroke-width", 2)
+    .attr("stroke-width", 1.5)
     .attr('fill', lcolors[1]);
 svg.append('path')
     .datum(data)
@@ -131,8 +159,19 @@ svg.append('path')
         })
         .y0(0))
     .attr('stroke', colors[3])
-    .attr("stroke-width", 2)
+    .attr("stroke-width", 1.5)
     .attr('fill', lcolors[3]);
+
+xValues = [5, 6, 8, 10, 20, 30, 40, 60, 100, 200, 300, 400, 600, 1000, 2000];
+var xAxis = svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .attr("class", "axis")
+    .call(d3.axisBottom(x)
+        .tickValues(xValues)
+        .tickFormat((d, i) => xValues[i]));
+var yAxis = svg.append("g")
+    .attr("class", "axis")
+    .call(d3.axisLeft(y).ticks(5));
 
 var plotter = function (dg, mg, sg) {
     var p_vec = logn(dg, sg, d_vec) // number pdf
@@ -158,7 +197,31 @@ var plotter = function (dg, mg, sg) {
             return y(d.n)
         }) // Y position of top line breaks
         .y0(0) // Y position of bottom line breaks (0 = bottom of svg area)
-
+    
+    d3.select("#cmd-line")
+        .transition()
+        .attr("x1", x(dg))
+        .attr("y1", y(yMin))
+        .attr("x2", x(dg))
+        .attr("y2", y(1 * 1.01))
+    d3.select("#mmd-line")
+        .transition()
+        .attr("x1", x(mg))
+        .attr("y1", y(yMin))
+        .attr("x2", x(mg))
+        .attr("y2", y(1 * 1.01))
+    svg.select("#cmd-label")
+        .transition()
+        .attr("x", x(dg))
+        .attr("y", y(1.03))
+        .attr("font-size", "10pt")
+        .text(dg.toFixed())
+    svg.select("#mmd-label")
+        .transition()
+        .attr("x", x(mg))
+        .attr("y", y(1.03))
+        .attr("font-size", "10pt")
+        .text(mg.toFixed())
 
     d3.select("#area-n")
         .datum(data)
@@ -200,7 +263,7 @@ var updater = function () {
     var rh = rho(dm * 1e-9, m * 1e-18);
     var C = Cc(dm * 1e-9);
 
-    document.getElementById("m0-val").innerHTML = (prop['m0'] * 1e18).toPrecision(3);
+    document.getElementById("m0-val").innerHTML = (prop['m0'] * 1e18).toExponential(2)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
     document.getElementById("rho100-valo").innerHTML = Math.round(rho100);
 

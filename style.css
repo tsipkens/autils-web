@@ -391,6 +391,7 @@ div.control {
   padding: 5px 10px 5px 10px;
   border: 2px solid #E3E3E3;
   background-color: white;
+  color: black;
   transition: all 0.3s ease 0s;
   width: 110px;
 }
