@@ -312,10 +312,6 @@ var updater = function () {
     document.getElementById("B-val").innerHTML = format10(B, 3);
     document.getElementById("Zp-val").innerHTML = format10(Zp, 3);
     document.getElementById("D-val").innerHTML = format10(D, 3);
-    
-    var q = Number(document.getElementById("q-val").value);
-    var fq = tfer_charge([dm * 1e-9], [q])[0][0]
-    document.getElementById("fq-val").innerHTML = fq.toPrecision(3);
 
     sg = Number(document.getElementById("sg-val").value);
     cmd = Number(document.getElementById("cmd-val").value);

@@ -1,0 +1,20 @@
+
+<div class="section">
+    <h3>Particle charging</h3>
+
+    <div class="control">
+        <span class="control-label">Integer charge (z, q)</span> <br>
+        <input class="textinput" id="q-val" type="number" step="1" value="1" onchange="updater()">
+    </div>
+    
+    <div class="control">
+        <span class="control-label">Charge fraction (bi.)</span><br>
+        <div class="textoutput"><div class="output-div" id="fq-val">-</div></div>
+    </div>
+</div>
+
+<script>
+    var q = Number(document.getElementById("q-val").value);
+    var fq = tfer_charge([dm * 1e-9], [q])[0][0]
+    document.getElementById("fq-val").innerHTML = fq.toPrecision(3);
+</script>
