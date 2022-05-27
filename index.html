@@ -58,6 +58,13 @@
          <div class="section">
 
             <h3>Mass-mobility parameters</h3>
+
+            <p class="note">
+                This section sets the mass-mobility parameters and shape factor 
+                used throughout the rest of the web app. The universal parameters 
+                for soot from Olfert and Rogak (2019) correspond to 
+                ρ @ 100 nm = 510 kg/m<sup>3</sup> and D<sub>m</sub> = 2.48.
+            </p>
             
             <div class="control">
                 <span class="control-label">ρ @ 100 nm</span>
@@ -66,7 +73,7 @@
             </div>
             
             <div class="control">
-                <span class="control-label">Mass-mobility exponent</span> <br>
+                <span class="control-label">Mass-mobility exponent (D<sub>m</sub>)</span> <br>
                 <input class="textinput" id="zet-val" type="number" step="0.01" value="2.48" onchange="updater()">
             </div>
             
@@ -98,12 +105,6 @@
         <div class="section">
 
             <h3>Equivalent sizes</h3>
-
-            <p style="padding-bottom:10px">
-                This section considers a range of equivalent diameters and 
-                characteristics for the particles. Results use the mass-mobility 
-                information and shape factor from the first section. 
-            </p>
 
             <div class="control">
                 <span class="control-label">Mobility diameter</span>
