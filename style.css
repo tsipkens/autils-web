@@ -118,6 +118,7 @@ div.main {
 
 p.note {
   padding-bottom: 10px;
+  padding-top: 0px;
 }
 
 #btn-toggle {
