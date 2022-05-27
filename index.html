@@ -2,49 +2,49 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="author" content="Timothy Sipkens">
+    <meta charset="utf-8">
+    <meta name="author" content="Timothy Sipkens">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Used for math and optimization -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://d3js.org/d3.v4.js"></script>
-  <script src="https://unpkg.com/mathjs/lib/browser/math.js" type="text/javascript"></script>
-  <script src="https://unpkg.com/optimization-js@latest/dist/optimization.js" type="text/javascript"></script>
+    <!-- Used for math and optimization -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://unpkg.com/mathjs/lib/browser/math.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/optimization-js@latest/dist/optimization.js" type="text/javascript"></script>
 
-  <script src="https://kit.fontawesome.com/58cf1bb60d.js" crossorigin="anonymous"></script>
-  
-  <!-- Load style -->
-  <link href="style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/58cf1bb60d.js" crossorigin="anonymous"></script>
 
-  <meta name="theme-color" content="#121212">
-  <meta name="color-scheme" content="light dark" />
+    <!-- Load style -->
+    <link href="style.css" rel="stylesheet">
 
-  <script>
-    // Initialize light/dark mode.
-    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-    var dark = prefersDarkScheme.matches;
+    <meta name="theme-color" content="#121212">
+    <meta name="color-scheme" content="light dark" />
 
-    // Apply appropriate theme.
-    function toggleNight() {
-       // Swap CSS.
-       document.body.classList.toggle("dark-theme");
+    <script>
+        // Initialize light/dark mode.
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        var dark = prefersDarkScheme.matches;
 
-       // Update background color
-       if (dark) {
-          document.querySelector(':root').style.setProperty('--background-color0', '#242526');
-          document.querySelector(':root').style.setProperty('--background-color1', 'black');
-          document.querySelector(':root').style.setProperty('--background-color2', 'black');
-          document.querySelector(':root').style.setProperty('--line-color', '#444444');
-       } else {
-          document.querySelector(':root').style.setProperty('--background-color0', '#FAF9F6');
-          document.querySelector(':root').style.setProperty('--background-color1', 'white');
-          document.querySelector(':root').style.setProperty('--background-color2', 'white');
-          document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
-       }
-    };
- </script>
+        // Apply appropriate theme.
+        function toggleNight() {
+            // Swap CSS.
+            document.body.classList.toggle("dark-theme");
+
+            // Update background color
+            if (dark) {
+                document.querySelector(':root').style.setProperty('--background-color0', '#242526');
+                document.querySelector(':root').style.setProperty('--background-color1', 'black');
+                document.querySelector(':root').style.setProperty('--background-color2', 'black');
+                document.querySelector(':root').style.setProperty('--line-color', '#444444');
+            } else {
+                document.querySelector(':root').style.setProperty('--background-color0', '#FAF9F6');
+                document.querySelector(':root').style.setProperty('--background-color1', 'white');
+                document.querySelector(':root').style.setProperty('--background-color2', 'white');
+                document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
+            }
+        };
+    </script>
 </head>
 
 
@@ -53,191 +53,240 @@
     <div class="main">
         <div id="btn-toggle">
             <a>
-               <div>
-                  <span><i class="fas fa-moon" id="moon"></i></span>
-                  <span><i class="fas fa-sun" id="sun"></i></span>
-                  <span></span> <!-- placeholder for dark/light theme toggle -->
-               </div>
+                <div>
+                    <span><i class="fas fa-moon" id="moon"></i></span>
+                    <span><i class="fas fa-sun" id="sun"></i></span>
+                    <span></span> <!-- placeholder for dark/light theme toggle -->
+                </div>
             </a>
-         </div>
+        </div>
 
-         <div class="section">
+        <div class="section">
 
             <h3>Gas properties (not used/under construction)</h3>
-            
-            <div class="control">
-                <span class="control-label">Temperature</span>
-                <span class="control-unit">K</span> <br>
-                <input class="textinput" id="T-val" type="number" value="298" onchange="updater()">
-            </div>
-            
-            <div class="control">
-                <span class="control-label">Pressure</span>
-                <span class="control-unit">atm</span> <br>
-                <input class="textinput" id="p-val" type="number" value="1" onchange="updater()">
+
+            <div class="sub-section">
+                <div class="control">
+                    <span class="control-label">Temperature</span>
+                    <span class="control-unit">K</span> <br>
+                    <input class="textinput" id="T-val" type="number" value="298" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Pressure</span>
+                    <span class="control-unit">atm</span> <br>
+                    <input class="textinput" id="p-val" type="number" value="1" onchange="updater()">
+                </div>
             </div>
 
-         </div>
+        </div>
 
-         <div class="section">
+        <div class="section">
 
             <h3>Mass-mobility parameters</h3>
 
             <p class="note">
-                This section sets the mass-mobility parameters and shape factor 
-                used throughout the rest of the web app. The universal parameters 
-                for soot from Olfert and Rogak (2019) correspond to 
+                This section sets the mass-mobility parameters and shape factor
+                used throughout the rest of the web app. The universal parameters
+                for soot from Olfert and Rogak (2019) correspond to
                 ρ @ 100 nm = 510 kg/m<sup>3</sup> and D<sub>m</sub> = 2.48.
             </p>
-            
-            <div class="control">
-                <span class="control-label">ρ @ 100 nm</span>
-                <span class="control-unit">kg/m<sup>3</sup></span> <br>
-                <input class="textinput" id="rho100-val" type="number" value="510" onchange="updater()">
-            </div>
-            
-            <div class="control">
-                <span class="control-label">Mass-mobility exponent (D<sub>m</sub>)</span> <br>
-                <input class="textinput" id="zet-val" type="number" step="0.01" value="2.48" onchange="updater()">
-            </div>
-            
-            <div class="control">
-                <span class="control-label">Shape factor</span> <br>
-                <input class="textinput" id="chi-val" type="number" step="0.01" value="1" onchange="updater()">
-            </div>
 
-            <br>
-            
-            <div class="control">
-                <span class="control-label">Pre-factor (k, m<sub>0</sub>)</span> <br>
-                <div class="textoutput"><div class="output-div" id="m0-val">-</div> fg</div>
-            </div>
-            
-            <div class="control">
-                <span class="control-label">m @ 100 nm (m<sub>100</sub>)</span> <br>
-                <div class="textoutput"><div class="output-div" id="m100-val">-</div> fg</div>
-            </div>
-            
-            <div class="control">
-                <span class="control-label">ρ @ 100 nm</span> <br>
-                <div class="textoutput"><div class="output-div" id="rho100-valo">-</div> kg/m<sup>3</sup></div>
+            <div class="sub-section">
+                <div class="control">
+                    <span class="control-label">ρ @ 100 nm</span>
+                    <span class="control-unit">kg/m<sup>3</sup></span> <br>
+                    <input class="textinput" id="rho100-val" type="number" value="510" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Mass-mobility exponent (D<sub>m</sub>)</span> <br>
+                    <input class="textinput" id="zet-val" type="number" step="0.01" value="2.48" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Shape factor</span> <br>
+                    <input class="textinput" id="chi-val" type="number" step="0.01" value="1" onchange="updater()">
+                </div>
+
+                <br>
+
+                <div class="control">
+                    <span class="control-label">Pre-factor (k, m<sub>0</sub>)</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="m0-val">-</div> fg
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">m @ 100 nm (m<sub>100</sub>)</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="m100-val">-</div> fg
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">ρ @ 100 nm</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="rho100-valo">-</div> kg/m<sup>3</sup>
+                    </div>
+                </div>
             </div>
 
         </div>
-        
+
 
         <div class="section">
 
             <h3>Equivalent sizes</h3>
 
-            <div class="control">
-                <span class="control-label">Mobility diameter</span>
-                <span class="control-unit">nm</span> <br>
-                <input class="textinput" id="dm-val" type="number" step="0.1" value="75" onchange="updater()">
-            </div>
+            <p>
+                Mass and effective density at the chosen mobility diameter are computed via the
+                mass-mobility relation.
+            </p>
 
-            <br>
-            
-            <div class="control">
-                <span class="control-label">Mass</span> <br>
-                <div class="textoutput"><div class="output-div" id="m-val">-</div> fg</div>
-            </div>
-            
-            <div class="control">
-                <span class="control-label">ρ @ d<sub>m</sub></span> <br>
-                <div class="textoutput"><div class="output-div" id="rho-val">-</div> kg/m<sup>3</sup></div>
-            </div>
-            
-            <br>
-            <div class="control">
-                <span class="control-label">Cunningham slip @ d<sub>m</sub></span> <br>
-                <div class="textoutput"><div class="output-div" id="Cc-val">-</div></div>
-            </div>
-            
-            <div class="control">
-                <span class="control-label">Cunningham slip @ d<sub>a</sub></span> <br>
-                <div class="textoutput"><div class="output-div" id="Cca-val">-</div></div>
-            </div>
-            
-            <br>
-            <div class="control">
-                <span class="control-label">Volume eq. diameter</span><br>
-                <div class="textoutput"><div class="output-div" id="dve-val">-</div> nm</div>
-            </div>
-            
-            <div class="control">
-                <span class="control-label">Volume eq. diameter (no slip)</span><br>
-                <div class="textoutput"><div class="output-div" id="dves-val">-</div> nm</div>
-            </div>
-            
-            <br>
-            <div class="control">
-                <span class="control-label">Aerodynamic diameter</span><br>
-                <div class="textoutput"><div class="output-div" id="da-val">-</div> nm</div>
-            </div>
-            
-            <div class="control">
-                <span class="control-label">Aero. diameter (no slip)</span><br>
-                <div class="textoutput"><div class="output-div" id="das-val">-</div> nm</div>
-            </div>
+            <div class="sub-section">
 
-            <br>
-            
-            <div class="control">
-                <span class="control-label">Mechanical mobility (B)</span><br>
-                <div class="textoutput"><div class="output-div" id="B-val">-</div> m/(N*ns)</div>
-            </div>
-            
-            <div class="control">
-                <span class="control-label">Electrical mobility (Z<sub>p</sub>)</span><br>
-                <div class="textoutput"><div class="output-div" id="Zp-val">-</div> cm<sup>2</sup>/(V*s)</div>
-            </div>
-            
-            <div class="control">
-                <span class="control-label">Diffusion coefficient (D)</span><br>
-                <div class="textoutput"><div class="output-div" id="D-val">-</div> cm<sup>2</sup>/s</div>
+                <div class="control">
+                    <span class="control-label">Mobility diameter</span>
+                    <span class="control-unit">nm</span> <br>
+                    <input class="textinput" id="dm-val" type="number" step="0.1" value="75" onchange="updater()">
+                </div>
+
+                <br>
+
+                <div class="control">
+                    <span class="control-label">Mass</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="m-val">-</div> fg
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">ρ @ d<sub>m</sub></span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="rho-val">-</div> kg/m<sup>3</sup>
+                    </div>
+                </div>
+
+                <br>
+                <div class="control">
+                    <span class="control-label">Cunningham slip @ d<sub>m</sub></span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="Cc-val">-</div>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Cunningham slip @ d<sub>a</sub></span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="Cca-val">-</div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="control">
+                    <span class="control-label">Volume eq. diameter</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="dve-val">-</div> nm
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Volume eq. diameter (no slip)</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="dves-val">-</div> nm
+                    </div>
+                </div>
+
+                <br>
+                <div class="control">
+                    <span class="control-label">Aerodynamic diameter</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="da-val">-</div> nm
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Aero. diameter (no slip)</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="das-val">-</div> nm
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="control">
+                    <span class="control-label">Mechanical mobility (B)</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="B-val">-</div> m/(N*ns)
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Electrical mobility (Z<sub>p</sub>)</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="Zp-val">-</div> cm<sup>2</sup>/(V*s)
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Diffusion coefficient (D)</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="D-val">-</div> cm<sup>2</sup>/s
+                    </div>
+                </div>
             </div>
         </div>
-        
+
 
         <div class="section">
             <h3>Distribution moments</h3>
 
-            <div class="control">
-                <span class="control-label">CMD</span>
-                <span class="control-unit">nm</span> <br>
-                <input class="textinput" id="cmd-val" type="number" step="0.1" value="75" onchange="updater()">
+            <div class="sub-section">
+                <div class="control">
+                    <span class="control-label">CMD</span>
+                    <span class="control-unit">nm</span> <br>
+                    <input class="textinput" id="cmd-val" type="number" step="0.1" value="75" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">GSD</span> <br>
+                    <input class="textinput" id="sg-val" type="number" min="1" max="20" step="0.01" value="1.8"
+                        onchange="updater()">
+                </div>
+
+                <br>
+
+                <div class="control">
+                    <span class="control-label">MMD</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="mmd-val">-</div> nm
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">CMAD</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="cmad-val">-</div> nm
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">MMAD</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="mmad-val">-</div> nm
+                    </div>
+                </div>
+
+                <!-- Create a div where the graph will take place -->
+                <div style="height:20px;"></div>
+                <div id="my_dataviz"></div>
             </div>
-
-            <div class="control">
-                <span class="control-label">GSD</span> <br>
-                <input class="textinput" id="sg-val" type="number" min="1" max="20" step="0.01" value="1.8" onchange="updater()">
-            </div>
-
-            <br>
-
-            <div class="control">
-                <span class="control-label">MMD</span><br>
-                <div class="textoutput"><div class="output-div" id="mmd-val">-</div> nm</div>
-            </div>
-
-            <div class="control">
-                <span class="control-label">CMAD</span><br>
-                <div class="textoutput"><div class="output-div" id="cmad-val">-</div> nm</div>
-            </div>
-
-            <div class="control">
-                <span class="control-label">MMAD</span><br>
-                <div class="textoutput"><div class="output-div" id="mmad-val">-</div> nm</div>
-            </div>
-
-            <!-- Create a div where the graph will take place -->
-            <div style="height:20px;"></div>
-            <div id="my_dataviz"></div>
-
-            <script src="autils.js"></script>
-            <script src="output.js"></script>
         </div>
+
+        <script src="autils.js"></script>
+        <script src="output.js"></script>
 
         <div class="footer">
             <sup>1</sup>This web app is currently under construction and has not been fully validated.
@@ -251,11 +300,9 @@
 <script>
     const btn = document.querySelector("#btn-toggle");
     btn.addEventListener("click", function () {
-       // Toggle dark theme.
-       dark = !dark;
- 
-       toggleNight(); // apply theme
+        // Toggle dark theme.
+        dark = !dark;
+
+        toggleNight(); // apply theme
     })
- </script>
-
-
+</script>

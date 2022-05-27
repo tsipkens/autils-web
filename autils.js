@@ -110,7 +110,7 @@ var hci = function (mu, sg, q, a) {
 // Mechanical mobility
 var dm2B = function (dm) {
     var mu = 1.84198E-05
-    return (Cc(dm * 1e-9) / (3* pi * mu * ( dm * 1e-9))) * 1e-9
+    return (Cc(dm * 1e-9) / (3 * pi * mu * (dm * 1e-9))) * 1e-9
 }
 
 // Electrical mobility
@@ -120,8 +120,7 @@ var dm2Zp = function (dm) {
 }
 
 // Diffusion
-var dm2D = function (dm, T=298) {
+var dm2D = function (dm, T = 298) {
     var B = dm2B(dm)
     return kB * T * (B / 1e-9) * (100 ** 2)
 }
-

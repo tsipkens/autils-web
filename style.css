@@ -47,15 +47,9 @@ b {
 
 p {
   text-align: left;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   margin: 0px;
-}
-
-@media screen and (min-width: 600px) {
-  p {
-    text-align: justify;
-  }
 }
 
 h1.title {
@@ -77,10 +71,13 @@ h2.subtitle {
 }
 
 h3 {
-  padding-bottom: 10px;
+  font-size: 16pt;
+  padding-bottom: 12px;
   padding-top: 0px;
   color: black;
+  font-weight: 600;
 }
+
 body.dark-theme h3 {
   color: white;
 }
@@ -114,11 +111,6 @@ div.main {
   max-width: 700px;
   padding-top: 50px;
   padding-bottom: 50px
-}
-
-p.note {
-  padding-bottom: 10px;
-  padding-top: 0px;
 }
 
 #btn-toggle {
@@ -217,9 +209,15 @@ div.section {
   border-radius: 7px;
   background-color: var(--background-color1);
 }
+
 body.dark-theme div.section {
   border: 1.5px solid var(--line-color);
   background-color: var(--background-color1);
+}
+
+div.sub-section {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 
