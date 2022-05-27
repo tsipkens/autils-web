@@ -33,9 +33,15 @@
 
        // Update background color
        if (dark) {
-          document.querySelector(':root').style.setProperty('--background-color', '#242526');
+          document.querySelector(':root').style.setProperty('--background-color0', '#242526');
+          document.querySelector(':root').style.setProperty('--background-color1', 'black');
+          document.querySelector(':root').style.setProperty('--background-color2', 'black');
+          document.querySelector(':root').style.setProperty('--line-color', '#444444');
        } else {
-          document.querySelector(':root').style.setProperty('--background-color', '#FCFCFC');
+          document.querySelector(':root').style.setProperty('--background-color0', '#FCFCFC');
+          document.querySelector(':root').style.setProperty('--background-color1', 'white');
+          document.querySelector(':root').style.setProperty('--background-color2', 'white');
+          document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
        }
     };
  </script>
@@ -53,6 +59,24 @@
                   <span></span> <!-- placeholder for dark/light theme toggle -->
                </div>
             </a>
+         </div>
+
+         <div class="section">
+
+            <h3>Gas properties (not used/under construction)</h3>
+            
+            <div class="control">
+                <span class="control-label">Temperature</span>
+                <span class="control-unit">K</span> <br>
+                <input class="textinput" id="T-val" type="number" value="298" onchange="updater()">
+            </div>
+            
+            <div class="control">
+                <span class="control-label">Pressure</span>
+                <span class="control-unit">atm</span> <br>
+                <input class="textinput" id="p-val" type="number" value="1" onchange="updater()">
+            </div>
+
          </div>
 
          <div class="section">
@@ -213,6 +237,10 @@
 
             <script src="autils.js"></script>
             <script src="output.js"></script>
+        </div>
+
+        <div class="footer">
+            <sup>1</sup>This web app is currently under construction and has not been fully validated.
         </div>
 
     </div>

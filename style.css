@@ -3,12 +3,18 @@
 :root {
   color-scheme: light dark;
   /* both supported */
-  --background-color: #FCFCFC;
+  --background-color0: #FAFAFA;
+  --background-color1: white;
+  --background-color2: white;
+  --line-color: #E3E3E3;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #242526;
+    --background-color0: #242526;
+    --background-color1: black;
+    --background-color2: black;
+    --line-color: #444444;
   }
 }
 
@@ -20,17 +26,17 @@
 body {
   margin: auto 0px;
   padding: 0px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  font-size: 11.5pt;
+  font-size: 11pt;
   transition: 0.3s;
   color: #111;
-  background-color: var(--background-color);
+  background-color: var(--background-color0);
 }
 
 body.dark-theme {
   color: #DDD;
-  background-color: var(--background-color);
+  background-color: var(--background-color0);
 }
 
 b {
@@ -131,13 +137,13 @@ p.note {
   border: solid 1px #CCC;
   border-radius: 40px;
   padding: 5px;
-  background-color: white;
+  background-color: var(--background-color1);
 }
 
 body.dark-theme #btn-toggle div {
   color: #555;
   border: solid 1px #555;
-  background-color: black;
+  background-color: var(--background-color1);
 }
 
 #btn-toggle div span {
@@ -152,57 +158,6 @@ ol li {
   padding-bottom: 2px;
 }
 
-
-
-/*  For navigation/header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--background-color);
-  margin: 0px;
-  padding: 0px;
-  font-size: 10pt;
-  z-index: 20;
-  position: fixed;
-  /* Set the navbar to fixed position */
-  top: 0;
-  /* Position the navbar at the top of the page */
-  width: 100%;
-  border-bottom: var(--background-color) 1px solid;
-  transition: 0.3s;
-}
-
-body.dark-theme header {
-  background-color: var(--background-color);
-  border-bottom: var(--background-color) 1px solid;
-}
-
-#header-logo {
-  font-family: 'Montserrat', sans-serif;
-  color: #222;
-  font-size: 16pt;
-  text-decoration: none;
-  padding: 18px 10px 18px 5%;
-  /* text-shadow: 0px 0px 2px #8956FF; */
-  text-shadow: -0.8px 0.8px 0px #8956FF;
-  line-height: 13pt;
-}
-
-body.dark-theme #header-logo {
-  color: white;
-}
-
-#header-logo:hover {
-  color: #555;
-}
-
-nav {
-  padding: 10px 5% 10px 0px;
-  text-align: right;
-  width: 60%;
-  vertical-align: center;
-}
 
 a.anchor {
   display: block;
@@ -257,11 +212,13 @@ div.section {
   margin-top: 30px;
   margin-bottom: 20px;
   padding: 25px;
-  border: 2px solid #E3E3E3;
-  border-radius: 10px;
+  border: 1.5px solid var(--line-color);
+  border-radius: 7px;
+  background-color: var(--background-color1);
 }
 body.dark-theme div.section {
-  border: 2px solid #444444;
+  border: 1.5px solid var(--line-color);
+  background-color: var(--background-color1);
 }
 
 
@@ -288,35 +245,39 @@ div.control {
   border-radius: 3pt;
   font-weight: 300;
   padding: 5px 10px 5px 10px;
-  border: 2px solid #E3E3E3;
-  background-color: white;
+  border: 1.5px solid var(--line-color);
+  background-color: var(--background-color2);
   color: black;
   transition: all 0.3s ease 0s;
   width: 110px;
+  box-shadow: 0px 0px 4px #EEE;
 }
 
 body.dark-theme .textinput {
-  border: 2px solid #444444;
-  background-color: black;
+  border: 1.5px solid var(--line-color);
+  background-color: var(--background-color2);
   color: white;
+  box-shadow: 0px 0px 4px #111;
 }
 
 .textinput:hover {
-  border: 2px solid #8956FF;
+  border: 1.5px solid #8956FF;
   box-shadow: 0px 0px 4px #AAAAAA;
 }
 
 body.dark-theme .textinput:hover {
-  border: 2px solid #8956FF;
+  border: 1.5px solid #8956FF;
   box-shadow: 0px 0px 4px #666666;
 }
 
 .textinput:focus {
-  border: 2px solid #8956FF;
+  border: 1.5px solid #8956FF;
+  box-shadow: 0px 0px 4px #AAAAAA;
 }
 
 body.dark-theme .textinput:focus {
-  border: 2px solid #8956FF;
+  border: 1.5px solid #8956FF;
+  box-shadow: 0px 0px 4px #666666;
 }
 
 .control-label {
