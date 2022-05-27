@@ -258,7 +258,7 @@ div.section {
   margin-bottom: 20px;
   padding: 25px;
   border: 2px solid #E3E3E3;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 body.dark-theme div.section {
   border: 2px solid #444444;
