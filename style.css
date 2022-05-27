@@ -71,8 +71,8 @@ h2.subtitle {
 }
 
 h3 {
-  padding-bottom: 4px;
-  padding-top: 30px;
+  padding-bottom: 20px;
+  padding-top: 8px;
 }
 
 h4 {
@@ -101,7 +101,7 @@ body.dark-theme a:hover {
 div.main {
   margin: 0 auto;
   width: 95%;
-  max-width: 900px;
+  max-width: 700px;
   padding-top: 50px;
   padding-bottom: 50px
 }
@@ -196,28 +196,6 @@ nav {
   vertical-align: center;
 }
 
-.nav-list {
-  list-style: none;
-}
-
-.nav-list li {
-  display: inline-block;
-  padding: 0.5% 10px;
-  vertical-align: middle;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #333;
-  transition: all 0.3s ease 0s;
-  font-weight: 400;
-  top: -500px;
-}
-
-.nav-link:hover {
-  color: #8956FF;
-}
-
 a.anchor {
   display: block;
   position: relative;
@@ -267,108 +245,21 @@ a.anchor {
 }
 
 
-#data-link-a img:nth-child(2) {
-  display: none;
+div.section {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 25px;
+  border: 2px solid #E3E3E3;
+  border-radius: 5px;
 }
-
-#data-link-a:hover img:nth-child(2) {
-  display: block;
-}
-
-#data-link-a:hover img:first-child {
-  display: none;
-}
-
-.imgwrap {
-  display: block;
-  padding-bottom: 45px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-
-/* Images and symbols with toggles */
-#img1 {
-  /* formatting for image below title */
-  width: 100%;
-  max-width: 464px;
-  display: inline;
-}
-
-body.dark-theme #img1 {
-  display: none;
-}
-
-#img2 {
-  /* formatting for image below title */
-  width: 65.4%;
-  max-width: 303px;
-  display: inline;
-}
-
-body.dark-theme #img2 {
-  display: none;
-}
-
-#img1d {
-  /* formatting for image below title */
-  width: 100%;
-  max-width: 464px;
-  display: none;
-}
-
-body.dark-theme #img1d {
-  display: inline;
-}
-
-#img2d {
-  /* formatting for image below title */
-  width: 65.4%;
-  max-width: 303px;
-  display: none;
-}
-
-body.dark-theme #img2d {
-  display: inline;
-}
-
-#sun {
-  display: none;
-}
-
-body.dark-theme #sun {
-  display: inline;
-}
-
-#moon {
-  display: inline;
-}
-
-body.dark-theme #moon {
-  display: none;
-}
-
-#gh-black {
-  display: inline;
-}
-
-body.dark-theme #gh-black {
-  display: none;
-}
-
-#gh-white {
-  display: none;
-}
-
-body.dark-theme #gh-white {
-  display: inline;
+body.dark-theme div.section {
+  border: 2px solid #444444;
 }
 
 
 /* For control components */
 div.control {
-  padding: 0px 30px 5px 0px;
+  padding: 0px 8px 5px 0px;
   display: inline-block;
   vertical-align: text-top;
   margin-bottom: 5px;
@@ -380,7 +271,7 @@ div.control {
   font-size: 11pt;
   border-radius: 3pt;
   font-weight: 300;
-  width: 110px;
+  width: 190px;
 }
 
 .textinput {

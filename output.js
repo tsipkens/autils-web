@@ -18,6 +18,27 @@ var logspace = function (v1, v2, n) {
     return arr;
 }
 
+var linspace = function (v1, v2, n) {
+    var arr = [];
+    var step = (v2 - v1) / (n - 1);
+    for (var ii = 0; ii < n; ii++) {
+        arr.push(v1 + (step * ii));
+    }
+    return arr;
+}
+
+var format10 = function (no, pr) {
+    var no10 = Math.log10(no)
+    no10 = Math.floor(no10)
+    if (Math.abs(no10) > (pr - 1)) {
+        var pre = no / (10 ** no10)
+        var html = pre.toPrecision(pr) + "×10<sup>" + no10.toString() + "</sup>"
+    } else {
+        var html = no.toPrecision(pr)
+    }
+    return html
+}
+
 var dmin = 5;
 var dmax = 2e3;
 var d_vec = logspace(dmin, dmax, 225);
@@ -253,6 +274,9 @@ var plotter = function (dg, mg, sg) {
 //---------------------------------------------//
 // Display properties.
 var updater = function () {
+    var T = 298  // limited use at the moment
+    var p = 1
+
     var dm = Number(document.getElementById("dm-val").value);
     var rho100 = Number(document.getElementById("rho100-val").value);
     var zet = Number(document.getElementById("zet-val").value);
@@ -263,7 +287,7 @@ var updater = function () {
     var rh = rho(dm * 1e-9, m * 1e-18);
     var C = Cc(dm * 1e-9);
 
-    document.getElementById("m0-val").innerHTML = (prop['m0'] * 1e18).toExponential(2)
+    document.getElementById("m0-val").innerHTML = format10(prop['m0'] * 1e18, 3)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
     document.getElementById("rho100-valo").innerHTML = Math.round(rho100);
 
@@ -271,8 +295,13 @@ var updater = function () {
     var dves = dm2dve(dm, rh, false, chi)
     var da = dm2da(dm, rh, true, chi, dve)
     var das = dm2da(dm, rh, false, chi, dves)
+    var B = dm2B(dm)
+    var Zp = dm2Zp(dm)
+    var D = dm2D(dm)
+    console.log(B)
+    console.log(D)
 
-    document.getElementById("m-val").innerHTML = m.toPrecision(3);
+    document.getElementById("m-val").innerHTML = format10(m, 3);
     document.getElementById("rho-val").innerHTML = Math.round(rh);
     document.getElementById("Cc-val").innerHTML = C.toPrecision(3);
     document.getElementById("Cca-val").innerHTML = Cc(da * 1e-9).toPrecision(3);
@@ -280,19 +309,28 @@ var updater = function () {
     document.getElementById("dves-val").innerHTML = dves.toPrecision(4);
     document.getElementById("da-val").innerHTML = da.toPrecision(4);
     document.getElementById("das-val").innerHTML = das.toPrecision(4);
+    document.getElementById("B-val").innerHTML = format10(B, 3);
+    document.getElementById("Zp-val").innerHTML = format10(Zp, 3);
+    document.getElementById("D-val").innerHTML = format10(D, 3);
+    
+    var q = Number(document.getElementById("q-val").value);
+    var fq = tfer_charge([dm * 1e-9], [q])[0][0]
+    document.getElementById("fq-val").innerHTML = fq.toPrecision(3);
 
     sg = Number(document.getElementById("sg-val").value);
+    cmd = Number(document.getElementById("cmd-val").value);
 
-    mmd = hc(dm, sg, prop['zet']);
-    mm = dm2mp(mmd, prop) * 1e18;
-    rhm = rho(mmd * 1e-9, mm * 1e-18);
-    mmved = dm2dve(mmd, rhm, true, chi);;
-    mmad = dm2da(mmd, rhm, true, chi, mmved);
-    document.getElementById("cmd-val").innerHTML = dm;
+    var cmad = dm2da(cmd, rh, true, chi, dve)
+    var mmd = hc(cmd, sg, prop['zet']);
+    var mm = dm2mp(mmd, prop) * 1e18;
+    var rhm = rho(mmd * 1e-9, mm * 1e-18);
+    var mmved = dm2dve(mmd, rhm, true, chi);;
+    var mmad = dm2da(mmd, rhm, true, chi, mmved);
     document.getElementById("mmd-val").innerHTML = mmd.toPrecision(4);
-    document.getElementById("cmad-val").innerHTML = da.toPrecision(4);
+    document.getElementById("cmad-val").innerHTML = cmad.toPrecision(4);
     document.getElementById("mmad-val").innerHTML = mmad.toPrecision(4);
 
-    plotter(dm, mmd, sg); // update plot
+    plotter(cmd, mmd, sg); // update plot
+
 }
 updater(); // run the first time
