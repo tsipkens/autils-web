@@ -4,7 +4,7 @@ const kB = 1.380658e-23;
 
 var Cc = function (d, T = null, p = null) {
 
-    if (p == null) { // if P and T are not specified, use Buckley/Davies
+    if (T == null) { // if P and T are not specified, use Buckley/Davies
         mfp = 66.5e-9; // mean free path
 
         // For air, from Davies (1945).
