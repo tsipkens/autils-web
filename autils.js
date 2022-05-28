@@ -1,11 +1,26 @@
-const pi = 3.14159265359;
-const e = 1.60217733e-19;
-const kB = 1.380658e-23;
+const pi = 3.14159265359
+const e = 1.60217733e-19
+const kB = 1.380658e-23
+
+var viscosity = function (T, p, gasProp) {
+    return gasProp["mu_ref"] * (gasProp["Tref"] + gasProp["S"]) / (T + gasProp["S"]) * (T / gasProp["Tref"]) ** 1.5 * 1e-7
+}
+
+var mfp = function (T, p, gasProp) {
+    // Kim et al. (2005) (doi:10.6028/jres.110.005), ISO 15900 Eqn 4
+    // Correct default mean free path.
+    return gasProp["mfp_ref"] * 1e9 * (T / gasProp["Tref"]) * (gasProp["pref"] / p) * (1 + gasProp["S"] / gasProp["Tref"]) / (1 + gasProp["S"] / T)
+}
+
+var Kn = function (lam, d) {
+    // lam is mean free path
+    return (2 * lam) / d
+}
 
 var Cc = function (d, T = null, p = null) {
 
     if (T == null) { // if P and T are not specified, use Buckley/Davies
-        mfp = 66.5e-9; // mean free path
+        var mfp = 66.5e-9; // mean free path
 
         // For air, from Davies (1945).
         A1 = 1.257;
@@ -18,22 +33,20 @@ var Cc = function (d, T = null, p = null) {
         p_0 = 101325; // reference pressure, [Pa] (760 mmHg to Pa)
 
         p = p * p_0;
-
-        // Kim et al. (2005) (doi:10.6028/jres.110.005), ISO 15900 Eqn 4
-        // Correct default mean free path.
-        mfp = mfp_0 * (T / T_0) ** 2 * (p_0 / p) * ((T_0 + S) / (T + S));
-
+        
+        // Also see MFP.
+        var mfp = mfp_0 * (T / T_0) ** 2 * (p_0 / p) * ((T_0 + S) / (T + S));
+        
         A1 = 1.165;
         A2 = 0.483;
         A3 = 0.997 / 2;
-
     }
 
-    Kn = (2 * mfp) / d; // Knudsen number
-    return 1 + Kn * (A1 + A2 * Math.exp(-(2 * A3) / Kn)); // Cunningham slip correction factor
+    K = Kn(mfp, d); // Knudsen number
+    return 1 + K * (A1 + A2 * Math.exp(-(2 * A3) / K)); // Cunningham slip correction factor
 }
 
-var massmob = function (zet, val, field = 'rho100') {
+var massMob = function (zet, val, field = 'rho100') {
     var prop = {
         zet: zet,
         rho100: 0,

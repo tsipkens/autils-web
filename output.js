@@ -274,22 +274,32 @@ var plotter = function (dg, mg, sg) {
 //---------------------------------------------//
 // Display properties.
 var updater = function () {
-    var T = 298  // limited use at the moment
-    var p = 1
+    var T = Number(document.getElementById("T-val").value)
+    var patm = Number(document.getElementById("p-val").value)
+    var p = patm * 101325
 
-    var dm = Number(document.getElementById("dm-val").value);
-    var rho100 = Number(document.getElementById("rho100-val").value);
-    var zet = Number(document.getElementById("zet-val").value);
-    var chi = Number(document.getElementById("chi-val").value);
+    var gas = document.getElementById("gas-val").value
+    gasProp = gases[0][gas]
+    console.log(gasProp)
 
-    var prop = massmob(zet, rho100, 'rho100');
-    var m = dm2mp(dm, prop) * 1e18;
-    var rh = rho(dm * 1e-9, m * 1e-18);
+    var mu = viscosity(T, p, gasProp)
+    var lam = mfp(T, p, gasProp)
+    document.getElementById("mu-val").innerHTML = format10(mu, 3)
+    document.getElementById("lam-val").innerHTML = format10(lam, 3)
+
+    var dm = Number(document.getElementById("dm-val").value)
+    var rho100 = Number(document.getElementById("rho100-val").value)
+    var zet = Number(document.getElementById("zet-val").value)
+    var chi = Number(document.getElementById("chi-val").value)
+
+    var prop = massMob(zet, rho100, 'rho100')
+    var m = dm2mp(dm, prop) * 1e18
+    var rh = rho(dm * 1e-9, m * 1e-18)
     var C = Cc(dm * 1e-9);
 
     document.getElementById("m0-val").innerHTML = format10(prop['m0'] * 1e18, 3)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
-    document.getElementById("rho100-valo").innerHTML = Math.round(rho100);
+    document.getElementById("rho100-valo").innerHTML = Math.round(rho100)
 
     var dve = dm2dve(dm, rh, true, chi)
     var dves = dm2dve(dm, rh, false, chi)
@@ -298,8 +308,6 @@ var updater = function () {
     var B = dm2B(dm)
     var Zp = dm2Zp(dm)
     var D = dm2D(dm)
-    console.log(B)
-    console.log(D)
 
     document.getElementById("m-val").innerHTML = format10(m, 3);
     document.getElementById("rho-val").innerHTML = Math.round(rh);

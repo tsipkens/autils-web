@@ -69,13 +69,42 @@
                 <div class="control">
                     <span class="control-label">Temperature</span>
                     <span class="control-unit">K</span> <br>
-                    <input class="textinput" id="T-val" type="number" value="298" onchange="updater()">
+                    <input class="textinput" id="T-val" type="number" value="296.15" onchange="updater()">
                 </div>
 
                 <div class="control">
                     <span class="control-label">Pressure</span>
                     <span class="control-unit">atm</span> <br>
                     <input class="textinput" id="p-val" type="number" value="1" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Gas</span> <br>
+                    <select name="gas-val" id="gas-val" value="Air"  onchange="updater()">
+                        <option value="Air">Air</option>
+                        <option value="Ar">Ar</option>
+                        <option value="He">He</option>
+                        <option value="H2">Hydrogen (H2)</option>
+                        <option value="CH4">Methane</option>
+                        <option value="C2H6">C<sub>2</sub>H<sub>6</sub></option>
+                        <option value="C4H10">C<sub>4</sub>H<sub>10</sub></option>
+                        <option value="N2O">N<sub>2</sub>O</option>
+                        <option value="CO2">Carbon dioxide</option>
+                    </select>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Viscosity</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="mu-val">-</div> Pa s
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Mean free path</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="lam-val">-</div> nm
+                    </div>
                 </div>
             </div>
 
@@ -284,7 +313,8 @@
                 <div id="my_dataviz"></div>
             </div>
         </div>
-
+        
+        <script src="gases.json"></script> <!-- Load gas properties -->
         <script src="autils.js"></script>
         <script src="output.js"></script>
 
