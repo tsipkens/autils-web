@@ -218,7 +218,7 @@ var plotter = function (dg, mg, sg) {
             return y(d.n)
         }) // Y position of top line breaks
         .y0(0) // Y position of bottom line breaks (0 = bottom of svg area)
-    
+
     d3.select("#cmd-line")
         .transition()
         .attr("x1", x(dg))
@@ -295,7 +295,7 @@ var updater = function () {
     var prop = massMob(zet, rho100, 'rho100')
     var m = dm2mp(dm, prop) * 1e18
     var rh = rho(dm * 1e-9, m * 1e-18)
-    var C = Cc(dm * 1e-9);
+    var C = Cc(dm * 1e-9, T, p, gasProp);
 
     document.getElementById("m0-val").innerHTML = format10(prop['m0'] * 1e18, 3)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
@@ -305,6 +305,7 @@ var updater = function () {
     var dves = dm2dve(dm, rh, false, chi)
     var da = dm2da(dm, rh, true, chi, dve)
     var das = dm2da(dm, rh, false, chi, dves)
+    var Ca = Cc(da * 1e-9, T, p, gasProp)
     var B = dm2B(dm)
     var Zp = dm2Zp(dm)
     var D = dm2D(dm)
@@ -312,7 +313,7 @@ var updater = function () {
     document.getElementById("m-val").innerHTML = format10(m, 3);
     document.getElementById("rho-val").innerHTML = Math.round(rh);
     document.getElementById("Cc-val").innerHTML = C.toPrecision(3);
-    document.getElementById("Cca-val").innerHTML = Cc(da * 1e-9).toPrecision(3);
+    document.getElementById("Cca-val").innerHTML = Ca.toPrecision(3);
     document.getElementById("dve-val").innerHTML = dve.toPrecision(4);
     document.getElementById("dves-val").innerHTML = dves.toPrecision(4);
     document.getElementById("da-val").innerHTML = da.toPrecision(4);

@@ -17,32 +17,25 @@ var Kn = function (lam, d) {
     return (2 * lam) / d
 }
 
-var Cc = function (d, T = null, p = null) {
+var Cc = function (d, T = null, p = null, gasProp = null) {
 
-    if (T == null) { // if P and T are not specified, use Buckley/Davies
-        var mfp = 66.5e-9; // mean free path
+    if (gasProp == null) { // if P and T are not specified, use Buckley/Davies
+        var lam = 66.5e-9; // mean free path
 
         // For air, from Davies (1945).
         A1 = 1.257;
         A2 = 0.4;
         A3 = 0.55;
-    } else { // Kim et al. (adapted from Olfert laboratory)
-        S = 110.4; // temperature [K]
-        mfp_0 = 67.3e-9; // mean free path of gas molecules in air [m]
-        T_0 = 296.15; // reference temperature [K]
-        p_0 = 101325; // reference pressure, [Pa] (760 mmHg to Pa)
+    } else { // Kim et al.
 
-        p = p * p_0;
-        
-        // Also see MFP.
-        var mfp = mfp_0 * (T / T_0) ** 2 * (p_0 / p) * ((T_0 + S) / (T + S));
-        
-        A1 = 1.165;
-        A2 = 0.483;
-        A3 = 0.997 / 2;
+        lam = mfp(T, p, gasProp) * 1e-9 // mean free path (convert from nm to m)
+
+        A1 = 1.165
+        A2 = 0.483
+        A3 = 0.997 / 2
     }
 
-    K = Kn(mfp, d); // Knudsen number
+    K = Kn(lam, d); // Knudsen number
     return 1 + K * (A1 + A2 * Math.exp(-(2 * A3) / K)); // Cunningham slip correction factor
 }
 
