@@ -48,16 +48,16 @@ var colors = ["#2525C6", "#1264B2", "#222222", "#B2325A"];
 var lcolors = ["", "rgba(18, 100, 178, 0.03)", "", "rgba(178, 50, 90, 0.03)"]
 
 var $container = $('#my_dataviz'),
-    width_a = 0.95 * Math.min($container.width(), 870),
+    width_a = 0.98 * Math.min($container.width(), 1000),
     height_a = $container.height()
 
 
 // set the dimensions and margins of the graph
 var margin = {
         top: 0,
-        right: 65,
-        bottom: 50,
-        left: 65
+        right: 25,
+        bottom: 90,
+        left: 15
     },
     width = width_a - margin.left - margin.right,
     height = 250 - margin.top - margin.bottom;
@@ -76,7 +76,7 @@ var x = d3.scaleLog()
     .domain([dmin, dmax])
     .range([0, width]);
 
-// Add Y axis
+// Add Y scale
 var yMax = 1.1,
     yMin = 0;
 
@@ -89,16 +89,15 @@ var y = d3.scaleLinear()
 svg.append("text")
     .attr("text-anchor", "middle")
     .attr('x', width / 2)
-    .attr('y', height + 35)
+    .attr('y', height + 32)
     .attr("class", "legend-label")
     .text("Mobility diameter [nm]");
-
-// Y axis label:
-svg.append("text")
-    .attr("text-anchor", "middle")
-    .attr("class", "legend-label")
-    .attr('transform', 'translate(-40,' + height / 2 + ')rotate(-90)')
-    .text("Normalized distribution")
+// svg.append("text")
+//     .attr("text-anchor", "middle")
+//     .attr('x', width / 2)
+//     .attr('y', height + 82)
+//     .attr("class", "legend-label")
+//     .text("Aerodynamic diameter [nm]");
 
 // Add a clipPath: everything out of this area won't be drawn.
 var clip = svg.append("defs").append("svg:clipPath")
@@ -183,16 +182,19 @@ svg.append('path')
     .attr("stroke-width", 1.5)
     .attr('fill', lcolors[3]);
 
-xValues = [5, 6, 8, 10, 20, 30, 40, 60, 100, 200, 300, 400, 600, 1000, 2000];
+xValues = [5, 10, 20, 50, 100, 200, 500, 1000, 2000];
 var xAxis = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .attr("class", "axis")
     .call(d3.axisBottom(x)
         .tickValues(xValues)
-        .tickFormat((d, i) => xValues[i]));
-var yAxis = svg.append("g")
-    .attr("class", "axis")
-    .call(d3.axisLeft(y).ticks(5));
+        .tickFormat((d, i) => xValues[i]))
+// var xAxis2 = svg.append("g")
+//     .attr("transform", "translate(0," + (height + 50) + ")")
+//     .attr("class", "axis")
+//     .call(d3.axisBottom(x)
+//         .tickValues(xValues)
+//         .tickFormat((d, i) => xValues[i]));
 
 var plotter = function (dg, mg, sg) {
     var p_vec = logn(dg, sg, d_vec) // number pdf
