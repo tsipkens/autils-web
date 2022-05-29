@@ -38,7 +38,7 @@
                 document.querySelector(':root').style.setProperty('--background-color2', 'black');
                 document.querySelector(':root').style.setProperty('--line-color', '#444444');
             } else {
-                document.querySelector(':root').style.setProperty('--background-color0', '#FAF9F6');
+                document.querySelector(':root').style.setProperty('--background-color0', '#EFEFEF');
                 document.querySelector(':root').style.setProperty('--background-color1', 'white');
                 document.querySelector(':root').style.setProperty('--background-color2', 'white');
                 document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
@@ -63,7 +63,7 @@
 
         <div class="section">
 
-            <h3>Gas properties</h3>
+            <h3>GAS PROPERTIES</h3>
 
             <div class="sub-section">
                 <div class="control">
@@ -84,12 +84,12 @@
                         <option value="Air">Air</option>
                         <option value="Ar">Ar</option>
                         <option value="He">He</option>
-                        <option value="H2">Hydrogen (H2)</option>
-                        <option value="CH4">Methane</option>
-                        <option value="C2H6">C<sub>2</sub>H<sub>6</sub></option>
-                        <option value="C4H10">C<sub>4</sub>H<sub>10</sub></option>
-                        <option value="N2O">N<sub>2</sub>O</option>
-                        <option value="CO2">Carbon dioxide</option>
+                        <option value="H2">H2</option>
+                        <option value="CH4">CH4</option>
+                        <option value="C2H6">C2H6</option>
+                        <option value="C4H10">C4H10</option>
+                        <option value="N2O">N2O</option>
+                        <option value="CO2">CO2</option>
                     </select>
                 </div>
 
@@ -112,7 +112,7 @@
 
         <div class="section">
 
-            <h3>Mass-mobility parameters</h3>
+            <h3>MASS-MOBILITY RELATIONSHIP</h3>
 
             <p class="note">
                 This section sets the mass-mobility parameters and shape factor
@@ -167,7 +167,7 @@
 
         <div class="section">
 
-            <h3>Equivalent sizes</h3>
+            <h3>EQUIVALENT SIZES</h3>
 
             <p>
                 Mass and effective density at the chosen mobility diameter are computed via the
@@ -180,6 +180,13 @@
                     <span class="control-label">Mobility diameter</span>
                     <span class="control-unit">nm</span> <br>
                     <input class="textinput" id="dm-val" type="number" step="0.1" value="75" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Knudsen number (Kn)</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="Kn-val">-</div>
+                    </div>
                 </div>
 
                 <br>
@@ -270,7 +277,7 @@
 
 
         <div class="section">
-            <h3>Distribution moments</h3>
+            <h3>DISTRIBUTION MOMENTS</h3>
 
             <div class="sub-section">
                 <div class="control">

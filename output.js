@@ -291,12 +291,14 @@ var updater = function () {
     var rho100 = Number(document.getElementById("rho100-val").value)
     var zet = Number(document.getElementById("zet-val").value)
     var chi = Number(document.getElementById("chi-val").value)
+    var K = Kn(lam, dm)
 
     var prop = massMob(zet, rho100, 'rho100')
     var m = dm2mp(dm, prop) * 1e18
     var rh = rho(dm * 1e-9, m * 1e-18)
     var C = Cc(dm * 1e-9, T, p, gasProp);
-
+    
+    document.getElementById("Kn-val").innerHTML = format10(K, 3)
     document.getElementById("m0-val").innerHTML = format10(prop['m0'] * 1e18, 3)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
     document.getElementById("rho100-valo").innerHTML = Math.round(rho100)
