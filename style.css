@@ -71,6 +71,7 @@ h2.subtitle {
 }
 
 h3 {
+  font-family: 'Open Sans', sans-serif;
   font-size: 16pt;
   padding-bottom: 12px;
   padding-top: 0px;
@@ -230,13 +231,15 @@ div.control {
 
 .textoutput {
   font-family: 'Open Sans', Arial, sans-serif;
+  font-weight: 300;
   font-size: 11pt;
   border-radius: 3pt;
-  font-weight: 300;
   width: 190px;
 }
 
 .textinput {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-weight: 300;
   font-size: 11pt;
   border-radius: 3pt;
   padding: 5px 10px 5px 10px;
