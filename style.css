@@ -63,10 +63,10 @@ p.sub-note {
   padding-top: 0px;
   padding-bottom: 0px;
   padding-left: 7px;
-  border-left: 2px solid var(--line-color);
+  border-left: 2.5px solid var(--line-color);
 }
 p.sub-note {
-  border-left: 2px solid var(--line-color);
+  border-left: 2.5px solid var(--line-color);
 }
 
 h1.title {
