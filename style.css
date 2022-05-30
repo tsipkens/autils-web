@@ -75,7 +75,7 @@ h1.title {
   font-family: 'Montserrat', sans-serif;
   font-size: 48pt;
   font-weight: 800;
-  color: #8956FF;
+  color: #C70039;
 }
 
 h2.subtitle {
@@ -116,11 +116,11 @@ body.dark-theme a {
 }
 
 a:hover {
-  color: #8956FF;
+  color: #C70039;
 }
 
 body.dark-theme a:hover {
-  color: #8956FF;
+  color: #C70039;
 }
 
 div.main {
@@ -210,7 +210,7 @@ a.anchor {
 .ref:hover {
   color: var(--a0);
   transition: ease 0.3s;
-  border-left: solid #8956FF 2px;
+  border-left: solid #C70039 2px;
 }
 
 .footer .ref {
@@ -283,22 +283,22 @@ body.dark-theme .textinput {
 }
 
 .textinput:hover {
-  border: 1.5px solid #8956FF;
+  border: 1.5px solid #C70039F;
   box-shadow: 0px 0px 4px #AAAAAA;
 }
 
 body.dark-theme .textinput:hover {
-  border: 1.5px solid #8956FF;
+  border: 1.5px solid #C70039;
   box-shadow: 0px 0px 4px #666666;
 }
 
 .textinput:focus {
-  border: 1.5px solid #8956FF;
+  border: 1.5px solid #C70039;
   box-shadow: 0px 0px 4px #AAAAAA;
 }
 
 body.dark-theme .textinput:focus {
-  border: 1.5px solid #8956FF;
+  border: 1.5px solid #C70039;
   box-shadow: 0px 0px 4px #666666;
 }
 
@@ -354,7 +354,7 @@ input[type="checkbox"]:checked:after {
   font-weight: 900;
   content: "\f058";
   /* tick unicode. */
-  color: #8956FF;
+  color: #C70039;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -392,15 +392,15 @@ body.dark-theme select {
 }
 
 select:hover {
-  border: 2px solid #8956FF;
+  border: 2px solid #C70039;
 }
 
 body.dark-theme select:hover {
-  border: 2px solid #8956FF;
+  border: 2px solid #C70039;
 }
 
 select:focus {
-  border: 2px solid #8956FF;
+  border: 2px solid #C70039;
 }
 
 option {
@@ -435,7 +435,7 @@ body.dark-theme .slider {
   height: 11pt;
   border-radius: 50%;
   border: 1pt solid #FCFCFC;
-  background: #8956FF;
+  background: #C70039;
   cursor: pointer;
 }
 
@@ -447,7 +447,7 @@ body.dark-theme .slider::-webkit-slider-thumb {
   width: 11pt;
   height: 11pt;
   border-radius: 50%;
-  background: #8956FF;
+  background: #C70039;
   cursor: pointer
 }
 
