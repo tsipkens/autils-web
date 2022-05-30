@@ -55,12 +55,12 @@ var $container = $('#my_dataviz'),
 // set the dimensions and margins of the graph
 var margin = {
         top: 0,
-        right: 25,
-        bottom: 90,
-        left: 15
+        right: 15,
+        bottom: 100,
+        left: 4
     },
     width = width_a - margin.left - margin.right,
-    height = 250 - margin.top - margin.bottom;
+    height = 300 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -92,12 +92,12 @@ svg.append("text")
     .attr('y', height + 32)
     .attr("class", "legend-label")
     .text("Mobility diameter [nm]");
-// svg.append("text")
-//     .attr("text-anchor", "middle")
-//     .attr('x', width / 2)
-//     .attr('y', height + 82)
-//     .attr("class", "legend-label")
-//     .text("Aerodynamic diameter [nm]");
+svg.append("text")
+    .attr("text-anchor", "middle")
+    .attr('x', width / 2)
+    .attr('y', height + 87)
+    .attr("class", "legend-label")
+    .text("Aerodynamic diameter [nm]");
 
 // Add a clipPath: everything out of this area won't be drawn.
 var clip = svg.append("defs").append("svg:clipPath")
@@ -182,21 +182,25 @@ svg.append('path')
     .attr("stroke-width", 1.5)
     .attr('fill', lcolors[3]);
 
-xValues = [5, 10, 20, 50, 100, 200, 500, 1000, 2000];
+xValues = [5, 10, 20, 50, 100, 200, 500, 1000, 2000]
 var xAxis = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .attr("class", "axis")
     .call(d3.axisBottom(x)
         .tickValues(xValues)
         .tickFormat((d, i) => xValues[i]))
-// var xAxis2 = svg.append("g")
-//     .attr("transform", "translate(0," + (height + 50) + ")")
-//     .attr("class", "axis")
-//     .call(d3.axisBottom(x)
-//         .tickValues(xValues)
-//         .tickFormat((d, i) => xValues[i]));
 
-var plotter = function (dg, mg, sg) {
+daValues = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
+dm2daValues = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
+var xAxis2 = svg.append("g")
+    .attr("transform", "translate(0," + (height + 55) + ")")
+    .attr("class", "axis")
+    .attr("id", "da-axis")
+    .call(d3.axisBottom(x)
+        .tickValues(dm2daValues)
+        .tickFormat((d, i) => daValues[i]));
+
+var plotter = function (dg, mg, sg, prop, chi) {
     var p_vec = logn(dg, sg, d_vec) // number pdf
     var pm_vec = logn(mg, sg, d_vec) // mass pdf
 
@@ -245,6 +249,19 @@ var plotter = function (dg, mg, sg) {
         .attr("y", y(1.03))
         .attr("font-size", "10pt")
         .text(mg.toFixed())
+    
+    for (var ii = 0; ii < daValues.length; ii++) {
+        var dmVal = daValues[ii]
+        var mVal = dm2mp(dmVal, prop) * 1e18
+        var rhVal = rho(dmVal * 1e-9, mVal * 1e-18)
+        var dveVal = dm2dve(dmVal, rhVal, true, chi)
+        dm2daValues[ii] = da2dm(dmVal, rhVal, true, chi, dveVal)
+    }
+    svg.select("#da-axis")
+        .transition()
+        .call(d3.axisBottom(x)
+            .tickValues(dm2daValues)
+            .tickFormat((d, i) => daValues[i]))
 
     d3.select("#area-n")
         .datum(data)
@@ -293,18 +310,18 @@ var updater = function () {
     var rho100 = Number(document.getElementById("rho100-val").value)
     var zet = Number(document.getElementById("zet-val").value)
     var chi = Number(document.getElementById("chi-val").value)
-    var K = Kn(lam, dm)
+    var Kn = Knudsen(lam, dm)
 
     var prop = massMob(zet, rho100, 'rho100')
     var m = dm2mp(dm, prop) * 1e18
     var rh = rho(dm * 1e-9, m * 1e-18)
     var C = Cc(dm * 1e-9, T, p, gasProp);
     
-    document.getElementById("Kn-val").innerHTML = format10(K, 3)
+    document.getElementById("Kn-val").innerHTML = format10(Kn, 3)
     document.getElementById("m0-val").innerHTML = format10(prop['m0'] * 1e18, 3)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
     document.getElementById("rho100-valo").innerHTML = Math.round(rho100)
-
+    
     var dve = dm2dve(dm, rh, true, chi)
     var dves = dm2dve(dm, rh, false, chi)
     var da = dm2da(dm, rh, true, chi, dve)
@@ -339,7 +356,6 @@ var updater = function () {
     document.getElementById("cmad-val").innerHTML = cmad.toPrecision(4);
     document.getElementById("mmad-val").innerHTML = mmad.toPrecision(4);
 
-    plotter(cmd, mmd, sg); // update plot
-
+    plotter(cmd, mmd, sg, prop, chi); // update plot
 }
 updater(); // run the first time

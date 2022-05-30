@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;800&family=Pacifico&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@700&display=swap');
 
 :root {
   color-scheme: light dark;
@@ -6,7 +6,8 @@
   --background-color0: #EFEFEF;
   --background-color1: white;
   --background-color2: white;
-  --line-color: #E3E3E3;
+  --background-gradient: linear-gradient(-15deg, #dce8ec, #EFEFEF, #f7f2e5);
+  --line-color: #CCC;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,7 +15,7 @@
     --background-color0: #242526;
     --background-color1: black;
     --background-color2: black;
-    --line-color: #444444;
+    --line-color: #555;
   }
 }
 
@@ -32,17 +33,21 @@ body {
   transition: 0.3s;
   color: #111;
   background-color: var(--background-color0);
+  background-image: var(--background-gradient);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 body.dark-theme {
   color: #DDD;
   background-color: var(--background-color0);
+  background-image: var(--background-color0);
 }
 
 b {
   /* Format all bolds */
   font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 p {
@@ -50,6 +55,18 @@ p {
   padding-top: 4px;
   padding-bottom: 4px;
   margin: 0px;
+}
+p.sub-note {
+  text-align: left;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 7px;
+  border-left: 2px solid var(--line-color);
+}
+p.sub-note {
+  border-left: 2px solid var(--line-color);
 }
 
 h1.title {
@@ -115,7 +132,7 @@ div.main {
 }
 
 #btn-toggle {
-  padding-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 #btn-toggle a {
@@ -128,15 +145,16 @@ div.main {
   vertical-align: middle;
   color: #CCC;
   transition: all 0.3s ease 0s;
-  border: solid 1px #CCC;
+  border: solid 1px var(--line-color);
   border-radius: 40px;
   padding: 5px;
   background-color: var(--background-color1);
+  margin: 0px;
 }
 
 body.dark-theme #btn-toggle div {
   color: #555;
-  border: solid 1px #555;
+  border: solid 1px var(--line-color);
   background-color: var(--background-color1);
 }
 
@@ -208,10 +226,14 @@ div.section {
   padding: 25px;
   border-radius: 7px;
   background-color: var(--background-color1);
+  border: solid 1px var(--line-color);
+  box-shadow: 0px 0px 4px #EEE;
 }
 
 body.dark-theme div.section {
   background-color: var(--background-color1);
+  border: solid 1px var(--line-color);
+  box-shadow: 0px 0px 4px #111;
 }
 
 div.sub-section {

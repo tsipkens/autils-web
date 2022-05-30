@@ -12,17 +12,16 @@ var mfp = function (T, p, gasProp) {
     return gasProp["mfp_ref"] * 1e9 * (T / gasProp["Tref"]) * (gasProp["pref"] / p) * (1 + gasProp["S"] / gasProp["Tref"]) / (1 + gasProp["S"] / T)
 }
 
-var Kn = function (lam, d) {
+var Knudsen = function (lam, d) {
     // lam is mean free path
     return (2 * lam) / d
 }
 
 var Cc = function (d, T = null, p = null, gasProp = null) {
 
-    if (gasProp == null) { // if P and T are not specified, use Buckley/Davies
+    if (gasProp == null) { // For air, from Davies (1945); if (p, T not specified)
         var lam = 66.5e-9; // mean free path
-
-        // For air, from Davies (1945).
+        
         A1 = 1.257;
         A2 = 0.4;
         A3 = 0.55;
@@ -35,10 +34,12 @@ var Cc = function (d, T = null, p = null, gasProp = null) {
         A3 = 0.997 / 2
     }
 
-    K = Kn(lam, d); // Knudsen number
-    return 1 + K * (A1 + A2 * Math.exp(-(2 * A3) / K)); // Cunningham slip correction factor
+    Kn = Knudsen(lam, d); // Knudsen number
+    return 1 + Kn * (A1 + A2 * Math.exp(-(2 * A3) / Kn)); // Cunningham slip correction factor
 }
 
+// Compute mass-mobility relation parameters. 
+// Currently only works when rho100 is specified.
 var massMob = function (zet, val, field = 'rho100') {
     var prop = {
         zet: zet,
@@ -73,7 +74,7 @@ var rho = function (dm, m) {
 
 var dm2dve = function (dm, rho = 1800, fl = true, chi = 1) {
     var dve = dm / chi; // volume equivalent diameter
-
+    
     if (fl) {
         var fun_ve = function (dve) {
             return ((dm / chi * Cc(dve * 1e-9) / Cc(dm * 1e-9) - dve)) ** 2
@@ -101,6 +102,37 @@ var dm2da = function (dm, rho = 1800, fl = true, chi = 1, dve = dm2dve(dm, rho, 
     }
 
     return da;
+}
+
+var dve2dm = function (dve, fl = true, chi = 1) {
+
+    if (fl) {
+        var fun_m = function (dm) {
+            return (dve * chi * Cc(dm * 1e-9) / Cc(dve * 1e-9) - dm) ** 2
+        }
+        var a = optimjs.minimize_Powell(fun_m, [dve])
+        dve = a.argument[0]
+    }
+
+    return dve * chi
+}
+
+var da2dm = function (da, rho = 1800, fl = true, chi = 1) {
+    var rho0 = 1e3; // density of water
+
+    // Compute simple volume-equivalent and aerodynamic diameters, 
+    // that is without iteration. 
+    var dve = da / Math.sqrt(rho / rho0 / chi); // aerodynamic diameter
+
+    if (fl) {
+        var fun_a = function (dve) {
+            return (da / Math.sqrt(rho / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - dve) ** 2
+        }
+        var a = optimjs.minimize_Powell(fun_a, [dve])
+        dve = a.argument[0]
+    }
+
+    return dve2dm(dve, fl, chi)
 }
 
 // Hatch-Choate (for moments)

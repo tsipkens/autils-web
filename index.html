@@ -52,7 +52,7 @@
 
     <div class="main">
         <div id="btn-toggle">
-            <a>
+            <a id="btn-toggle-click">
                 <div>
                     <span><i class="fas fa-moon" id="moon"></i></span>
                     <span><i class="fas fa-sun" id="sun"></i></span>
@@ -96,7 +96,7 @@
                 <div class="control">
                     <span class="control-label">Viscosity</span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="mu-val">-</div> Pa s
+                        <div class="output-div" id="mu-val">-</div> Pa·s
                     </div>
                 </div>
 
@@ -116,9 +116,19 @@
 
             <p class="note">
                 This section sets the mass-mobility parameters and shape factor
-                used throughout the rest of the web app. The universal parameters
-                for soot from Olfert and Rogak (2019) correspond to
-                ρ @ 100 nm = 510 kg/m<sup>3</sup> and D<sub>m</sub> = 2.48.
+                used throughout the rest of the web app. Potential pairings include: 
+            </p>
+
+            <p class="sub-note" style="border-color: #888;">
+                <b>Soot</b> (universal from Olfert and Rogak) <br>
+                ρ @ 100 nm = 510 kg/m<sup>3</sup> <br> 
+                D<sub>m</sub> = 2.48
+            </p>
+
+            <p class="sub-note" style="border-color: rgb(46, 106, 174);">
+                <b>Salt</b> <br>
+                ρ @ 100 nm = 2160 kg/m<sup>3</sup> <br> 
+                D<sub>m</sub> = 3
             </p>
 
             <div class="sub-section">
@@ -255,14 +265,14 @@
                 <div class="control">
                     <span class="control-label">Mechanical mobility (B)</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="B-val">-</div> m/(N*ns)
+                        <div class="output-div" id="B-val">-</div> m/(N·ns)
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">Electrical mobility (Z<sub>p</sub>)</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="Zp-val">-</div> cm<sup>2</sup>/(V*s)
+                        <div class="output-div" id="Zp-val">-</div> cm<sup>2</sup>/(V·s)
                     </div>
                 </div>
 
@@ -278,6 +288,15 @@
 
         <div class="section">
             <h3>DISTRIBUTION MOMENTS</h3>
+
+            <p class="note">
+                This section computed equivalent distribution moments using a combination of 
+                Hatch-Choate and the above size conversions. Moments include: <br>
+                <b>CMD</b> - Count median (mobility) diameter <br>
+                <b>MMD</b> - Mass median (mobility) diameter <br>
+                <b>CMAD</b> - Count median aerodynamic diameter <br>
+                <b>MMAD</b> - Mass median aerodynamic diameter <br>
+            </p>
 
             <div class="sub-section">
                 <div class="control">
@@ -335,7 +354,7 @@
 
 <!-- theme toggle -->
 <script>
-    const btn = document.querySelector("#btn-toggle");
+    const btn = document.querySelector("#btn-toggle-click");
     btn.addEventListener("click", function () {
         // Toggle dark theme.
         dark = !dark;
