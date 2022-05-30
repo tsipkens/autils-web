@@ -251,11 +251,9 @@ var plotter = function (dg, mg, sg, prop, chi) {
         .text(mg.toFixed())
     
     for (var ii = 0; ii < daValues.length; ii++) {
-        var dmVal = daValues[ii]
-        var mVal = dm2mp(dmVal, prop) * 1e18
-        var rhVal = rho(dmVal * 1e-9, mVal * 1e-18)
-        var dveVal = dm2dve(dmVal, rhVal, true, chi)
-        dm2daValues[ii] = da2dm(dmVal, rhVal, true, chi, dveVal)
+        var daVal = daValues[ii]
+        dm2daValues[ii] = da2dm(daVal, [], true, chi, prop)
+        console.log([daValues[ii], dm2daValues[ii]])
     }
     svg.select("#da-axis")
         .transition()
@@ -345,12 +343,15 @@ var updater = function () {
 
     sg = Number(document.getElementById("sg-val").value);
     cmd = Number(document.getElementById("cmd-val").value);
+    var mCmd = dm2mp(cmd, prop) * 1e18
+    var rhCmd = rho(cmd * 1e-9, mCmd * 1e-18)
+    var cmved = dm2dve(cmd, rhCmd, false, chi)
 
-    var cmad = dm2da(cmd, rh, true, chi, dve)
+    var cmad = dm2da(cmd, rhCmd, true, chi, cmved)
     var mmd = hc(cmd, sg, prop['zet']);
     var mm = dm2mp(mmd, prop) * 1e18;
     var rhm = rho(mmd * 1e-9, mm * 1e-18);
-    var mmved = dm2dve(mmd, rhm, true, chi);;
+    var mmved = dm2dve(mmd, rhm, true, chi);
     var mmad = dm2da(mmd, rhm, true, chi, mmved);
     document.getElementById("mmd-val").innerHTML = mmd.toPrecision(4);
     document.getElementById("cmad-val").innerHTML = cmad.toPrecision(4);

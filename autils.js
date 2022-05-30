@@ -65,11 +65,15 @@ var massMob = function (zet, val, field = 'rho100') {
 }
 
 var dm2mp = function (dm, prop) {
-    return prop['m0'] * dm ** prop['zet'];
+    return prop['m0'] * dm ** prop['zet']
 }
 
 var rho = function (dm, m) {
-    return 6 * m / (pi * dm ** 3);
+    return 6 * m / (pi * dm ** 3)
+}
+
+var dm2rho = function (dm, prop) {
+    return rho(dm, dm2mp(dm, prop) * 1e18)
 }
 
 var dm2dve = function (dm, rho = 1800, fl = true, chi = 1) {
@@ -117,22 +121,25 @@ var dve2dm = function (dve, fl = true, chi = 1) {
     return dve * chi
 }
 
-var da2dm = function (da, rho = 1800, fl = true, chi = 1) {
+var da2dm = function (da, rh = 1800, fl = true, chi = 1, prop) {
     var rho0 = 1e3; // density of water
+    
+    rh = dm2rho(da, prop) * 1e9
 
     // Compute simple volume-equivalent and aerodynamic diameters, 
     // that is without iteration. 
-    var dve = da / Math.sqrt(rho / rho0 / chi); // aerodynamic diameter
-
+    var dve = da / Math.sqrt(rh / rho0 / chi); // aerodynamic diameter
+    
     if (fl) {
         var fun_a = function (dve) {
-            return (da / Math.sqrt(rho / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - dve) ** 2
+            return (da / Math.sqrt(dm2rho(dve2dm(dve[0], fl, chi), prop) * 1e9 / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - dve) ** 2
         }
         var a = optimjs.minimize_Powell(fun_a, [dve])
         dve = a.argument[0]
     }
 
-    return dve2dm(dve, fl, chi)
+    var dm = dve2dm(dve, fl, chi)
+    return dm
 }
 
 // Hatch-Choate (for moments)
