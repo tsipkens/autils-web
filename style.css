@@ -150,12 +150,14 @@ div.main {
   padding: 5px;
   background-color: var(--background-color1);
   margin: 0px;
+  box-shadow: 0px 0px 4px #EEE;
 }
 
 body.dark-theme #btn-toggle div {
   color: #555;
   border: solid 1px var(--line-color);
   background-color: var(--background-color1);
+  box-shadow: 0px 0px 4px #111;
 }
 
 #btn-toggle div span {
@@ -298,25 +300,6 @@ body.dark-theme .textinput:hover {
 body.dark-theme .textinput:focus {
   border: 1.5px solid #8956FF;
   box-shadow: 0px 0px 4px #666666;
-}
-
-select {
-  font-size: 11pt;
-  border-radius: 3pt;
-  padding: 2px 5px 2px 5px;
-  border: 1.5px solid var(--line-color);
-  background-color: var(--background-color2);
-  color: black;
-  transition: all 0.3s ease 0s;
-  width: 110px;
-  box-shadow: 0px 0px 4px #EEE;
-}
-
-body.dark-theme select {
-  border: 1.5px solid var(--line-color);
-  background-color: var(--background-color2);
-  color: white;
-  box-shadow: 0px 0px 4px #111;
 }
 
 .control-label {

@@ -95,7 +95,7 @@ svg.append("text")
 svg.append("text")
     .attr("text-anchor", "middle")
     .attr('x', width / 2)
-    .attr('y', height + 87)
+    .attr('y', height + 97)
     .attr("class", "legend-label")
     .text("Aerodynamic diameter [nm]");
 
@@ -193,7 +193,7 @@ var xAxis = svg.append("g")
 daValues = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
 dm2daValues = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
 var xAxis2 = svg.append("g")
-    .attr("transform", "translate(0," + (height + 55) + ")")
+    .attr("transform", "translate(0," + (height + 65) + ")")
     .attr("class", "axis")
     .attr("id", "da-axis")
     .call(d3.axisBottom(x)
