@@ -463,9 +463,13 @@ var updater = function () {
     var rhm = rho(mmd * 1e-9, mm * 1e-18);
     var mmved = dm2dve(mmd, rhm, true, chi);
     var mmad = dm2da(mmd, rhm, true, chi, mmved);
+    var cmm = dm2mp(cmd, prop) * 1e18;
+    var mmm = dm2mp(mmd, prop) * 1e18;
     document.getElementById("mmd-val").innerHTML = mmd.toPrecision(4);
     document.getElementById("cmad-val").innerHTML = cmad.toPrecision(4);
     document.getElementById("mmad-val").innerHTML = mmad.toPrecision(4);
+    document.getElementById("cmm-val").innerHTML = cmm.toPrecision(4);
+    document.getElementById("mmm-val").innerHTML = mmm.toPrecision(4);
 
     plotter(cmd, mmd, sg, prop, chi); // update plot
 }
