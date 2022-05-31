@@ -72,6 +72,10 @@ var mp2dm = function (mp, prop) {
     return (mp / prop['m0'] ) ** (1 / prop['zet'])
 }
 
+var sdm2smp = function (smp, prop) {
+    return Math.exp(prop['zet'] * Math.log(smp))
+}
+
 var rho = function (dm, m) {
     return 6 * m / (pi * dm ** 3)
 }

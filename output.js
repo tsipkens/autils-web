@@ -214,7 +214,7 @@ svg.append("text")
     .attr('x', width / 2)
     .attr('y', height + 142)
     .attr("class", "legend-label")
-    .text("Single particle mass [fg]");
+    .text("Single particle mass, mp [fg]");
 
 // Add circles marking the median on axes.
 svg.append("circle")
@@ -465,11 +465,13 @@ var updater = function () {
     var mmad = dm2da(mmd, rhm, true, chi, mmved);
     var cmm = dm2mp(cmd, prop) * 1e18;
     var mmm = dm2mp(mmd, prop) * 1e18;
+    var smp = sdm2smp(sg, prop);
     document.getElementById("mmd-val").innerHTML = mmd.toPrecision(4);
     document.getElementById("cmad-val").innerHTML = cmad.toPrecision(4);
     document.getElementById("mmad-val").innerHTML = mmad.toPrecision(4);
     document.getElementById("cmm-val").innerHTML = cmm.toPrecision(4);
     document.getElementById("mmm-val").innerHTML = mmm.toPrecision(4);
+    document.getElementById("smp-val").innerHTML = smp.toPrecision(3);
 
     plotter(cmd, mmd, sg, prop, chi); // update plot
 }
