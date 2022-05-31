@@ -56,7 +56,7 @@ var $container = $('#my_dataviz'),
 var margin = {
         top: 0,
         right: 15,
-        bottom: 100,
+        bottom: 150,
         left: 4
     },
     width = width_a - margin.left - margin.right,
@@ -83,21 +83,6 @@ var yMax = 1.1,
 var y = d3.scaleLinear()
     .domain([yMin, yMax])
     .range([height, 0]);
-
-//-- Add axis labels --//
-// Add X axis label:
-svg.append("text")
-    .attr("text-anchor", "middle")
-    .attr('x', width / 2)
-    .attr('y', height + 32)
-    .attr("class", "legend-label")
-    .text("Mobility diameter [nm]");
-svg.append("text")
-    .attr("text-anchor", "middle")
-    .attr('x', width / 2)
-    .attr('y', height + 97)
-    .attr("class", "legend-label")
-    .text("Aerodynamic diameter [nm]");
 
 // Add a clipPath: everything out of this area won't be drawn.
 var clip = svg.append("defs").append("svg:clipPath")
@@ -182,7 +167,7 @@ svg.append('path')
     .attr("stroke-width", 1.5)
     .attr('fill', lcolors[3]);
 
-xValues = [5, 10, 20, 50, 100, 200, 500, 1000, 2000]
+var xValues = [5, 10, 20, 50, 100, 200, 500, 1000, 2000]
 var xAxis = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .attr("class", "axis")
@@ -190,15 +175,98 @@ var xAxis = svg.append("g")
         .tickValues(xValues)
         .tickFormat((d, i) => xValues[i]))
 
-daValues = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
-dm2daValues = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
+var daValues = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
+var dm2daValues = [0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
 var xAxis2 = svg.append("g")
-    .attr("transform", "translate(0," + (height + 65) + ")")
+    .attr("transform", "translate(0," + (height + 55) + ")")
     .attr("class", "axis")
     .attr("id", "da-axis")
     .call(d3.axisBottom(x)
         .tickValues(dm2daValues)
         .tickFormat((d, i) => daValues[i]));
+
+var mpValues = [1e-4, 1e-3, 1e-2, 0.1, 1, 10, 100, 1000]
+var dm2mpValues = [1e-4, 1e-3, 1e-2, 0.1, 1, 10, 100, 1000]
+var xAxis2 = svg.append("g")
+    .attr("transform", "translate(0," + (height + 110) + ")")
+    .attr("class", "axis")
+    .attr("id", "mp-axis")
+    .call(d3.axisBottom(x)
+        .tickValues(dm2mpValues)
+        .tickFormat((d, i) => mpValues[i]));
+
+//-- Add axis labels --//
+// Add X axis label:
+svg.append("text")
+    .attr("text-anchor", "middle")
+    .attr('x', width / 2)
+    .attr('y', height + 32)
+    .attr("class", "legend-label")
+    .text("Mobility diameter [nm]");
+svg.append("text")
+    .attr("text-anchor", "middle")
+    .attr('x', width / 2)
+    .attr('y', height + 87)
+    .attr("class", "legend-label")
+    .text("Aerodynamic diameter [nm]");
+svg.append("text")
+    .attr("text-anchor", "middle")
+    .attr('x', width / 2)
+    .attr('y', height + 142)
+    .attr("class", "legend-label")
+    .text("Single particle mass [fg]");
+
+// Add circles marking the median on axes.
+svg.append("circle")
+    .attr("r", 3)
+    .attr("cx", function(d) { return x(5); })
+    .attr("cy", function(d) { return height; })
+    .attr('fill', colors[3])
+    .attr('stroke', "black")
+    .attr("stroke-width", 0.5)
+    .attr("id", "mmd-circ")
+svg.append("circle")
+    .attr("r", 3)
+    .attr("cx", function(d) { return x(5); })
+    .attr("cy", function(d) { return height; })
+    .attr('fill', colors[1])
+    .attr('stroke', "black")
+    .attr("stroke-width", 0.5)
+    .attr("id", "cmd-circ")
+
+svg.append("circle")
+    .attr("r", 3)
+    .attr("cx", function(d) { return x(5); })
+    .attr("cy", function(d) { return height + 55; })
+    .attr('fill', colors[3])
+    .attr('stroke', "black")
+    .attr("stroke-width", 0.5)
+    .attr("id", "mmad-circ")
+
+svg.append("circle")
+    .attr("r", 3)
+    .attr("cx", function(d) { return x(5); })
+    .attr("cy", function(d) { return height + 55; })
+    .attr('fill', colors[1])
+    .attr('stroke', "black")
+    .attr("stroke-width", 0.5)
+    .attr("id", "cmad-circ")
+svg.append("circle")
+    .attr("r", 3)
+    .attr("cx", function(d) { return x(5); })
+    .attr("cy", function(d) { return height + 110; })
+    .attr('fill', colors[3])
+    .attr('stroke', "black")
+    .attr("stroke-width", 0.5)
+    .attr("id", "mmm-circ")
+svg.append("circle")
+    .attr("r", 3)
+    .attr("cx", function(d) { return x(5); })
+    .attr("cy", function(d) { return height + 110; })
+    .attr('fill', colors[1])
+    .attr('stroke', "black")
+    .attr("stroke-width", 0.5)
+    .attr("id", "cmm-circ")
 
 var plotter = function (dg, mg, sg, prop, chi) {
     var p_vec = logn(dg, sg, d_vec) // number pdf
@@ -250,16 +318,58 @@ var plotter = function (dg, mg, sg, prop, chi) {
         .attr("font-size", "10pt")
         .text(mg.toFixed())
     
+    // Move circles marking the median on axes.
+    svg.select("#cmd-circ")
+        .transition()
+        .attr("cx", x(dg))
+    svg.select("#mmd-circ")
+        .transition()
+        .attr("cx", x(mg))
+    svg.select("#cmad-circ")
+        .transition()
+        .attr("cx", x(dg))
+    svg.select("#mmad-circ")
+        .transition()
+        .attr("cx", x(mg))
+    svg.select("#cmm-circ")
+        .transition()
+        .attr("cx", x(dg))
+    svg.select("#mmm-circ")
+        .transition()
+        .attr("cx", x(mg))
+    
+    //-- Update aerodynamic diameter axis --------------------//
     for (var ii = 0; ii < daValues.length; ii++) {
         var daVal = daValues[ii]
         dm2daValues[ii] = da2dm(daVal, [], true, chi, prop)
-        console.log([daValues[ii], dm2daValues[ii]])
+
+        // Remove entries out of the domain.
+        if ((dm2daValues[ii] < xValues[0]) || (dm2daValues[ii] > xValues[xValues.length - 1])) {
+            dm2daValues[ii] = 1e-10  // move far to the left (will not show)
+        }
     }
     svg.select("#da-axis")
         .transition()
         .call(d3.axisBottom(x)
             .tickValues(dm2daValues)
             .tickFormat((d, i) => daValues[i]))
+
+    //-- Update single particle mass axis --------------------//
+    for (var ii = 0; ii < mpValues.length; ii++) {
+        var mpVal = mpValues[ii]
+        dm2mpValues[ii] = mp2dm(mpVal * 1e-18, prop)
+
+        // Remove entries out of the domain.
+        if ((dm2mpValues[ii] < xValues[0]) || (dm2mpValues[ii] > xValues[xValues.length - 1])) {
+            dm2mpValues[ii] = 1e-10  // move far to the left (will not show)
+        }
+    }
+    svg.select("#mp-axis")
+        .transition()
+        .call(d3.axisBottom(x)
+            .tickValues(dm2mpValues)
+            .tickFormat((d, i) => mpValues[i]))
+    //-------------------------------------------------------//
 
     d3.select("#area-n")
         .datum(data)

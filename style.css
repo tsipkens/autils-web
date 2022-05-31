@@ -411,47 +411,6 @@ option {
 
 
 
-/* for blue slider */
-.slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 5pt;
-  border-radius: 5px;
-  background: #E3E3E3;
-  outline: none;
-  -webkit-transition: .2s;
-  transition: all .2s;
-  cursor: pointer;
-}
-
-body.dark-theme .slider {
-  background: #555;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 11pt;
-  height: 11pt;
-  border-radius: 50%;
-  border: 1pt solid #FCFCFC;
-  background: #C70039;
-  cursor: pointer;
-}
-
-body.dark-theme .slider::-webkit-slider-thumb {
-  border: 1pt solid var(--background-color);
-}
-
-.slider::-moz-range-thumb {
-  width: 11pt;
-  height: 11pt;
-  border-radius: 50%;
-  background: #C70039;
-  cursor: pointer
-}
-
-
 /* For plot elements */
 .axis {
   font-family: 'Open Sans', Arial, sans-serif;
@@ -511,4 +470,10 @@ body.dark-theme .plot-fill {
 
 body.dark-theme .diff-line {
   stroke: white;
+}
+
+.c-point {
+  fill: red;
+  stroke: black;
+  stroke-width: 0.5px;
 }
