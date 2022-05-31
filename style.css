@@ -8,6 +8,7 @@
   --background-color2: white;
   --background-gradient: linear-gradient(-15deg, #dce8ec, #EFEFEF, #f7f2e5);
   --line-color: #CCC;
+  --line-color2: black;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,6 +17,7 @@
     --background-color1: black;
     --background-color2: black;
     --line-color: #555;
+    --line-color2: white;
   }
 }
 
@@ -90,7 +92,7 @@ h2.subtitle {
 h3 {
   font-family: 'Open Sans', sans-serif;
   font-size: 16pt;
-  padding-bottom: 12px;
+  margin-bottom: 12px;
   padding-top: 0px;
   color: black;
   font-weight: 700;
@@ -223,6 +225,7 @@ a.anchor {
 
 
 div.section {
+  display: block;
   margin-top: 30px;
   margin-bottom: 20px;
   padding: 25px;
@@ -239,6 +242,7 @@ body.dark-theme div.section {
 }
 
 div.sub-section {
+  display: block;
   padding-top: 15px;
   padding-bottom: 15px;
 }
@@ -470,10 +474,4 @@ body.dark-theme .plot-fill {
 
 body.dark-theme .diff-line {
   stroke: white;
-}
-
-.c-point {
-  fill: red;
-  stroke: black;
-  stroke-width: 0.5px;
 }

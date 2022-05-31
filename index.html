@@ -4,8 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>AUTILS | Aerosol size calculator</title>
-    <meta name="description" content="A simple web app showing the equivalence of different aerosol particle sizes and distribution moments.">
+    <meta name="description"
+        content="A simple web app showing the equivalence of different aerosol particle sizes and distribution moments.">
     <meta name="keywords" content="aerosol, particle size, calculator, autils, sipkens">
+    <meta name="robots" content="index,follow" />
 
     <meta name="title" property="og:title" content="AUTILS | Aerosol size calculator">
     <meta name="author" content="Timothy Sipkens">
@@ -68,9 +70,9 @@
 
         <div class="section">
 
-            <h3>GAS PROPERTIES</h3>
+            <h3 onclick="expandText(this);" class="active">GAS PROPERTIES</h3>
 
-            <div class="sub-section">
+            <div class="sub-section" style="display:block;">
                 <div class="control">
                     <span class="control-label">Temperature</span>
                     <span class="control-unit">K</span> <br>
@@ -122,23 +124,23 @@
             <p class="note">
                 This section sets the mass-mobility parameters and shape factor
                 used throughout the rest of the web app. Note that ρ<sub>eff,100</sub>
-                is the effective density of a particle having a mobility diameter of 
-                100 nm. Potential pairings include: 
+                is the effective density of a particle having a mobility diameter of
+                100 nm. Potential pairings include:
             </p>
 
             <p class="sub-note" style="border-color: #888;">
                 <b>Soot</b> (universal from Olfert and Rogak) <br>
-                ρ<sub>eff,100</sub> = 510 kg/m<sup>3</sup> <br> 
+                ρ<sub>eff,100</sub> = 510 kg/m<sup>3</sup> <br>
                 D<sub>m</sub> = 2.48
             </p>
 
             <p class="sub-note" style="border-color: rgb(46, 106, 174);">
                 <b>Salt</b> <br>
-                ρ<sub>eff,100</sub> = 2160 kg/m<sup>3</sup> <br> 
+                ρ<sub>eff,100</sub> = 2160 kg/m<sup>3</sup> <br>
                 D<sub>m</sub> = 3
             </p>
 
-            <div class="sub-section">
+            <div class="sub-section" style="display:block;">
                 <div class="control">
                     <span class="control-label">ρ<sub>eff,100</sub></span>
                     <span class="control-unit">kg/m<sup>3</sup></span> <br>
@@ -188,7 +190,7 @@
 
             <p>
                 Mass and effective density at the chosen mobility diameter are computed via the
-                mass-mobility relation. Cunningham slip corrections are calculated via the 
+                mass-mobility relation. Cunningham slip corrections are calculated via the
                 expressions of Kim et al.
             </p>
 
@@ -298,7 +300,7 @@
             <h3>DISTRIBUTION MOMENTS</h3>
 
             <p class="note">
-                This section computed equivalent distribution moments using a combination of 
+                This section computed equivalent distribution moments using a combination of
                 Hatch-Choate and the above size conversions. Moments include: <br>
                 <b>CMD</b> - Count median (mobility) diameter <br>
                 <b>MMD</b> - Mass median (mobility) diameter <br>
@@ -370,7 +372,8 @@
 
         <div class="footer">
             <sup>*</sup> This web app is currently under construction and has not been fully validated. <br>
-            <sup>*</sup> Roughly equivalent MATLAB code is available <a href="https://github.com/tsipkens/autils">here</a>.
+            <sup>*</sup> Roughly equivalent MATLAB code is available <a
+                href="https://github.com/tsipkens/autils">here</a>.
         </div>
 
     </div>
@@ -386,4 +389,26 @@
 
         toggleNight(); // apply theme
     })
+
+
+    /* To expand buttons */
+    var coll = document.getElementsByClassName("section");
+    var i;
+
+    function expandText(item) {
+        content = item.parentElement.children
+        var button = content[0],
+            content = content[1];
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            setTimeout(function () {
+                item.style.maxHeight = button.scrollHeight + "px";
+            }, 500);
+        } else {
+            setTimeout(function () {
+                content.style.display = "block";
+                item.style.maxHeight = item.scrollHeight + "px";
+            }.bind(item), 40);
+        }
+    }
 </script>
