@@ -67,9 +67,11 @@ p {
   padding-left: 7px;
   border-left: 2.5px solid var(--line-color);
   border-radius: 2px;
+  display: inline-block;
+  width: 180px;
 }
 .sub-note:hover {
-  transition: all 0.6s ease 0s;
+  transition: all 1s ease 0s;
   border-left: 2.5px solid #C70039;
 }
 
