@@ -70,13 +70,15 @@
 
         <div class="section">
 
-            <h3 onclick="expandText(this);" class="active" style="cursor:pointer;">
-                GAS PROPERTIES
-                <div class="plus" style="display:inline;"><i class="fas fa-chevron-down"></i></div>
-                <div class="minus" style="display:none;"><i class="fas fa-chevron-up"></i></div>
-            </h3>
+            <div onclick="expandText(this);" class="h3-container">
+                <h3 class="active">
+                    GAS PROPERTIES
+                    <div class="plus"><i class="fas fa-chevron-down"></i></div>
+                    <div class="minus"><i class="fas fa-chevron-up"></i></div>
+                </h3>
+            </div>
 
-            <div class="sub-section" style="display:none;">
+            <div class="sub-section" style="display:block;">
                 <div class="control">
                     <span class="control-label">Temperature</span>
                     <span class="control-unit">K</span> <br>
@@ -124,11 +126,13 @@
 
         <div class="section">
 
-            <h3 onclick="expandText(this);" class="active" style="cursor:pointer;">
-                MASS-MOBILITY RELATIONSHIP
-                <div class="plus"><i class="fas fa-chevron-down"></i></div>
-                <div class="minus"><i class="fas fa-chevron-up"></i></div>
-            </h3>
+            <div onclick="expandText(this);" class="h3-container">
+                <h3 class="active">
+                    MASS-MOBILITY RELATIONSHIP
+                    <div class="plus"><i class="fas fa-chevron-down"></i></div>
+                    <div class="minus"><i class="fas fa-chevron-up"></i></div>
+                </h3>
+            </div>
             
             <div class="sub-section" style="display:block;">
                 <div class="note">
@@ -203,17 +207,21 @@
 
         <div class="section">
 
-            <h3 onclick="expandText(this);" class="active" style="cursor:pointer;">
-                EQUIVALENT SIZES
-                <div class="plus"><i class="fas fa-chevron-down"></i></div>
-                <div class="minus"><i class="fas fa-chevron-up"></i></div>
-            </h3>
+            <div onclick="expandText(this);" class="h3-container">
+                <h3 class="active">
+                    EQUIVALENT SIZES
+                    <div class="plus"><i class="fas fa-chevron-down"></i></div>
+                    <div class="minus"><i class="fas fa-chevron-up"></i></div>
+                </h3>
+            </div>
 
-            <p>
-                Mass and effective density at the chosen mobility diameter are computed via the
-                mass-mobility relation. Cunningham slip corrections are calculated via the
-                expressions of Kim et al.
-            </p>
+            <div class="sub-section" style="display:block;">
+                <p>
+                    Mass and effective density at the chosen mobility diameter are computed via the
+                    mass-mobility relation. Cunningham slip corrections are calculated via the
+                    expressions of Kim et al.
+                </p>
+            </div>
 
             <div class="sub-section">
 
@@ -318,18 +326,27 @@
 
 
         <div class="section">
-            <h3>DISTRIBUTION MOMENTS</h3>
 
-            <p class="note">
-                This section computed equivalent distribution moments using a combination of
-                Hatch-Choate and the above size conversions. Moments include: <br>
-                <b>CMD</b> - Count median (mobility) diameter <br>
-                <b>MMD</b> - Mass median (mobility) diameter <br>
-                <b>CMAD</b> - Count median aerodynamic diameter <br>
-                <b>MMAD</b> - Mass median aerodynamic diameter <br>
-                <b>CMM</b> - Count median single particle mass <br>
-                <b>MMM</b> - Mass median single particle mass
-            </p>
+            <div onclick="expandText(this);" class="h3-container">
+                <h3 class="active">
+                    DISTRIBUTION MOMENTS
+                    <div class="plus"><i class="fas fa-chevron-down"></i></div>
+                    <div class="minus"><i class="fas fa-chevron-up"></i></div>
+                </h3>
+            </div>
+            
+            <div class="sub-section" style="display:block;">
+                <p class="note">
+                    This section computed equivalent distribution moments using a combination of
+                    Hatch-Choate and the above size conversions. Moments include: <br>
+                    <b>CMD</b> - Count median (mobility) diameter <br>
+                    <b>MMD</b> - Mass median (mobility) diameter <br>
+                    <b>CMAD</b> - Count median aerodynamic diameter <br>
+                    <b>MMAD</b> - Mass median aerodynamic diameter <br>
+                    <b>CMM</b> - Count median single particle mass <br>
+                    <b>MMM</b> - Mass median single particle mass
+                </p>
+            </div>
 
             <div class="sub-section">
                 <div class="control">
@@ -427,9 +444,10 @@
 
     function expandText(item) {
         content = item.parentElement.children
-        var button = content[0]; // button or header tag
-        var plus = button.children[0];
-        var minus = button.children[1];
+        var button = content[0]; // button, h3 container
+        var h3 = button.children[0];
+        var plus = h3.children[0];
+        var minus = h3.children[1];
         var content2 = []; // content other than header
         for (ii = 1; ii < content.length; ii++) {
             content2.push(content[ii]);
@@ -440,6 +458,9 @@
             }
             plus.style.display = "inline";
             minus.style.display = "none";
+            button.style.borderBottom = "none";
+            button.style.borderBottomLeftRadius = "7px";
+            button.style.borderBottomRightRadius = "7px";
             setTimeout(function () {
                 item.style.maxHeight = button.scrollHeight + "px";
             }, 500);
@@ -449,6 +470,9 @@
             }
             plus.style.display = "none";
             minus.style.display = "inline";
+            button.style.borderBottom = "solid 1px var(--line-color)";
+            button.style.borderBottomLeftRadius = "0px";
+            button.style.borderBottomRightRadius = "0px";
             setTimeout(function () {
                 item.style.maxHeight = item.scrollHeight + "px";
             }.bind(item), 40);

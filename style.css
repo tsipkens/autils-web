@@ -95,11 +95,20 @@ h2.subtitle {
 
 h3 {
   font-family: 'Prompt', 'Open Sans', sans-serif;
-  font-size: 16pt;
-  margin-bottom: 12px;
+  font-size: 14pt;
   padding-top: 0px;
   color: black;
   font-weight: 600;
+}
+.h3-container {
+  padding: 15px 20px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-bottom: solid 1px var(--line-color);
+}
+.h3-container:hover {
+  background-color: #FAFAFA;
+  cursor: pointer;
 }
 .plus {
   display: none; /* By default */
@@ -249,9 +258,8 @@ a.anchor {
 
 div.section {
   display: block;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 20px;
-  padding: 25px;
   border-radius: 7px;
   background-color: var(--background-color1);
   border: solid 1px var(--line-color);
@@ -266,8 +274,7 @@ body.dark-theme div.section {
 
 div.sub-section {
   display: block;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px 20px;
 }
 
 
