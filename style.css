@@ -58,7 +58,7 @@ p {
   padding-bottom: 4px;
   margin: 0px;
 }
-p.sub-note {
+.sub-note {
   text-align: left;
   margin-top: 15px;
   margin-bottom: 5px;
@@ -66,9 +66,11 @@ p.sub-note {
   padding-bottom: 0px;
   padding-left: 7px;
   border-left: 2.5px solid var(--line-color);
+  border-radius: 2px;
 }
-p.sub-note {
-  border-left: 2.5px solid var(--line-color);
+.sub-note:hover {
+  transition: all 0.6s ease 0s;
+  border-left: 2.5px solid #C70039;
 }
 
 h1.title {

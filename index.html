@@ -70,7 +70,7 @@
 
         <div class="section">
 
-            <h3 onclick="expandText(this);" class="active" style="cursor: pointer;">GAS PROPERTIES</h3>
+            <h3 onclick="expandText(this);" class="active" style="cursor:pointer;">GAS PROPERTIES</h3>
 
             <div class="sub-section" style="display:block;">
                 <div class="control">
@@ -99,6 +99,7 @@
                         <option value="CO2">CO2</option>
                     </select>
                 </div>
+                <script src="gases.json"></script> <!-- Load gas properties -->
 
                 <div class="control">
                     <span class="control-label">Viscosity</span> <br>
@@ -119,32 +120,32 @@
 
         <div class="section">
 
-            <h3>MASS-MOBILITY RELATIONSHIP</h3>
+            <h3 onclick="expandText(this);" class="active" style="cursor:pointer;">MASS-MOBILITY RELATIONSHIP</h3>
 
-            <p class="note">
+            <div class="note">
                 This section sets the mass-mobility parameters and shape factor
                 used throughout the rest of the web app. Note that ρ<sub>eff,100</sub>
                 is the effective density of a particle having a mobility diameter of
                 100 nm. Potential pairings include:
-            </p>
+            </div>
 
-            <p class="sub-note" style="border-color: rgb(150, 150, 150, 0.5);">
+            <div class="sub-note">
                 <b>Soot</b><a class="footnote" href="#foot1"><sup>1</sup></a> <br>
                 ρ<sub>eff,100</sub> = 510 kg/m<sup>3</sup> <br>
                 D<sub>m</sub> = 2.48
-            </p>
+            </div>
 
-            <p class="sub-note" style="border-color: rgb(150, 150, 150, 0.5);">
+            <div class="sub-note">
                 <b>Salt</b><a class="footnote" href="#foot2"><sup>2</sup></a> <br>
                 ρ<sub>eff,100</sub> = 2160 kg/m<sup>3</sup> <br>
                 D<sub>m</sub> = 2.97
-            </p>
+            </div>
 
-            <p class="sub-note" style="border-color: rgb(150, 150, 150, 0.5);">
+            <div class="sub-note">
                 <b>Water</b> <br>
                 ρ<sub>eff,100</sub> = 1000 kg/m<sup>3</sup> <br>
                 D<sub>m</sub> = 3
-            </p>
+            </div>
 
             <div class="sub-section" style="display:block;">
                 <div class="control">
@@ -379,7 +380,7 @@
             </div>
         </div>
 
-        <script src="gases.json"></script> <!-- Load gas properties -->
+        <!-- Gas properties are loaded above. -->
         <script src="autils.js"></script>
         <script src="output.js"></script>
 
@@ -406,15 +407,16 @@
         toggleNight(); // apply theme
     })
 
-
     /* To expand buttons */
     var coll = document.getElementsByClassName("section");
     var i;
 
     function expandText(item) {
         content = item.parentElement.children
-        var button = content[0],
+        console.log(content)
+        var button = content[0];
             content = content[1];
+        console.log(content)
         if (content.style.display === "block") {
             content.style.display = "none";
             setTimeout(function () {
