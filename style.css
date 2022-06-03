@@ -107,7 +107,12 @@ h3 {
   border-bottom: solid 1px var(--line-color);
 }
 .h3-container:hover {
+  transition: all 0.3s ease 0s;
   background-color: #FAFAFA;
+  cursor: pointer;
+}
+body.dark-theme .h3-container:hover {
+  background-color: #000;
   cursor: pointer;
 }
 .plus {
