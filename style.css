@@ -199,6 +199,11 @@ a.anchor {
   padding-bottom: 3px;
 }
 
+.footnote {
+  text-decoration: none;
+  font-weight: 600;
+}
+
 .ref {
   margin-top: 10px;
   margin-bottom: 10px;
