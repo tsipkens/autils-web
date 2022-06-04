@@ -476,3 +476,10 @@ var updater = function () {
     plotter(cmd, mmd, sg, prop, chi); // update plot
 }
 updater(); // run the first time
+
+// For preset values of effective density and mass-mobility exponent.
+var setMassMobProp = function (rho, zet) {
+    document.getElementById("rho100-val").value = rho;
+    document.getElementById("zet-val").value = zet;
+    updater();
+}
