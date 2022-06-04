@@ -16,6 +16,7 @@
     --background-color0: #20293A;
     --background-color1: #181C28;
     --background-color2: #181C28;
+    --background-gradient: linear-gradient(-15deg, #20293A, #20293A);
     --line-color: #555;
     --line-color2: white;
   }

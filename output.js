@@ -473,6 +473,9 @@ var updater = function () {
     document.getElementById("mmm-val").innerHTML = mmm.toPrecision(4);
     document.getElementById("smp-val").innerHTML = smp.toPrecision(3);
 
+    var sda = sdm2sda(cmd, sg, rhCmd, true, chi);
+    document.getElementById("sda-val").innerHTML = sda.toPrecision(3);
+        
     plotter(cmd, mmd, sg, prop, chi); // update plot
 }
 updater(); // run the first time

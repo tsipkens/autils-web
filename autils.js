@@ -116,6 +116,14 @@ var dm2da = function (dm, rho = 1800, fl = true, chi = 1, dve = dm2dve(dm, rho, 
     return da;
 }
 
+var sdm2sda = function (cmd, sg, rh, fl = true, chi = 1) {
+    return Math.exp( 
+        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.05), rh, fl, chi)) - 
+        Math.log(dm2da(Math.exp(Math.log(cmd) * 0.95), rh, fl, chi))) / 
+        (0.1 * Math.log(cmd)) * 
+        Math.log(sg)); // take about CMD
+}
+
 var dve2dm = function (dve, fl = true, chi = 1) {
 
     if (fl) {
