@@ -223,7 +223,22 @@ a.anchor {
   padding-top: 20px;
   margin-bottom: 0px;
   padding-bottom: 60px;
-  font-size: 9.5pt;
+  font-size: 9pt;
+  color: #666;
+}
+.footer-note {
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+.footer a {
+  color: #666;
+  text-decoration: none;
+}
+body.dark-theme .footer {
+  color: #AAA;
+}
+body.dark-theme .footer a {
+  color: #AAA;
 }
 
 .footer sup {

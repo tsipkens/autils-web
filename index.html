@@ -133,7 +133,7 @@
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
             </div>
-            
+
             <div class="sub-section" style="display:block;">
                 <div class="note">
                     This section sets the mass-mobility parameters and shape factor
@@ -141,7 +141,7 @@
                     is the effective density of a particle having a mobility diameter of
                     100 nm. Potential pairings include:
                 </div>
-                
+
                 <div class="sub-note" onclick="setMassMobProp(510, 2.48)">
                     <b>Soot</b><a class="footnote" href="#foot1"><sup>1</sup></a> <br>
                     ρ<sub>eff,100</sub> = 510 kg/m<sup>3</sup> <br>
@@ -334,11 +334,11 @@
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
             </div>
-            
+
             <div class="sub-section" style="display:block;">
                 <p class="note">
                     This section computed equivalent distribution moments using a combination of
-                    Hatch-Choate and the above size conversions. 
+                    Hatch-Choate and the above size conversions.
                 </p>
             </div>
 
@@ -429,13 +429,29 @@
         <script src="output.js"></script>
 
         <div class="footer">
-            <b>Footnotes</b> <br>
-            <sup id="foot1">1</sup> Olfert and Rogak, Aerosol Sci. Technol. (2019). <br>
-            <sup id="foot2">2</sup> Sipkens et al., Submitted (2021). <br>
-            <sup>*</sup> This web app is currently under construction and has not been fully validated. <br>
-            <sup>*</sup> Roughly equivalent MATLAB code is available 
-                <a href="https://github.com/tsipkens/autils">here</a>. <br>
-            
+            <b>Footnotes</b>
+            <div class="footer-note">
+                <sup id="foot1">1</sup>
+                <a href="https://doi.org/10.1080/02786826.2019.1577949">Olfert and Rogak, "Universal relations between
+                    soot effective density and primary particle size for common combustion sources", Aerosol Sci.
+                    Technol. (2019).</a>
+            </div>
+            <div class="footer-note">
+                <sup id="foot2">2</sup>
+                <a href="https://arxiv.org/abs/2201.12446">Sipkens et al., "Comparison of
+                    measurement systems for assessing number- and mass-based particle filtration efficiency", Pre-print.
+                    (2021).</a> <br>
+            </div>
+
+            <div class="footer-note">
+                <sup>*</sup> This web app is currently under construction and has not been fully validated.
+            </div>
+
+            <div class="footer-note">
+                <sup>*</sup> Roughly equivalent MATLAB code is available
+                <a href="https://github.com/tsipkens/autils">here</a>.
+            </div>
+
             <!-- <img src="imgs/CAAR.logo.v2.svg" style="width:30%;min-width:100px;"/>  -->
         </div>
 
