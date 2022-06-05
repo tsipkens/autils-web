@@ -6,11 +6,15 @@
     <title>AUTILS | Aerosol size calculator</title>
     <meta name="description"
         content="A simple web app showing the equivalence of different aerosol particle sizes and distribution moments.">
+    <meta name="author" content="Timothy Sipkens" />
     <meta name="keywords" content="aerosol, particle size, calculator, autils, sipkens">
     <meta name="robots" content="index,follow" />
 
     <meta name="title" property="og:title" content="AUTILS | Aerosol size calculator">
     <meta name="author" content="Timothy Sipkens">
+
+    <link rel="icon" href="https://tsipkens.github.io/autils-web/imgs/favicon.png" />
+    <link rel="shortcut icon" href="https://tsipkens.github.io/autils-web/imgs/favicon.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -72,7 +76,7 @@
 
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
-                    GAS PROPERTIES
+                    Gas properties
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -107,6 +111,8 @@
                 </div>
                 <script src="gases.json"></script> <!-- Load gas properties -->
 
+                <br>
+
                 <div class="control">
                     <span class="control-label">Viscosity</span> <br>
                     <div class="textoutput">
@@ -128,7 +134,7 @@
 
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
-                    MASS-MOBILITY RELATIONSHIP
+                    Mass-mobility relationship
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -169,7 +175,7 @@
                 </div>
 
                 <div class="control">
-                    <span class="control-label">Mass-mobility exponent (D<sub>m</sub>)</span> <br>
+                    <span class="control-label">Exponent (D<sub>m</sub>)</span> <br>
                     <input class="textinput" id="zet-val" type="number" step="0.01" value="2.48" onchange="updater()">
                 </div>
 
@@ -209,7 +215,7 @@
 
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
-                    EQUIVALENT SIZES
+                    Equivalent sizes
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -219,7 +225,9 @@
                 <p>
                     Mass and effective density at the chosen mobility diameter are computed via the
                     mass-mobility relation. Cunningham slip corrections are calculated via the
-                    expressions of Kim et al.
+                    expressions of Kim et al. For volume-equivalent and aerodynamic diameters, the 
+                    value in the brackets is the equivalent diameter when not accounting for the 
+                    slip correction, giving an indication of the significance of this effect. 
                 </p>
             </div>
 
@@ -238,8 +246,6 @@
                     </div>
                 </div>
 
-                <br>
-
                 <div class="control">
                     <span class="control-label">Mass</span> <br>
                     <div class="textoutput">
@@ -254,7 +260,6 @@
                     </div>
                 </div>
 
-                <br>
                 <div class="control">
                     <span class="control-label">Cunningham slip @ d<sub>m</sub></span> <br>
                     <div class="textoutput">
@@ -269,37 +274,19 @@
                     </div>
                 </div>
 
-                <br>
                 <div class="control">
                     <span class="control-label">Volume eq. diameter</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="dve-val">-</div> nm
+                        <div class="output-div" id="dve-val">-</div> (<div class="output-div" id="dves-val">-</div>) nm
                     </div>
                 </div>
 
-                <div class="control">
-                    <span class="control-label">Volume eq. diameter (no slip)</span><br>
-                    <div class="textoutput">
-                        <div class="output-div" id="dves-val">-</div> nm
-                    </div>
-                </div>
-
-                <br>
                 <div class="control">
                     <span class="control-label">Aerodynamic diameter</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="da-val">-</div> nm
+                        <div class="output-div" id="da-val">-</div> (<div class="output-div" id="das-val">-</div>) nm
                     </div>
                 </div>
-
-                <div class="control">
-                    <span class="control-label">Aero. diameter (no slip)</span><br>
-                    <div class="textoutput">
-                        <div class="output-div" id="das-val">-</div> nm
-                    </div>
-                </div>
-
-                <br>
 
                 <div class="control">
                     <span class="control-label">Mechanical mobility (B)</span><br>
@@ -329,7 +316,7 @@
 
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
-                    DISTRIBUTION MOMENTS
+                    Distribution moments
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -354,8 +341,6 @@
                     <input class="textinput" id="sg-val" type="number" min="1" max="20" step="0.01" value="1.8"
                         onchange="updater()">
                 </div>
-
-                <br>
 
                 <div class="control">
                     <span class="control-label">MMD</span><br>
@@ -474,7 +459,8 @@
     var i;
 
     function expandText(item) {
-        content = item.parentElement.children
+        var sec = item.parentElement
+        var content = sec.children
         var button = content[0]; // button, h3 container
         var h3 = button.children[0];
         var plus = h3.children[0];
@@ -487,6 +473,7 @@
             for (ii = 0; ii < content2.length; ii++) {
                 content2[ii].style.display = "none";
             }
+            sec.style.paddingBottom = "0px";
             plus.style.display = "inline";
             minus.style.display = "none";
             button.style.borderBottom = "none";
@@ -499,6 +486,7 @@
             for (ii = 0; ii < content2.length; ii++) {
                 content2[ii].style.display = "block";
             }
+            sec.style.paddingBottom = "10px";
             plus.style.display = "none";
             minus.style.display = "inline";
             button.style.borderBottom = "solid 1px var(--line-color)";
