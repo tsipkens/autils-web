@@ -317,14 +317,14 @@ div.control {
 .textoutput {
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 300;
-  font-size: 11pt;
+  font-size: 12pt;
   border-radius: 3pt;
 }
 
 .textinput {
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 300;
-  font-size: 11pt;
+  font-size: 12pt;
   border-radius: 3pt;
   padding: 5px 10px 5px 10px;
   border: 1.5px solid var(--line-color);
@@ -364,9 +364,9 @@ body.dark-theme .textinput:focus {
 
 .control-label {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   color: #444;
-  font-size: 10pt;
+  font-size: 8pt;
 }
 
 body.dark-theme .control-label {
