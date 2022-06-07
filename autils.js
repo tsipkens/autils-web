@@ -7,8 +7,7 @@ var viscosity = function (T, p, gasProp) {
 }
 
 var mfp = function (T, p, gasProp) {
-    // Kim et al. (2005) (doi:10.6028/jres.110.005), ISO 15900 Eqn 4
-    // Correct default mean free path.
+    // Kim et al. (2005) (doi:10.6028/jres.110.005), ISO 15900 Eqn 4.
     return gasProp["mfp_ref"] * 1e9 * (T / gasProp["Tref"]) * (gasProp["pref"] / p) * (1 + gasProp["S"] / gasProp["Tref"]) / (1 + gasProp["S"] / T)
 }
 
