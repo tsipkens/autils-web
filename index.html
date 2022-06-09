@@ -48,11 +48,15 @@
                 document.querySelector(':root').style.setProperty('--background-color1', '#181C28');
                 document.querySelector(':root').style.setProperty('--background-color2', '#181C28');
                 document.querySelector(':root').style.setProperty('--line-color', '#444444');
+                document.querySelector(':root').style.setProperty('--background-gradient', 'linear-gradient(-15deg, #20293A, #20293A)');
+                document.querySelector(':root').style.setProperty('--c1', '#FEDC3D');
             } else {
                 document.querySelector(':root').style.setProperty('--background-color0', '#EFEFEF');
                 document.querySelector(':root').style.setProperty('--background-color1', 'white');
                 document.querySelector(':root').style.setProperty('--background-color2', 'white');
                 document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
+                document.querySelector(':root').style.setProperty('--background-gradient', 'linear-gradient(-15deg, #eaf2f4, #EFEFEF, #edebec)');
+                document.querySelector(':root').style.setProperty('--c1', '#C70039');
             }
         };
     </script>
@@ -77,9 +81,13 @@
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
                     Gas properties
+                    <a href="wiki.html" class="info-button">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
+                
             </div>
 
             <div class="sub-section" style="display:block;">
@@ -135,6 +143,9 @@
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
                     Mass-mobility relationship
+                    <a href="wiki.html" class="info-button">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -216,6 +227,9 @@
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
                     Equivalent sizes
+                    <a href="wiki.html" class="info-button">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -312,11 +326,14 @@
         </div>
 
 
-        <div class="section">
+        <div class="section" id="dist-moments">
 
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
                     Distribution moments
+                    <a href="wiki.html" class="info-button">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -462,8 +479,8 @@
         var content = sec.children
         var button = content[0]; // button, h3 container
         var h3 = button.children[0];
-        var plus = h3.children[0];
-        var minus = h3.children[1];
+        var plus = h3.children[1];
+        var minus = h3.children[2];
         var content2 = []; // content other than header
         for (ii = 1; ii < content.length; ii++) {
             content2.push(content[ii]);

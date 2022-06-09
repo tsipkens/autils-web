@@ -10,6 +10,7 @@
   --background-gradient: linear-gradient(-15deg, #eaf2f4, #EFEFEF, #edebec);
   --line-color: #CCC;
   --line-color2: black;
+  --c1: #C70039;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,6 +21,7 @@
     --background-gradient: linear-gradient(-15deg, #20293A, #20293A);
     --line-color: #555;
     --line-color2: white;
+    --c1: #FEDC3D;
   }
 }
 
@@ -75,7 +77,7 @@ p {
 }
 .sub-note:hover {
   transition: all 1s ease 0s;
-  border-left: 2.5px solid #C70039;
+  border-left: 2.5px solid var(--c1);
 }
 
 h1.title {
@@ -84,7 +86,7 @@ h1.title {
   font-family: 'Noto Sans', sans-serif;
   font-size: 48pt;
   font-weight: 800;
-  color: #C70039;
+  color: var(--c1);
 }
 
 h2.subtitle {
@@ -155,11 +157,11 @@ body.dark-theme a {
 }
 
 a:hover {
-  color: #C70039;
+  color: var(--c1);
 }
 
 body.dark-theme a:hover {
-  color: #C70039;
+  color: var(--c1);
 }
 
 div.main {
@@ -270,7 +272,7 @@ body.dark-theme .footer a {
 .ref:hover {
   color: var(--a0);
   transition: ease 0.3s;
-  border-left: solid #C70039 2px;
+  border-left: solid var(--c1) 2px;
 }
 
 .footer .ref {
@@ -343,22 +345,22 @@ body.dark-theme .textinput {
 }
 
 .textinput:hover {
-  border: 1.5px solid #C70039;
+  border: 1.5px solid var(--c1);
   box-shadow: 0px 0px 4px #AAAAAA;
 }
 
 body.dark-theme .textinput:hover {
-  border: 1.5px solid #C70039;
+  border: 1.5px solid var(--c1);
   box-shadow: 0px 0px 4px #666666;
 }
 
 .textinput:focus {
-  border: 1.5px solid #C70039;
+  border: 1.5px solid var(--c1);
   box-shadow: 0px 0px 4px #AAAAAA;
 }
 
 body.dark-theme .textinput:focus {
-  border: 1.5px solid #C70039;
+  border: 1.5px solid var(--c1);
   box-shadow: 0px 0px 4px #666666;
 }
 
@@ -414,7 +416,7 @@ input[type="checkbox"]:checked:after {
   font-weight: 900;
   content: "\f058";
   /* tick unicode. */
-  color: #C70039;
+  color: var(--c1);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -452,15 +454,15 @@ body.dark-theme select {
 }
 
 select:hover {
-  border: 2px solid #C70039;
+  border: 2px solid var(--c1);
 }
 
 body.dark-theme select:hover {
-  border: 2px solid #C70039;
+  border: 2px solid var(--c1);
 }
 
 select:focus {
-  border: 2px solid #C70039;
+  border: 2px solid var(--c1);
 }
 
 option {

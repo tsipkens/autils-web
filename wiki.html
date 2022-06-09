@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="icon" href="https://tsipkens.github.io/autils-web/imgs/favicon.png" />
+    <link rel="shortcut icon" href="https://tsipkens.github.io/autils-web/imgs/favicon.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Used for math and optimization -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://unpkg.com/mathjs/lib/browser/math.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/optimization-js@latest/dist/optimization.js" type="text/javascript"></script>
+
+    <link href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
+
+    <!-- Load style -->
+    <link href="style.css" rel="stylesheet">
+
+    <meta name="theme-color" content="#121212">
+    <meta name="color-scheme" content="light dark" />
+
+    <script>
+        // Initialize light/dark mode.
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        var dark = prefersDarkScheme.matches;
+
+        // Apply appropriate theme.
+        function toggleNight() {
+            // Swap CSS.
+            document.body.classList.toggle("dark-theme");
+
+            // Update background color
+            if (dark) {
+                document.querySelector(':root').style.setProperty('--background-color0', '#20293A');
+                document.querySelector(':root').style.setProperty('--background-color1', '#181C28');
+                document.querySelector(':root').style.setProperty('--background-color2', '#181C28');
+                document.querySelector(':root').style.setProperty('--line-color', '#444444');
+                document.querySelector(':root').style.setProperty('--background-gradient', 'linear-gradient(-15deg, #20293A, #20293A)');
+                document.querySelector(':root').style.setProperty('--c1', '#FEDC3D');
+            } else {
+                document.querySelector(':root').style.setProperty('--background-color0', '#EFEFEF');
+                document.querySelector(':root').style.setProperty('--background-color1', 'white');
+                document.querySelector(':root').style.setProperty('--background-color2', 'white');
+                document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
+                document.querySelector(':root').style.setProperty('--background-gradient', 'linear-gradient(-15deg, #eaf2f4, #EFEFEF, #edebec)');
+                document.querySelector(':root').style.setProperty('--c1', '#C70039');
+            }
+        };
+    </script>
+</head>
+
+
+<body onload="if (dark) { toggleNight(); }">
+
+<div class="main">
+    Under construction.
+</div>
+
+</body>
