@@ -231,7 +231,7 @@ a.anchor {
 }
 .footer-note {
   margin-bottom: 3px;
-  margin-top: 3px;
+  margin-top: 6px;
 }
 .footer a {
   color: #666;
@@ -244,8 +244,10 @@ body.dark-theme .footer a {
   color: #AAA;
 }
 
-.footer sup {
-  font-size: 5.5pt;
+.footer .num {
+  font-size: 8pt;
+  font-weight: 600;
+  color: var(--c1);
 }
 
 .footer p {

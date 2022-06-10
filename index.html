@@ -24,7 +24,7 @@
     <script src="https://unpkg.com/mathjs/lib/browser/math.js" type="text/javascript"></script>
     <script src="https://unpkg.com/optimization-js@latest/dist/optimization.js" type="text/javascript"></script>
 
-    <link href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous"/>
 
     <!-- Load style -->
     <link href="style.css" rel="stylesheet">
@@ -81,9 +81,6 @@
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
                     Gas properties
-                    <a href="wiki.html" class="info-button">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </a>
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -122,14 +119,22 @@
                 <br>
 
                 <div class="control">
-                    <span class="control-label">Viscosity</span> <br>
+                    <span class="control-label">Viscosity
+                        <a href="wiki.html" class="info-button">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+                    </span>  <br>
                     <div class="textoutput">
                         <div class="output-div" id="mu-val">-</div> Pa·s
                     </div>
                 </div>
 
                 <div class="control">
-                    <span class="control-label">Mean free path</span> <br>
+                    <span class="control-label">Mean free path
+                        <a href="wiki.html" class="info-button">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+                    </span> <br>
                     <div class="textoutput">
                         <div class="output-div" id="lam-val">-</div> nm
                     </div>
@@ -143,9 +148,6 @@
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
                     Mass-mobility relationship
-                    <a href="wiki.html" class="info-button">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </a>
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -227,9 +229,6 @@
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
                     Equivalent sizes
-                    <a href="wiki.html" class="info-button">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </a>
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -331,9 +330,6 @@
             <div onclick="expandText(this);" class="h3-container">
                 <h3 class="active">
                     Distribution moments
-                    <a href="wiki.html" class="info-button">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </a>
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -348,8 +344,8 @@
 
             <div class="sub-section">
                 <div class="control">
-                    <span class="control-label">CMD</span>
-                    <span class="control-unit">nm</span> <br>
+                    <span class="control-label">CMD </span>
+                    <span class="control-unit">nm</span><br>
                     <input class="textinput" id="cmd-val" type="number" step="0.1" value="75" onchange="updater()">
                 </div>
 
@@ -360,7 +356,11 @@
                 </div>
 
                 <div class="control">
-                    <span class="control-label">MMD</span><br>
+                    <span class="control-label">MMD
+                        <a href="wiki.html" class="info-button">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+                    </span> <br>
                     <div class="textoutput">
                         <div class="output-div" id="mmd-val">-</div> nm
                     </div>
@@ -433,24 +433,24 @@
         <div class="footer">
             <b>Footnotes</b>
             <div class="footer-note">
-                <sup id="foot1">1</sup>
+                <span class="num" id="foot1">1</span>
                 <a href="https://doi.org/10.1080/02786826.2019.1577949">Olfert and Rogak, "Universal relations between
                     soot effective density and primary particle size for common combustion sources", Aerosol Sci.
                     Technol. (2019).</a>
             </div>
             <div class="footer-note">
-                <sup id="foot2">2</sup>
+                <span class="num" id="foot2">2</span>
                 <a href="https://arxiv.org/abs/2201.12446">Sipkens et al., "Comparison of
                     measurement systems for assessing number- and mass-based particle filtration efficiency", Pre-print.
                     (2021).</a> <br>
             </div>
 
             <div class="footer-note">
-                <sup>*</sup> This web app is currently under construction and has not been fully validated.
+                <span class="num">*</span> This web app is currently under construction and has not been fully validated.
             </div>
 
             <div class="footer-note">
-                <sup>*</sup> Roughly equivalent MATLAB code is available
+                <span class="num">*</span> Roughly equivalent MATLAB code is available
                 <a href="https://github.com/tsipkens/autils" style="text-decoration:underline;">here</a>.
             </div>
 
@@ -479,8 +479,8 @@
         var content = sec.children
         var button = content[0]; // button, h3 container
         var h3 = button.children[0];
-        var plus = h3.children[1];
-        var minus = h3.children[2];
+        var plus = h3.children[0];
+        var minus = h3.children[1];
         var content2 = []; // content other than header
         for (ii = 1; ii < content.length; ii++) {
             content2.push(content[ii]);
