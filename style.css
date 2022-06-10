@@ -100,10 +100,10 @@ h2.subtitle {
 
 h3 {
   font-family: 'Noto Sans', sans-serif;
-  font-size: 18pt;
+  font-size: 13pt;
   padding-top: 0px;
   color: black;
-  font-weight: 300;
+  font-weight: 700;
 }
 .h3-container {
   padding: 15px 25px;
@@ -535,3 +535,5 @@ body.dark-theme .plot-fill {
 body.dark-theme .diff-line {
   stroke: white;
 }
+
+
