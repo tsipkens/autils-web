@@ -28,6 +28,7 @@
 * {
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -63,21 +64,24 @@ p {
   margin: 0px;
 }
 .sub-note {
+  transition: all 1s ease 0s;
   text-align: left;
+  margin-right: 15px;
   margin-top: 15px;
   margin-bottom: 5px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  padding-left: 7px;
-  border-left: 2.5px solid var(--line-color);
-  border-radius: 2px;
+  padding: 6px 9px;
+  border: 1.5px solid var(--line-color);
+  border-left: 4px solid var(--line-color);
+  border-radius: 3px;
   display: inline-block;
   width: 180px;
   cursor: pointer;
+  line-height: 12pt;
 }
 .sub-note:hover {
-  transition: all 1s ease 0s;
-  border-left: 2.5px solid var(--c1);
+  border: 1.5px solid var(--c1);
+  border-left: 4px solid var(--c1);
+  background-color: var(--background-color1);
 }
 
 h1.title {
@@ -264,7 +268,7 @@ body.dark-theme .footer a:hover {
 .footnote {
   text-decoration: none;
   font-weight: 600;
-  font-size: 9pt;
+  font-size: 8pt;
 }
 
 .ref {
