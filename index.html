@@ -430,9 +430,9 @@
 
         <div class="section" id="average-charge">
 
-            <div onclick="expandText(this);" class="h3-container">
+            <div onclick="expandText(this);" class="h3-container" id="h3-ave-charge">
                 <h3 class="active">
-                    Average charge
+                    Average charge algorithms
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
@@ -445,12 +445,12 @@
                     (e.g., CPMA and APM). Based on a draft manuscript that is yet to be published. 
                 </p>
             </div>
-
+            
             <div class="sub-section">
                 <div class="control">
                     <span class="control-label">Mass-to-charge s.p., m* </span>
                     <span class="control-unit">fg</span><br>
-                    <input class="textinput" id="mstar-val" type="number" value="1" onchange="updater()">
+                    <input class="textinput" id="mstar-val" type="number" value="0.1" onchange="updater()">
                 </div>
 
                 <div class="control">
@@ -572,4 +572,7 @@
             }.bind(item), 40);
         }
     }
+
+    // Retract average charge section at the beginning.
+    expandText(document.getElementById('h3-ave-charge'));
 </script>
