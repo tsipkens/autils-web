@@ -427,8 +427,66 @@
             </div>
         </div>
 
+
+        <div class="section" id="average-charge">
+
+            <div onclick="expandText(this);" class="h3-container">
+                <h3 class="active">
+                    Average charge
+                    <div class="plus"><i class="fas fa-chevron-down"></i></div>
+                    <div class="minus"><i class="fas fa-chevron-up"></i></div>
+                </h3>
+            </div>
+
+            <div class="sub-section" style="display:block;">
+                <p class="note">
+                    This section uses average charge methods to compute the average particle mass and 
+                    integer charge that would be transmitted (trans.) through a mass-to-charge classifier 
+                    (e.g., CPMA and APM). Based on a draft manuscript that is yet to be published. 
+                </p>
+            </div>
+
+            <div class="sub-section">
+                <div class="control">
+                    <span class="control-label">Mass-to-charge s.p., m* </span>
+                    <span class="control-unit">fg</span><br>
+                    <input class="textinput" id="mstar-val" type="number" value="1" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Pre-factor, q<sub>0</sub> </span><br>
+                    <input class="textinput" id="q0-val" type="number" value="0.0559" onchange="updater()">
+                </div>
+                
+                <div class="control">
+                    <span class="control-label">Exponent, v </span><br>
+                    <input class="textinput" id="nu-val" type="number" value="1.0" step="0.01" onchange="updater()">
+                </div>
+                
+                <div class="control">
+                    <span class="control-label">Interp. factor, n </span><br>
+                    <input class="textinput" id="n-interp-val" type="number" value="2.5" step="0.01" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Ave. trans. mass</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="mtr-val">-</div>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Ave. trans. charge</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="qtr-val">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Gas properties are loaded above. -->
         <script src="autils.js"></script>
+        <script src="charge.js"></script>
         <script src="output.js"></script>
 
         <div class="footer">

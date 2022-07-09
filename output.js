@@ -477,6 +477,17 @@ var updater = function () {
     document.getElementById("sda-val").innerHTML = sda.toPrecision(3);
         
     plotter(cmd, mmd, sg, prop, chi); // update plot
+
+    //== AVERAGE CHARGE ==//
+    var mstar = Number(document.getElementById("mstar-val").value);
+    var n_interp = Number(document.getElementById("n-interp-val").value);
+    var q0 = Number(document.getElementById("q0-val").value);
+    var nu = Number(document.getElementById("nu-val").value);
+    
+    var mtr = intac(mstar, q0, nu, prop['k'], prop['zet'], n_interp)  // transmitted mass
+    var qtr = mtr / mstar;  // transmitted charge
+    document.getElementById("mtr-val").innerHTML = mtr.toPrecision(4);
+    document.getElementById("qtr-val").innerHTML = qtr.toPrecision(4);
 }
 updater(); // run the first time
 
