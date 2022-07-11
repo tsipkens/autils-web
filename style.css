@@ -301,7 +301,7 @@ div.section {
   margin-top: 10px;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-radius: 7px;
+  border-radius: 5px;
   background-color: var(--background-color1);
   border: solid 1px var(--line-color);
   box-shadow: 0px 0px 4px #EEE;
@@ -329,10 +329,9 @@ div.control {
 }
 
 .textoutput {
-  font-family: 'Hind', Arial, sans-serif;
+  font-family: 'Hind', 'Open Sans', sans-serif;;
   font-weight: 300;
   font-size: 12pt;
-  border-radius: 3pt;
   line-height: 14pt;
 }
 .textoutput sup {
@@ -343,44 +342,39 @@ div.control {
 }
 
 .textinput {
-  font-family: 'Hind', Arial, sans-serif;
+  font-family: 'Hind', 'Open Sans', sans-serif;;
   font-weight: 300;
   font-size: 12pt;
-  border-radius: 3pt;
-  padding: 5px 10px 5px 10px;
-  border: 1.5px solid var(--line-color);
+  padding: 0px;
+  border: none;
+  border-bottom: 1.5px solid var(--line-color);
   background-color: var(--background-color2);
   color: black;
   transition: all 0.3s ease 0s;
   width: 110px;
-  box-shadow: 0px 0px 4px #EEE;
 }
 
 body.dark-theme .textinput {
-  border: 1.5px solid var(--line-color);
+  border-bottom: 1.5px solid var(--line-color);
   background-color: var(--background-color2);
   color: white;
-  box-shadow: 0px 0px 4px #111;
 }
 
 .textinput:hover {
-  border: 1.5px solid var(--c1);
-  box-shadow: 0px 0px 4px #AAAAAA;
+  border-bottom: 1.5px solid var(--c1);
 }
 
 body.dark-theme .textinput:hover {
-  border: 1.5px solid var(--c1);
-  box-shadow: 0px 0px 4px #666666;
+  border-bottom: 1.5px solid var(--c1);
 }
 
 .textinput:focus {
-  border: 1.5px solid var(--c1);
-  box-shadow: 0px 0px 4px #AAAAAA;
+  border-radius: 0px;
+  border-bottom: 1.5px solid var(--c1);
 }
 
 body.dark-theme .textinput:focus {
-  border: 1.5px solid var(--c1);
-  box-shadow: 0px 0px 4px #666666;
+  border-bottom: 1.5px solid var(--c1);
 }
 
 .control-label {
@@ -457,31 +451,27 @@ input[type="checkbox"]:checked:after {
 select {
   font-family: 'Hind', Arial, sans-serif;
   font-size: 11pt;
-  border-radius: 3pt;
   font-weight: 300;
   padding: 5px 10px 5px 10px;
-  border: 2px solid #E3E3E3;
+  border: none;
+  border-bottom: 2px solid #E3E3E3;
   background-color: white;
   transition: all 0.3s ease 0s;
   width: 197px;
 }
-
 body.dark-theme select {
-  border: 2px solid #444444;
-  background-color: #111111;
+  border: none;
+  border-bottom: 2px solid #444444;
   color: white;
 }
-
 select:hover {
-  border: 2px solid var(--c1);
+  border-bottom: 2px solid var(--c1);
 }
-
 body.dark-theme select:hover {
-  border: 2px solid var(--c1);
+  border-bottom: 2px solid var(--c1);
 }
-
 select:focus {
-  border: 2px solid var(--c1);
+  border-bottom: 2px solid var(--c1);
 }
 
 option {
