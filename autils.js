@@ -1,6 +1,7 @@
 const pi = 3.14159265359
 const e = 1.60217733e-19
 const kB = 1.380658e-23
+const rho0 = 1e3 // density of water
 
 var viscosity = function (T, p, gasProp) {
     return gasProp["mu_ref"] * (gasProp["Tref"] + gasProp["S"]) / (T + gasProp["S"]) * (T / gasProp["Tref"]) ** 1.5 * 1e-7
@@ -37,6 +38,9 @@ var Cc = function (d, T = null, p = null, gasProp = null) {
     return 1 + Kn * (A1 + A2 * Math.exp(-(2 * A3) / Kn)); // Cunningham slip correction factor
 }
 
+
+
+//-------------------------------------------------------------------------//
 // Compute mass-mobility relation parameters. 
 // Currently only works when rho100 is specified.
 var massMob = function (zet, val, field = 'rho100') {
@@ -64,11 +68,11 @@ var massMob = function (zet, val, field = 'rho100') {
 }
 
 var dm2mp = function (dm, prop) {
-    return prop['m0'] * dm ** prop['zet']
+    return prop['m0'] * (dm * 1e9) ** prop['zet']
 }
 
 var mp2dm = function (mp, prop) {
-    return (mp / prop['m0'] ) ** (1 / prop['zet'])
+    return (mp / prop['m0'] ) ** (1 / prop['zet']) * 1e-9
 }
 
 var sdm2smp = function (smp, prop) {
@@ -80,9 +84,50 @@ var rho = function (dm, m) {
 }
 
 var dm2rho = function (dm, prop) {
-    return rho(dm, dm2mp(dm, prop) * 1e18)
+    return rho(dm, dm2mp(dm, prop))
+}
+//-------------------------------------------------------------------------//
+
+
+//-------------------------------------------------------------------------//
+// Other size conversions.
+// For conversions, also see Kazemimanesh et al. (2022) (https://doi.org/10.1016/j.jaerosci.2021.105930). 
+
+var dm2dve = function (dm, prop) {
+    dve = dm * (dm2rho(dm, prop) / prop['rhom']) ** (1/3)
+    return dve
 }
 
+var dve2dm = function (dve, prop) {
+    dm = (prop['rhom'] * pi / (6 * prop['k']) * dve ** 3)  ** (1/prop['zet']) * 1e-9
+    return dm
+}
+
+var dm2chi = function (dm, prop, fl = true) {
+    dve = dm2dve(dm, prop);
+
+    chi = dm / dve;
+    
+    if (fl) {
+        chi = (dm / dve * Cc(dve) / Cc(dm))
+    }
+
+    return chi;
+}
+
+var dve2chi = function (dve, prop, fl = true) {
+    dm = dve2dm(dve, prop);
+
+    chi = dm / dve;
+    
+    if (fl) {
+        chi = (dm / dve * Cc(dve) / Cc(dm))
+    }
+
+    return chi;
+}
+
+/*
 var dm2dve = function (dm, rho = 1800, fl = true, chi = 1) {
     var dve = dm / chi; // volume equivalent diameter
     
@@ -96,65 +141,59 @@ var dm2dve = function (dm, rho = 1800, fl = true, chi = 1) {
 
     return dve
 }
+*/
 
-var dm2da = function (dm, rho = 1800, fl = true, chi = 1, dve = dm2dve(dm, rho, fl, chi)) {
-    var rho0 = 1e3; // density of water
+var da2dve = function (da, prop, fl = true) {
+    da = da * 1e9
+    if (fl) {
+        var fun_a = function (dve) {
+            return ((dve * Math.sqrt(prop['rhom'] / rho0 / dve2chi(dve * 1e-9, prop, fl) * Cc(dve * 1e-9) / Cc(da * 1e-9)) - da)) ** 2
+        }
+    } else {
+        var fun_a = function (dve) {
+            return (da / Math.sqrt(prop['rhom'] / rho0 / dve2chi(dve * 1e-9, prop, fl)) - dve) ** 2
+        }
+    }
+    var a = optimjs.minimize_Powell(fun_a, [da])
+    dve = a.argument[0] * 1e-9
+    
+    return dve
+}
+
+var dm2da = function (dm, prop, fl = true) {
+    var dve = dm2dve(dm, prop)
+    var chi = dm2chi(dm, prop, fl)
 
     // Compute simple volume-equivalent and aerodynamic diameters, 
     // that is without iteration. 
-    var da = dve * Math.sqrt(rho / rho0 / chi); // aerodynamic diameter
+    var da = dve * Math.sqrt(prop['rhom'] / rho0 / chi); // aerodynamic diameter
 
     if (fl) {
+        dve = dve * 1e9  // convert to nm for numerical stability
+        da = da * 1e9
         var fun_a = function (da) {
-            return ((dve * Math.sqrt(rho / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - da)) ** 2
+            return ((dve * Math.sqrt(prop['rhom'] / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - da)) ** 2
         }
         var a = optimjs.minimize_Powell(fun_a, [da])
-        da = a.argument[0]
+        da = a.argument[0] * 1e-9  // convert back to m
     }
 
     return da;
 }
 
-var sdm2sda = function (cmd, sg, rh, fl = true, chi = 1) {
-    return Math.exp( 
-        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.05), rh, fl, chi)) - 
-        Math.log(dm2da(Math.exp(Math.log(cmd) * 0.95), rh, fl, chi))) / 
-        (0.1 * Math.log(cmd)) * 
-        Math.log(sg)); // take about CMD
-}
+var da2dm = function (da, prop, fl = true) {
+    dve = da2dve(da, prop, fl)
 
-var dve2dm = function (dve, fl = true, chi = 1) {
-
-    if (fl) {
-        var fun_m = function (dm) {
-            return (dve * chi * Cc(dm * 1e-9) / Cc(dve * 1e-9) - dm) ** 2
-        }
-        var a = optimjs.minimize_Powell(fun_m, [dve])
-        dve = a.argument[0]
-    }
-
-    return dve * chi
-}
-
-var da2dm = function (da, rh = 1800, fl = true, chi = 1, prop) {
-    var rho0 = 1e3; // density of water
-    
-    rh = dm2rho(da, prop) * 1e9
-
-    // Compute simple volume-equivalent and aerodynamic diameters, 
-    // that is without iteration. 
-    var dve = da / Math.sqrt(rh / rho0 / chi); // aerodynamic diameter
-    
-    if (fl) {
-        var fun_a = function (dve) {
-            return (da / Math.sqrt(dm2rho(dve2dm(dve[0], fl, chi), prop) * 1e9 / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - dve) ** 2
-        }
-        var a = optimjs.minimize_Powell(fun_a, [dve])
-        dve = a.argument[0]
-    }
-
-    var dm = dve2dm(dve, fl, chi)
+    var dm = dve2dm(dve, prop, fl)
     return dm
+}
+
+var sdm2sda = function (cmd, sg, prop, fl = true) {
+    return Math.exp( 
+        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.05), prop, fl)) - 
+        Math.log(dm2da(Math.exp(Math.log(cmd) * 0.95), prop, fl))) / 
+        (0.1 * Math.log(cmd * 1e9)) * 
+        Math.log(sg)); // take about CMD
 }
 
 // Hatch-Choate (for moments)
@@ -170,7 +209,7 @@ var hci = function (mu, sg, q, a) {
 // Mechanical mobility
 var dm2B = function (dm) {
     var mu = 1.84198E-05
-    return (Cc(dm * 1e-9) / (3 * pi * mu * (dm * 1e-9))) * 1e-9
+    return (Cc(dm) / (3 * pi * mu * (dm))) * 1e-9
 }
 
 // Electrical mobility

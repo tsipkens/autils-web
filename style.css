@@ -83,6 +83,9 @@ p {
   border-left: 4px solid var(--c1);
   background-color: var(--background-color1);
 }
+.sub-note sub {
+  font-size: 8pt;
+}
 
 h1.title {
   margin-top: 90px;

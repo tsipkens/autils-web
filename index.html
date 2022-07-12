@@ -161,21 +161,24 @@
                     100 nm. Potential pairings include:
                 </div>
 
-                <div class="sub-note" onclick="setMassMobProp(510, 2.48)">
+                <div class="sub-note" onclick="setMassMobProp(510, 2.48, 1800)">
                     <b>Soot</b><a class="footnote" href="#foot1"> [1]</a> <br>
                     ρ<sub>eff,100</sub> = 510 kg/m<sup>3</sup> <br>
+                    ρ<sub>m</sub> = 1800 kg/m<sup>3</sup> <br>
                     D<sub>m</sub> = 2.48
                 </div>
 
                 <div class="sub-note" onclick="setMassMobProp(2160, 2.97)">
                     <b>Sodium chloride</b><a class="footnote" href="#foot2"> [2]</a> <br>
                     ρ<sub>eff,100</sub> = 2160 kg/m<sup>3</sup> <br>
+                    ρ<sub>m</sub> = 2160 kg/m<sup>3</sup> <br>
                     D<sub>m</sub> = 2.97
                 </div>
 
                 <div class="sub-note" onclick="setMassMobProp(1000, 3)">
                     <b>Water (~PSL)</b> <br>
                     ρ<sub>eff,100</sub> = 1000 kg/m<sup>3</sup> <br>
+                    ρ<sub>m</sub> = 1000 kg/m<sup>3</sup> <br>
                     D<sub>m</sub> = 3
                 </div>
             </div>
@@ -193,8 +196,8 @@
                 </div>
 
                 <div class="control">
-                    <span class="control-label">Shape factor</span> <br>
-                    <input class="textinput" id="chi-val" type="number" step="0.01" value="1.00" onchange="updater()">
+                    <span class="control-label">Matl. density</span> <br>
+                    <input class="textinput" id="rhom-val" type="number" step="1" value="1800" onchange="updater()">
                 </div>
 
                 <br>
@@ -219,6 +222,13 @@
                         <div class="output-div" id="rho100-valo">-</div> kg/m<sup>3</sup>
                     </div>
                 </div>
+
+                <div class="control">
+                    <span class="control-label">χ @ 100 nm</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="chi100-valo">-</div> (<div class="output-div" id="chi100s-valo">-</div>)
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -238,8 +248,8 @@
                 <p>
                     Mass and effective density at the chosen mobility diameter are computed via the
                     mass-mobility relation. Cunningham slip corrections are calculated via the
-                    expressions of Kim et al. For volume-equivalent and aerodynamic diameters, the
-                    value in the brackets is the equivalent diameter when not accounting for the
+                    expressions of Kim et al. For dynamic shape factor and aerodynamic diameter, the
+                    value in the brackets is the equivalent quantity when not accounting for the
                     slip correction, giving an indication of the significance of this effect.
                 </p>
             </div>
@@ -267,9 +277,23 @@
                 </div>
 
                 <div class="control">
-                    <span class="control-label">ρ @ d<sub>m</sub></span> <br>
+                    <span class="control-label">ρ<sub>eff</sub> @ d<sub>m</sub></span> <br>
                     <div class="textoutput">
                         <div class="output-div" id="rho-val">-</div> kg/m<sup>3</sup>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Volume eq. diameter</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="dve-val">-</div> nm
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">χ @ d<sub>m</sub></span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="chi-val">-</div> (<div class="output-div" id="chis-val">-</div>)
                     </div>
                 </div>
 
@@ -284,13 +308,6 @@
                     <span class="control-label">Cunningham slip @ d<sub>a</sub></span> <br>
                     <div class="textoutput">
                         <div class="output-div" id="Cca-val">-</div>
-                    </div>
-                </div>
-
-                <div class="control">
-                    <span class="control-label">Volume eq. diameter</span><br>
-                    <div class="textoutput">
-                        <div class="output-div" id="dve-val">-</div> (<div class="output-div" id="dves-val">-</div>) nm
                     </div>
                 </div>
 
