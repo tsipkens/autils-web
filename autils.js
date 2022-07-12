@@ -21,7 +21,7 @@ var Cc = function (d, T = null, p = null, gasProp = null) {
 
     if (gasProp == null) { // For air, from Davies (1945); if (p, T not specified)
         var lam = 66.5e-9; // mean free path
-        
+
         A1 = 1.257;
         A2 = 0.4;
         A3 = 0.55;
@@ -72,7 +72,7 @@ var dm2mp = function (dm, prop) {
 }
 
 var mp2dm = function (mp, prop) {
-    return (mp / prop['m0'] ) ** (1 / prop['zet']) * 1e-9
+    return (mp / prop['m0']) ** (1 / prop['zet']) * 1e-9
 }
 
 var sdm2smp = function (smp, prop) {
@@ -94,12 +94,12 @@ var dm2rho = function (dm, prop) {
 // For conversions, also see Kazemimanesh et al. (2022) (https://doi.org/10.1016/j.jaerosci.2021.105930). 
 
 var dm2dve = function (dm, prop) {
-    dve = dm * (dm2rho(dm, prop) / prop['rhom']) ** (1/3)
+    dve = dm * (dm2rho(dm, prop) / prop['rhom']) ** (1 / 3)
     return dve
 }
 
 var dve2dm = function (dve, prop) {
-    dm = (prop['rhom'] * pi / (6 * prop['k']) * dve ** 3)  ** (1/prop['zet']) * 1e-9
+    dm = (prop['rhom'] * pi / (6 * prop['k']) * dve ** 3) ** (1 / prop['zet']) * 1e-9
     return dm
 }
 
@@ -107,7 +107,7 @@ var dm2chi = function (dm, prop, fl = true) {
     dve = dm2dve(dm, prop);
 
     chi = dm / dve;
-    
+
     if (fl) {
         chi = (dm / dve * Cc(dve) / Cc(dm))
     }
@@ -119,7 +119,7 @@ var dve2chi = function (dve, prop, fl = true) {
     dm = dve2dm(dve, prop);
 
     chi = dm / dve;
-    
+
     if (fl) {
         chi = (dm / dve * Cc(dve) / Cc(dm))
     }
@@ -156,7 +156,7 @@ var da2dve = function (da, prop, fl = true) {
     }
     var a = optimjs.minimize_Powell(fun_a, [da])
     dve = a.argument[0] * 1e-9
-    
+
     return dve
 }
 
@@ -169,13 +169,13 @@ var dm2da = function (dm, prop, fl = true) {
     var da = dve * Math.sqrt(prop['rhom'] / rho0 / chi); // aerodynamic diameter
 
     if (fl) {
-        dve = dve * 1e9  // convert to nm for numerical stability
+        dve = dve * 1e9 // convert to nm for numerical stability
         da = da * 1e9
         var fun_a = function (da) {
             return ((dve * Math.sqrt(prop['rhom'] / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - da)) ** 2
         }
         var a = optimjs.minimize_Powell(fun_a, [da])
-        da = a.argument[0] * 1e-9  // convert back to m
+        da = a.argument[0] * 1e-9 // convert back to m
     }
 
     return da;
@@ -189,10 +189,10 @@ var da2dm = function (da, prop, fl = true) {
 }
 
 var sdm2sda = function (cmd, sg, prop, fl = true) {
-    return Math.exp( 
-        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.05), prop, fl)) - 
-        Math.log(dm2da(Math.exp(Math.log(cmd) * 0.95), prop, fl))) / 
-        (0.1 * Math.log(cmd * 1e9)) * 
+    return Math.exp(
+        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.05), prop, fl)) -
+            Math.log(dm2da(Math.exp(Math.log(cmd) * 0.95), prop, fl))) /
+        (0.1 * Math.log(cmd * 1e9)) *
         Math.log(sg)); // take about CMD
 }
 

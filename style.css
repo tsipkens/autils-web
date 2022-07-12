@@ -64,27 +64,18 @@ p {
   margin: 0px;
 }
 .sub-note {
+  margin-top: 5px;
   transition: all 1s ease 0s;
-  text-align: left;
-  margin-right: 15px;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  padding: 6px 9px;
-  border: 1.5px solid var(--line-color);
-  border-left: 4px solid var(--line-color);
-  border-radius: 3px;
   display: inline-block;
-  width: 180px;
+  width: 188px;
   cursor: pointer;
-  line-height: 12pt;
 }
 .sub-note:hover {
-  border: 1.5px solid var(--c1);
-  border-left: 4px solid var(--c1);
-  background-color: var(--background-color1);
+  color: var(--c1);
 }
-.sub-note sub {
+.sub-note i {
   font-size: 8pt;
+  margin-right: 5px;
 }
 
 h1.title {
@@ -240,6 +231,9 @@ a.anchor {
   margin-bottom: 3px;
   margin-top: 6px;
 }
+.footer sub {
+  font-size: 6pt;
+}
 .footer a {
   color: #666;
   text-decoration: none;
@@ -351,6 +345,7 @@ div.control {
   padding: 0px;
   border: none;
   border-bottom: 1.5px solid var(--line-color);
+  outline: none;
   background-color: var(--background-color2);
   color: black;
   transition: all 0.3s ease 0s;

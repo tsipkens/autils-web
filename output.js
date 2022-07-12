@@ -219,16 +219,24 @@ svg.append("text")
 // Add circles marking the median on axes.
 svg.append("circle")
     .attr("r", 3)
-    .attr("cx", function(d) { return x(5); })
-    .attr("cy", function(d) { return height; })
+    .attr("cx", function (d) {
+        return x(5);
+    })
+    .attr("cy", function (d) {
+        return height;
+    })
     .attr('fill', colors[3])
     .attr('stroke', "black")
     .attr("stroke-width", 0.5)
     .attr("id", "mmd-circ")
 svg.append("circle")
     .attr("r", 3)
-    .attr("cx", function(d) { return x(5); })
-    .attr("cy", function(d) { return height; })
+    .attr("cx", function (d) {
+        return x(5);
+    })
+    .attr("cy", function (d) {
+        return height;
+    })
     .attr('fill', colors[1])
     .attr('stroke', "black")
     .attr("stroke-width", 0.5)
@@ -236,8 +244,12 @@ svg.append("circle")
 
 svg.append("circle")
     .attr("r", 3)
-    .attr("cx", function(d) { return x(5); })
-    .attr("cy", function(d) { return height + 55; })
+    .attr("cx", function (d) {
+        return x(5);
+    })
+    .attr("cy", function (d) {
+        return height + 55;
+    })
     .attr('fill', colors[3])
     .attr('stroke', "black")
     .attr("stroke-width", 0.5)
@@ -245,24 +257,36 @@ svg.append("circle")
 
 svg.append("circle")
     .attr("r", 3)
-    .attr("cx", function(d) { return x(5); })
-    .attr("cy", function(d) { return height + 55; })
+    .attr("cx", function (d) {
+        return x(5);
+    })
+    .attr("cy", function (d) {
+        return height + 55;
+    })
     .attr('fill', colors[1])
     .attr('stroke', "black")
     .attr("stroke-width", 0.5)
     .attr("id", "cmad-circ")
 svg.append("circle")
     .attr("r", 3)
-    .attr("cx", function(d) { return x(5); })
-    .attr("cy", function(d) { return height + 110; })
+    .attr("cx", function (d) {
+        return x(5);
+    })
+    .attr("cy", function (d) {
+        return height + 110;
+    })
     .attr('fill', colors[3])
     .attr('stroke', "black")
     .attr("stroke-width", 0.5)
     .attr("id", "mmm-circ")
 svg.append("circle")
     .attr("r", 3)
-    .attr("cx", function(d) { return x(5); })
-    .attr("cy", function(d) { return height + 110; })
+    .attr("cx", function (d) {
+        return x(5);
+    })
+    .attr("cy", function (d) {
+        return height + 110;
+    })
     .attr('fill', colors[1])
     .attr('stroke', "black")
     .attr("stroke-width", 0.5)
@@ -319,7 +343,7 @@ var plotter = function (dg, mg, sg, prop) {
         .attr("y", y(1.03))
         .attr("font-size", "10pt")
         .text(mg.toFixed())
-    
+
     // Move circles marking the median on axes.
     svg.select("#cmd-circ")
         .transition()
@@ -339,7 +363,7 @@ var plotter = function (dg, mg, sg, prop) {
     svg.select("#mmm-circ")
         .transition()
         .attr("cx", x(mg))
-    
+
     //-- Update aerodynamic diameter axis --------------------//
     for (var ii = 0; ii < daValues.length; ii++) {
         var daVal = daValues[ii]
@@ -347,7 +371,7 @@ var plotter = function (dg, mg, sg, prop) {
 
         // Remove entries out of the domain.
         if ((dm2daValues[ii] < xValues[0]) || (dm2daValues[ii] > xValues[xValues.length - 1])) {
-            dm2daValues[ii] = 1e-10  // move far to the left (will not show)
+            dm2daValues[ii] = 1e-10 // move far to the left (will not show)
         }
     }
     svg.select("#da-axis")
@@ -363,7 +387,7 @@ var plotter = function (dg, mg, sg, prop) {
 
         // Remove entries out of the domain.
         if ((dm2mpValues[ii] < xValues[0]) || (dm2mpValues[ii] > xValues[xValues.length - 1])) {
-            dm2mpValues[ii] = 1e-10  // move far to the left (will not show)
+            dm2mpValues[ii] = 1e-10 // move far to the left (will not show)
         }
     }
     svg.select("#mp-axis")
@@ -416,7 +440,7 @@ var updater = function () {
     document.getElementById("mu-val").innerHTML = format10(mu, 3)
     document.getElementById("lam-val").innerHTML = format10(lam, 3)
 
-    
+
     var rho100 = Number(document.getElementById("rho100-val").value)
     var zet = Number(document.getElementById("zet-val").value)
     var rhom = Number(document.getElementById("rhom-val").value)
@@ -425,7 +449,7 @@ var updater = function () {
 
     var chi100 = dm2chi(100e-9, prop, true);
     var chi100s = dm2chi(100e-9, prop, false);
-    
+
     document.getElementById("m0-val").innerHTML = format10(prop['m0'] * 1e18, 3)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
     document.getElementById("rho100-valo").innerHTML = Math.round(rho100)
@@ -483,7 +507,7 @@ var updater = function () {
 
     var sda = sdm2sda(cmd, sg, prop, true);
     document.getElementById("sda-val").innerHTML = sda.toPrecision(3);
-        
+
     plotter(cmd, mmd, sg, prop); // update plot
 
     //== AVERAGE CHARGE ==//
@@ -491,9 +515,9 @@ var updater = function () {
     var n_interp = Number(document.getElementById("n-interp-val").value);
     var q0 = Number(document.getElementById("q0-val").value);
     var nu = Number(document.getElementById("nu-val").value);
-    
-    var mtr = intac(mstar, q0, nu, prop['k'], prop['zet'], n_interp)  // transmitted mass
-    var qtr = mtr / mstar;  // transmitted charge
+
+    var mtr = intac(mstar, q0, nu, prop['k'], prop['zet'], n_interp) // transmitted mass
+    var qtr = mtr / mstar; // transmitted charge
     document.getElementById("mtr-val").innerHTML = mtr.toPrecision(4);
     document.getElementById("qtr-val").innerHTML = qtr.toPrecision(4);
 }

@@ -24,7 +24,8 @@
     <script src="https://unpkg.com/mathjs/lib/browser/math.js" type="text/javascript"></script>
     <script src="https://unpkg.com/optimization-js@latest/dist/optimization.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
+        integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
     <!-- Load style -->
     <link href="style.css" rel="stylesheet">
@@ -48,14 +49,16 @@
                 document.querySelector(':root').style.setProperty('--background-color1', '#181C28');
                 document.querySelector(':root').style.setProperty('--background-color2', '#181C28');
                 document.querySelector(':root').style.setProperty('--line-color', '#444444');
-                document.querySelector(':root').style.setProperty('--background-gradient', 'linear-gradient(-15deg, #20293A, #20293A)');
+                document.querySelector(':root').style.setProperty('--background-gradient',
+                    'linear-gradient(-15deg, #20293A, #20293A)');
                 document.querySelector(':root').style.setProperty('--c1', '#FEDC3D');
             } else {
                 document.querySelector(':root').style.setProperty('--background-color0', '#EFEFEF');
                 document.querySelector(':root').style.setProperty('--background-color1', 'white');
                 document.querySelector(':root').style.setProperty('--background-color2', 'white');
                 document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
-                document.querySelector(':root').style.setProperty('--background-gradient', 'linear-gradient(-15deg, #eaf2f4, #EFEFEF, #edebec)');
+                document.querySelector(':root').style.setProperty('--background-gradient',
+                    'linear-gradient(-15deg, #eaf2f4, #EFEFEF, #edebec)');
                 document.querySelector(':root').style.setProperty('--c1', '#C70039');
             }
         };
@@ -84,7 +87,7 @@
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
                 </h3>
-                
+
             </div>
 
             <div class="sub-section" style="display:block;">
@@ -123,7 +126,7 @@
                         <a href="wiki.html" class="info-button">
                             <i class="fa-solid fa-circle-info"></i>
                         </a>
-                    </span>  <br>
+                    </span> <br>
                     <div class="textoutput">
                         <div class="output-div" id="mu-val">-</div> Pa·s
                     </div>
@@ -162,24 +165,15 @@
                 </div>
 
                 <div class="sub-note" onclick="setMassMobProp(510, 2.48, 1800)">
-                    <b>Soot</b><a class="footnote" href="#foot1"> [1]</a> <br>
-                    ρ<sub>eff,100</sub> = 510 kg/m<sup>3</sup> <br>
-                    ρ<sub>m</sub> = 1800 kg/m<sup>3</sup> <br>
-                    D<sub>m</sub> = 2.48
+                    <b>Soot <i class="fas fa-chevron-right"></i></b> <a class="footnote" href="#footA">[a]</a>
                 </div>
 
                 <div class="sub-note" onclick="setMassMobProp(2160, 2.97)">
-                    <b>Sodium chloride</b><a class="footnote" href="#foot2"> [2]</a> <br>
-                    ρ<sub>eff,100</sub> = 2160 kg/m<sup>3</sup> <br>
-                    ρ<sub>m</sub> = 2160 kg/m<sup>3</sup> <br>
-                    D<sub>m</sub> = 2.97
+                    <b>Sodium chloride <i class="fas fa-chevron-right"></i></b> <a class="footnote" href="#footB">[b]</a>
                 </div>
 
                 <div class="sub-note" onclick="setMassMobProp(1000, 3)">
-                    <b>Water (~PSL)</b> <br>
-                    ρ<sub>eff,100</sub> = 1000 kg/m<sup>3</sup> <br>
-                    ρ<sub>m</sub> = 1000 kg/m<sup>3</sup> <br>
-                    D<sub>m</sub> = 3
+                    <b>Water (~PSL) <i class="fas fa-chevron-right"></i></b> <a class="footnote" href="#footC">[c]</a>
                 </div>
             </div>
 
@@ -226,7 +220,8 @@
                 <div class="control">
                     <span class="control-label">χ @ 100 nm</span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="chi100-valo">-</div> (<div class="output-div" id="chi100s-valo">-</div>)
+                        <div class="output-div" id="chi100-valo">-</div> (<div class="output-div" id="chi100s-valo">-
+                        </div>)
                     </div>
                 </div>
             </div>
@@ -355,8 +350,8 @@
             <div class="sub-section" style="display:block;">
                 <p class="note">
                     This section computed equivalent distribution moments using a combination of
-                    Hatch-Choate and the above size conversions. In the plot, the blue line corresponds 
-                    to the number distribution and the red line to the mass distribution. 
+                    Hatch-Choate and the above size conversions. In the plot, the blue line corresponds
+                    to the number distribution and the red line to the mass distribution.
                 </p>
             </div>
 
@@ -457,12 +452,12 @@
 
             <div class="sub-section" style="display:block;">
                 <p class="note">
-                    This section uses average charge methods to compute the average particle mass and 
-                    integer charge that would be transmitted (trans.) through a mass-to-charge classifier 
-                    (e.g., CPMA and APM). Based on a draft manuscript that is yet to be published. 
+                    This section uses average charge methods to compute the average particle mass and
+                    integer charge that would be transmitted (trans.) through a mass-to-charge classifier
+                    (e.g., CPMA and APM). Based on a draft manuscript that is yet to be published.
                 </p>
             </div>
-            
+
             <div class="sub-section">
                 <div class="control">
                     <span class="control-label">Mass-to-charge s.p., m* </span>
@@ -474,15 +469,16 @@
                     <span class="control-label">Pre-factor, q<sub>0</sub> </span><br>
                     <input class="textinput" id="q0-val" type="number" value="0.0559" onchange="updater()">
                 </div>
-                
+
                 <div class="control">
                     <span class="control-label">Exponent, v </span><br>
                     <input class="textinput" id="nu-val" type="number" value="1.0" step="0.01" onchange="updater()">
                 </div>
-                
+
                 <div class="control">
                     <span class="control-label">Interp. factor, n </span><br>
-                    <input class="textinput" id="n-interp-val" type="number" value="2.5" step="0.01" onchange="updater()">
+                    <input class="textinput" id="n-interp-val" type="number" value="2.5" step="0.01"
+                        onchange="updater()">
                 </div>
 
                 <div class="control">
@@ -508,6 +504,35 @@
 
         <div class="footer">
             <b>Footnotes</b>
+
+            <div class="footer-note">
+                <span class="num" id="footA">a</span> Soot <a href="#foot1">[1]</a>:
+                ρ<sub>eff,100</sub> = 510 kg/m<sup>3</sup>, ρ<sub>m</sub> = 1800 kg/m<sup>3</sup>, D<sub>m</sub> = 2.48
+                <br>
+            </div>
+            <div class="footer-note">
+                <span class="num" id="footA">b</span> NaCl <a href="#foot2">[2]</a>:
+                ρ<sub>eff,100</sub> = 2160 kg/m<sup>3</sup>, ρ<sub>m</sub> = 2160 kg/m<sup>3</sup>, D<sub>m</sub> = 2.97
+                <br>
+            </div>
+            <div class="footer-note">
+                <span class="num" id="footC">c</span> Water/PSL: ρ<sub>eff,100</sub> = 1000 kg/m<sup>3</sup>,
+                ρ<sub>m</sub> = 1000 kg/m<sup>3</sup>, D<sub>m</sub> = 3 <br>
+            </div>
+
+            <div class="footer-note">
+                <span class="num">*</span> This web app is currently under construction and has not been fully
+                validated.
+            </div>
+
+            <div class="footer-note">
+                <span class="num">*</span> Roughly equivalent MATLAB code is available
+                <a href="https://github.com/tsipkens/autils" style="text-decoration:underline;">here</a>.
+            </div>
+            
+            <br>
+
+            <b>References</b>
             <div class="footer-note">
                 <span class="num" id="foot1">[1]</span>
                 <a href="https://doi.org/10.1080/02786826.2019.1577949">Olfert and Rogak, "Universal relations between
@@ -519,15 +544,6 @@
                 <a href="https://arxiv.org/abs/2201.12446">Sipkens et al., "Comparison of
                     measurement systems for assessing number- and mass-based particle filtration efficiency", Pre-print.
                     (2021).</a> <br>
-            </div>
-
-            <div class="footer-note">
-                <span class="num">*</span> This web app is currently under construction and has not been fully validated.
-            </div>
-
-            <div class="footer-note">
-                <span class="num">*</span> Roughly equivalent MATLAB code is available
-                <a href="https://github.com/tsipkens/autils" style="text-decoration:underline;">here</a>.
             </div>
 
             <!-- <img src="imgs/CAAR.logo.v2.svg" style="width:30%;min-width:100px;"/>  -->
