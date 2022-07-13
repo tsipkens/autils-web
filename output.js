@@ -77,7 +77,7 @@ var x = d3.scaleLog()
     .range([0, width]);
 
 // Add Y scale
-var yMax = 1.1,
+var yMax = 1.2,
     yMin = 0;
 
 var y = d3.scaleLinear()
@@ -128,15 +128,31 @@ svg.append("text")
     .attr("text-anchor", "middle")
     .attr("class", "legend-label")
     .attr("x", x(75))
-    .attr("y", y(1.05))
+    .attr("y", y(1.03))
     .text("0")
 svg.append("text")
     .attr("id", "mmd-label")
     .attr("text-anchor", "middle")
     .attr("class", "legend-label")
     .attr("x", x(75))
-    .attr("y", y(1.05))
+    .attr("y", y(1.03))
     .text("0")
+svg.append("text")
+    .attr("id", "cmd0-label")
+    .attr("text-anchor", "middle")
+    .attr("class", "legend-label")
+    .attr("x", x(75))
+    .attr("y", y(1.12))
+    .attr("style", "font-weight:500;")
+    .text("CMD")
+svg.append("text")
+    .attr("id", "mmd0-label")
+    .attr("text-anchor", "middle")
+    .attr("class", "legend-label")
+    .attr("x", x(75))
+    .attr("y", y(1.12))
+    .attr("style", "font-weight:500;")
+    .text("MMD")
 
 svg.append('path')
     .datum(data)
@@ -334,15 +350,19 @@ var plotter = function (dg, mg, sg, prop) {
     svg.select("#cmd-label")
         .transition()
         .attr("x", x(dg))
-        .attr("y", y(1.03))
         .attr("font-size", "10pt")
         .text(dg.toFixed())
     svg.select("#mmd-label")
         .transition()
         .attr("x", x(mg))
-        .attr("y", y(1.03))
         .attr("font-size", "10pt")
         .text(mg.toFixed())
+    svg.select("#cmd0-label")
+        .transition()
+        .attr("x", x(dg))
+    svg.select("#mmd0-label")
+        .transition()
+        .attr("x", x(mg))
 
     // Move circles marking the median on axes.
     svg.select("#cmd-circ")
@@ -427,6 +447,8 @@ var plotter = function (dg, mg, sg, prop) {
 //---------------------------------------------//
 // Display properties.
 var updater = function () {
+    console.log('New condition:')
+
     var T = Number(document.getElementById("T-val").value)
     var patm = Number(document.getElementById("p-val").value)
     var p = patm * 101325
