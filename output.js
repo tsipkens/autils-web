@@ -218,7 +218,7 @@ svg.append("text")
 
 // Add circles marking the median on axes.
 svg.append("circle")
-    .attr("r", 3)
+    .attr("r", 4)
     .attr("cx", function (d) {
         return x(5);
     })
@@ -230,7 +230,7 @@ svg.append("circle")
     .attr("stroke-width", 0.5)
     .attr("id", "mmd-circ")
 svg.append("circle")
-    .attr("r", 3)
+    .attr("r", 4)
     .attr("cx", function (d) {
         return x(5);
     })
@@ -243,7 +243,7 @@ svg.append("circle")
     .attr("id", "cmd-circ")
 
 svg.append("circle")
-    .attr("r", 3)
+    .attr("r", 4)
     .attr("cx", function (d) {
         return x(5);
     })
@@ -256,7 +256,7 @@ svg.append("circle")
     .attr("id", "mmad-circ")
 
 svg.append("circle")
-    .attr("r", 3)
+    .attr("r", 4)
     .attr("cx", function (d) {
         return x(5);
     })
@@ -268,7 +268,7 @@ svg.append("circle")
     .attr("stroke-width", 0.5)
     .attr("id", "cmad-circ")
 svg.append("circle")
-    .attr("r", 3)
+    .attr("r", 4)
     .attr("cx", function (d) {
         return x(5);
     })
@@ -280,7 +280,7 @@ svg.append("circle")
     .attr("stroke-width", 0.5)
     .attr("id", "mmm-circ")
 svg.append("circle")
-    .attr("r", 3)
+    .attr("r", 4)
     .attr("cx", function (d) {
         return x(5);
     })
@@ -487,14 +487,10 @@ var updater = function () {
 
     sg = Number(document.getElementById("sg-val").value);
     cmd = Number(document.getElementById("cmd-val").value) * 1e-9;
-    var mCmd = dm2mp(cmd, prop)
-    var rhCmd = rho(cmd, mCmd)
-    var cmved = dm2dve(cmd, prop)
 
-    var cmad = dm2da(cmd, prop, true, chi, cmved)
+    var cmad = dm2da(cmd, prop, true)
     var mmd = hc(cmd, sg, prop['zet']);
-    var mmved = dm2dve(mmd, prop);
-    var mmad = dm2da(mmd, prop, true, chi, mmved);
+    var mmad = dm2da(mmd, prop, true);
     var cmm = dm2mp(cmd, prop);
     var mmm = dm2mp(mmd, prop);
     var smp = sdm2smp(sg, prop);
@@ -504,7 +500,7 @@ var updater = function () {
     document.getElementById("cmm-val").innerHTML = (cmm * 1e18).toPrecision(4);
     document.getElementById("mmm-val").innerHTML = (mmm * 1e18).toPrecision(4);
     document.getElementById("smp-val").innerHTML = smp.toPrecision(3);
-
+    
     var sda = sdm2sda(cmd, sg, prop, true);
     document.getElementById("sda-val").innerHTML = sda.toPrecision(3);
 

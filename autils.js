@@ -190,9 +190,9 @@ var da2dm = function (da, prop, fl = true) {
 
 var sdm2sda = function (cmd, sg, prop, fl = true) {
     return Math.exp(
-        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.05), prop, fl)) -
-            Math.log(dm2da(Math.exp(Math.log(cmd) * 0.95), prop, fl))) /
-        (0.1 * Math.log(cmd * 1e9)) *
+        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.01), prop, fl)) -
+            Math.log(dm2da(Math.exp(Math.log(cmd) * 0.99), prop, fl))) /
+        (0.02 * Math.log(cmd)) *
         Math.log(sg)); // take about CMD
 }
 
