@@ -77,7 +77,7 @@ var x = d3.scaleLog()
     .range([0, width]);
 
 // Add Y scale
-var yMax = 1.2,
+var yMax = 1.22,
     yMin = 0;
 
 var y = d3.scaleLinear()
@@ -128,21 +128,21 @@ svg.append("text")
     .attr("text-anchor", "middle")
     .attr("class", "legend-label")
     .attr("x", x(75))
-    .attr("y", y(1.03))
+    .attr("y", y(1.04))
     .text("0")
 svg.append("text")
     .attr("id", "mmd-label")
     .attr("text-anchor", "middle")
     .attr("class", "legend-label")
     .attr("x", x(75))
-    .attr("y", y(1.03))
+    .attr("y", y(1.04))
     .text("0")
 svg.append("text")
     .attr("id", "cmd0-label")
     .attr("text-anchor", "middle")
     .attr("class", "legend-label")
     .attr("x", x(75))
-    .attr("y", y(1.14))
+    .attr("y", y(1.15))
     .attr("style", "font-weight:500;font-size:8pt;")
     .text("CMD")
 svg.append("text")
@@ -150,7 +150,7 @@ svg.append("text")
     .attr("text-anchor", "middle")
     .attr("class", "legend-label")
     .attr("x", x(75))
-    .attr("y", y(1.14))
+    .attr("y", y(1.15))
     .attr("style", "font-weight:500;font-size:8pt;")
     .text("MMD")
 
