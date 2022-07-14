@@ -53,9 +53,9 @@ var tfer_charge = function (d, z) {
 
 var intac = function (x_star, q0, nu, k, Dm, n) {
   c0 = (1 / (k * 1e18)) ** (1 / Dm);
-  eta = 1 / Dm;
+  bet = 1 / Dm;
 
-  pow = eta * nu;  // combined power
+  pow = bet * nu;  // combined power
 
   xbar = (x_star ** n + (c0 ** nu * q0 * x_star) ** (n / (1 - pow))) ** (1 / n);
   return xbar
