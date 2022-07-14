@@ -536,8 +536,12 @@ var updater = function () {
 
     var mtr = intac(mstar, q0, nu, prop['k'], prop['zet'], n_interp) // transmitted mass
     var qtr = mtr / mstar; // transmitted charge
-    document.getElementById("mtr-val").innerHTML = mtr.toPrecision(4);
-    document.getElementById("qtr-val").innerHTML = qtr.toPrecision(4);
+    var c0 = (1 / (prop['k'] * 1e18)) ** (1 / prop['zet']);
+    var bet = 1 / prop['zet'];
+    document.getElementById("c0-val").innerHTML = c0.toPrecision(4);
+    document.getElementById("bet-val").innerHTML = bet.toPrecision(4);
+    document.getElementById("mtr-val").innerHTML = format10(mtr, 4);
+    document.getElementById("qtr-val").innerHTML = format10(qtr, 4);
 }
 updater(); // run the first time
 
