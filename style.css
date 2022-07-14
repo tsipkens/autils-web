@@ -301,13 +301,13 @@ div.section {
   border-radius: 5px;
   background-color: var(--background-color1);
   border: solid 1px var(--line-color);
-  box-shadow: 0px 0px 4px #EEE;
+  box-shadow: 0px 0px 4px #DDD;
 }
 
 body.dark-theme div.section {
   background-color: var(--background-color1);
   border: solid 1px var(--line-color);
-  box-shadow: 0px 0px 4px #111;
+  box-shadow: 0px 0px 4px #333;
 }
 
 div.sub-section {
@@ -419,8 +419,6 @@ input[type="checkbox"] {
   transition: all 0.3s;
   cursor: pointer;
 }
-
-input[type="checkbox"]:checked {}
 
 input[type="checkbox"]:checked:after {
   font-family: "Font Awesome 5 Free";
