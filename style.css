@@ -7,7 +7,7 @@
   --background-color0: #EFEFEF;
   --background-color1: white;
   --background-color2: white;
-  --background-gradient: linear-gradient(-15deg, #eaf2f4, #EFEFEF, #edebec);
+  --background-gradient: #F7F7F7;
   --line-color: #CCC;
   --line-color2: black;
   --c1: #C70039;
@@ -18,7 +18,7 @@
     --background-color0: #20293A;
     --background-color1: #181C28;
     --background-color2: #181C28;
-    --background-gradient: linear-gradient(-15deg, #20293A, #20293A);
+    --background-gradient: #20293A;
     --line-color: #555;
     --line-color2: white;
     --c1: #FEDC3D;
