@@ -7,7 +7,7 @@
   --background-color0: #EFEFEF;
   --background-color1: white;
   --background-color2: white;
-  --background-gradient: linear-gradient(-15deg, #eaf2f4, #EFEFEF, #edebec);
+  --background-gradient: #F7F7F7;
   --line-color: #CCC;
   --line-color2: black;
   --c1: #C70039;
@@ -18,7 +18,7 @@
     --background-color0: #20293A;
     --background-color1: #181C28;
     --background-color2: #181C28;
-    --background-gradient: linear-gradient(-15deg, #20293A, #20293A);
+    --background-gradient: #20293A;
     --line-color: #555;
     --line-color2: white;
     --c1: #FEDC3D;
@@ -64,24 +64,18 @@ p {
   margin: 0px;
 }
 .sub-note {
+  margin-top: 5px;
   transition: all 1s ease 0s;
-  text-align: left;
-  margin-right: 15px;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  padding: 6px 9px;
-  border: 1.5px solid var(--line-color);
-  border-left: 4px solid var(--line-color);
-  border-radius: 3px;
   display: inline-block;
-  width: 180px;
+  width: 188px;
   cursor: pointer;
-  line-height: 12pt;
 }
 .sub-note:hover {
-  border: 1.5px solid var(--c1);
-  border-left: 4px solid var(--c1);
-  background-color: var(--background-color1);
+  color: var(--c1);
+}
+.sub-note i {
+  font-size: 8pt;
+  margin-right: 5px;
 }
 
 h1.title {
@@ -185,28 +179,35 @@ div.main {
 }
 
 #btn-toggle a div {
+  color: #CCC;
   font-size: 18pt;
   display: inline;
   vertical-align: middle;
-  color: #CCC;
   transition: all 0.3s ease 0s;
   border: solid 1px var(--line-color);
   border-radius: 40px;
-  padding: 5px;
+  padding: 7px 15px 5px 15px;
   background-color: var(--background-color1);
   margin: 0px;
-  box-shadow: 0px 0px 4px #EEE;
+  box-shadow: 0px 0px 4px #DDD;
 }
-
 body.dark-theme #btn-toggle div {
   color: #555;
   border: solid 1px var(--line-color);
   background-color: var(--background-color1);
-  box-shadow: 0px 0px 4px #111;
+  box-shadow: 0px 0px 4px #222;
 }
-
 #btn-toggle div span {
   padding-left: 5px;
+}
+body.dark-theme #sun {
+  color: #CCC;
+}
+#sun {
+  color: var(--c1);
+}
+body.dark-theme #moon {
+  color: var(--c1);
 }
 
 ol {
@@ -236,6 +237,9 @@ a.anchor {
 .footer-note {
   margin-bottom: 3px;
   margin-top: 6px;
+}
+.footer sub {
+  font-size: 6pt;
 }
 .footer a {
   color: #666;
@@ -304,13 +308,13 @@ div.section {
   border-radius: 5px;
   background-color: var(--background-color1);
   border: solid 1px var(--line-color);
-  box-shadow: 0px 0px 4px #EEE;
+  box-shadow: 0px 0px 4px #DDD;
 }
 
 body.dark-theme div.section {
   background-color: var(--background-color1);
   border: solid 1px var(--line-color);
-  box-shadow: 0px 0px 4px #111;
+  box-shadow: 0px 0px 4px #333;
 }
 
 div.sub-section {
@@ -348,6 +352,7 @@ div.control {
   padding: 0px;
   border: none;
   border-bottom: 1.5px solid var(--line-color);
+  outline: none;
   background-color: var(--background-color2);
   color: black;
   transition: all 0.3s ease 0s;
@@ -421,8 +426,6 @@ input[type="checkbox"] {
   transition: all 0.3s;
   cursor: pointer;
 }
-
-input[type="checkbox"]:checked {}
 
 input[type="checkbox"]:checked:after {
   font-family: "Font Awesome 5 Free";
