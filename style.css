@@ -67,7 +67,7 @@ p {
   margin-top: 5px;
   transition: all 1s ease 0s;
   display: inline-block;
-  width: 180px;
+  width: 170px;
 }
 .sub-note b {
   cursor: pointer;
@@ -167,7 +167,7 @@ body.dark-theme a:hover {
 div.main {
   margin: 0 auto;
   width: 95%;
-  max-width: 830px;
+  max-width: 800px;
   padding-top: 50px;
   padding-bottom: 50px
 }
@@ -331,7 +331,7 @@ div.control {
   display: inline-block;
   vertical-align: text-top;
   margin-bottom: 12px;
-  width: 180px;
+  width: 170px;
 }
 
 .textoutput {
