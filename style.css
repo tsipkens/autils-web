@@ -67,10 +67,12 @@ p {
   margin-top: 5px;
   transition: all 1s ease 0s;
   display: inline-block;
-  width: 188px;
+  width: 180px;
+}
+.sub-note b {
   cursor: pointer;
 }
-.sub-note:hover {
+.sub-note b:hover {
   color: var(--c1);
 }
 .sub-note i {
@@ -325,30 +327,30 @@ div.sub-section {
 
 /* For control components */
 div.control {
-  padding: 0px 8px 5px 0px;
+  padding: 0px;
   display: inline-block;
   vertical-align: text-top;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
   width: 180px;
 }
 
 .textoutput {
   font-family: 'Hind', 'Open Sans', sans-serif;;
   font-weight: 300;
-  font-size: 12pt;
-  line-height: 14pt;
+  font-size: 13pt;
+  line-height: 15pt;
 }
 .textoutput sup {
-  font-size: 10pt;
+  font-size: 9pt;
   vertical-align: top;
   position: relative;
-  top: -0.5em;
+  top: -0.6em;
 }
 
 .textinput {
   font-family: 'Hind', 'Open Sans', sans-serif;;
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 13pt;
   padding: 0px;
   border: none;
   border-bottom: 1.5px solid var(--line-color);
@@ -356,7 +358,7 @@ div.control {
   background-color: var(--background-color2);
   color: black;
   transition: all 0.3s ease 0s;
-  width: 110px;
+  width: 130px;
 }
 
 body.dark-theme .textinput {
@@ -386,7 +388,7 @@ body.dark-theme .textinput:focus {
   font-family: 'Hind', sans-serif;
   font-weight: 400;
   color: #444;
-  font-size: 8pt;
+  font-size: 9pt;
 }
 
 body.dark-theme .control-label {
@@ -402,11 +404,6 @@ body.dark-theme .control-label {
 
 body.dark-theme .control-unit {
   color: #888;
-}
-
-div.control label {
-  font-size: 11pt;
-  cursor: pointer;
 }
 
 .output-div {
