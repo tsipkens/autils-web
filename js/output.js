@@ -478,6 +478,7 @@ var updater = function () {
     document.getElementById("chi100-valo").innerHTML = chi100.toPrecision(3)
     document.getElementById("chi100s-valo").innerHTML = chi100s.toPrecision(3)
 
+
     var dm = Number(document.getElementById("dm-val").value) * 1e-9
     var C = Cc(dm, T, p, gasProp);
     var Kn = Knudsen(lam, dm)
@@ -506,6 +507,23 @@ var updater = function () {
     document.getElementById("B-val").innerHTML = format10(B, 3);
     document.getElementById("Zp-val").innerHTML = format10(Zp, 3);
     document.getElementById("D-val").innerHTML = format10(D, 3);
+
+
+    var dp100 = Number(document.getElementById("dp100-val").value) * 1e-9
+    var Dtem = Number(document.getElementById("Dtem-val").value)
+    var kf = Number(document.getElementById("kf-val").value)
+    var Df = Number(document.getElementById("Df-val").value)
+    var dp = (dp100 * (dm / 100e-9) ** Dtem)
+    var Dalp = (zet - 3 * Dtem) / (2 * (1 - Dtem))
+    var kalp = 6 * prop['k'] / (prop['rhom'] * pi) * (1e9 ** 3) * 
+        (dp100 * 1e9 / (100 ** Dtem)) ** (2 * Dalp - 3)
+    var Np = (dve / dp) ** 3
+    var Rg = dp / 2 * (Np / kf) ** (1/Df)
+
+    document.getElementById("dp-val").innerHTML = (dp * 1e9).toPrecision(3);
+    document.getElementById("Np-val").innerHTML = Math.round(Np);
+    document.getElementById("Rg-val").innerHTML = (Rg * 1e9).toPrecision(4);
+
 
     sg = Number(document.getElementById("sg-val").value);
     cmd = Number(document.getElementById("cmd-val").value) * 1e-9;
