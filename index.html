@@ -40,6 +40,8 @@
 
         // Apply appropriate theme.
         function toggleNight() {
+            dark = !dark;
+            
             // Swap CSS.
             document.body.classList.toggle("dark-theme");
 
@@ -64,18 +66,15 @@
 </head>
 
 
-<body onload="if (dark) { toggleNight(); }">
+<body onload="if (dark) { dark = !dark; toggleNight(); }" id="body">
 
     <div class="main">
-        <div id="btn-toggle">
-            <a id="btn-toggle-click">
-                <div>
-                    <span><i class="fas fa-moon" id="moon"></i></span> | 
-                    <span><i class="fas fa-sun" id="sun"></i></span>
-                    <span></span> <!-- placeholder for dark/light theme toggle -->
-                </div>
-            </a>
-        </div>
+        <div style="margin-bottom:20px;" id="light-dark-toggle-inpage">
+            <button onclick="toggleNight()" class="light-dark-toggle">
+               <span><i class="fas fa-moon" id="moon"></i></span>
+               <span><i class="fas fa-sun" id="sun"></i></span>
+            </button>
+         </div>
 
         <div class="section">
 

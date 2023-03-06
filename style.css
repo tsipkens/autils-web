@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 
 :root {
@@ -10,7 +10,7 @@
   --background-gradient: #F7F7F7;
   --line-color: #CCC;
   --line-color2: black;
-  --c1: #C70039;
+  --c1: #C70039;  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,8 +34,8 @@
 body {
   margin: auto 0px;
   padding: 0px;
-  font-family: 'Hind', 'Open Sans', sans-serif;
-  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   font-size: 11pt;
   transition: 0.3s;
   color: #111;
@@ -53,8 +53,8 @@ body.dark-theme {
 
 b {
   /* Format all bolds */
-  font-family: 'Hind', sans-serif;
-  font-weight: 500;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
 }
 
 p {
@@ -94,12 +94,12 @@ h2.subtitle {
   text-align: center;
   font-size: 23pt;
   line-height: 25pt;
-  font-family: 'Noto Sans', sans-serif;
-  font-weight: 200;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
 }
 
 h3 {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 13pt;
   padding-top: 0px;
   color: black;
@@ -122,7 +122,7 @@ body.dark-theme .h3-container:hover {
 }
 .plus {
   display: none; /* By default */
-  font-family: 'Hind', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   float: right;
@@ -130,7 +130,7 @@ body.dark-theme .h3-container:hover {
 }
 .minus {
   display: inline; /* By default */
-  font-family: 'Hind', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   float: right;
@@ -171,6 +171,41 @@ div.main {
   padding-top: 50px;
   padding-bottom: 50px
 }
+
+/*--- For light/dark toggle ---*/
+button.light-dark-toggle {
+  font-family: inherit;
+  font-size: 16pt;
+  display: inline;
+  background-color: inherit;
+  width: 35px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+body.dark-theme #sun {
+  display: inline-block;
+  color: var(--c2);
+}
+
+#sun {
+  display: none;
+}
+
+body.dark-theme #moon {
+  display: none;
+}
+
+#moon {
+  display: inline-block;
+  color: var(--c1);
+}
+/*-----------------------------*/
+
+
 
 #btn-toggle {
   margin-bottom: 40px;
@@ -335,8 +370,8 @@ div.control {
 }
 
 .textoutput {
-  font-family: 'Hind', 'Open Sans', sans-serif;;
-  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;;
+  font-weight: 400;
   font-size: 13pt;
   line-height: 15pt;
 }
@@ -348,8 +383,8 @@ div.control {
 }
 
 .textinput {
-  font-family: 'Hind', 'Open Sans', sans-serif;;
-  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;;
+  font-weight: 400;
   font-size: 13pt;
   padding: 0px;
   border: none;
@@ -385,7 +420,7 @@ body.dark-theme .textinput:focus {
 }
 
 .control-label {
-  font-family: 'Hind', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   color: #444;
   font-size: 9pt;
@@ -396,8 +431,8 @@ body.dark-theme .control-label {
 }
 
 .control-unit {
-  font-family: 'Hind', sans-serif;
-  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   color: #BBB;
   font-size: 8pt;
 }
@@ -449,9 +484,9 @@ input[type="checkbox"]:checked:after {
 }
 
 select {
-  font-family: 'Hind', Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   font-size: 11pt;
-  font-weight: 300;
+  font-weight: 400;
   padding: 5px 10px 5px 10px;
   border: none;
   border-bottom: 2px solid #E3E3E3;
@@ -475,18 +510,18 @@ select:focus {
 }
 
 option {
-  font-family: 'Hind', Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   font-size: 11pt;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 
 
 /* For plot elements */
 .axis {
-  font-family: 'Hind', Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   font-size: 10pt;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .axis line {
