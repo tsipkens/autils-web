@@ -4,13 +4,13 @@
 :root {
   color-scheme: light dark;
   /* both supported */
-  --background-color0: #EFEFEF;
+  --background-color0: #FDFDFD;
   --background-color1: white;
   --background-color2: white;
   --background-gradient: #F7F7F7;
   --line-color: #CCC;
   --line-color2: black;
-  --c1: #C70039;  
+  --c1: #0969DA;  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,9 +34,9 @@
 body {
   margin: auto 0px;
   padding: 0px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', 'sans-serif';
   font-weight: 400;
-  font-size: 11pt;
+  font-size: 11.5pt;
   transition: 0.3s;
   color: #111;
   background-color: var(--background-color0);
@@ -99,11 +99,8 @@ h2.subtitle {
 }
 
 h3 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13pt;
-  padding-top: 0px;
-  color: black;
-  font-weight: 700;
+  font-weight: 300;
+  font-size: 18pt;
 }
 .h3-container {
   padding: 15px 25px;
@@ -372,7 +369,7 @@ div.control {
 .textoutput {
   font-family: 'Open Sans', sans-serif;;
   font-weight: 400;
-  font-size: 13pt;
+  font-size: 11.5pt;
   line-height: 15pt;
 }
 .textoutput sup {
@@ -383,62 +380,52 @@ div.control {
 }
 
 .textinput {
-  font-family: 'Open Sans', sans-serif;;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 11pt;
+  border-radius: 3pt;
   font-weight: 400;
-  font-size: 13pt;
-  padding: 0px;
-  border: none;
-  border-bottom: 1.5px solid var(--line-color);
-  outline: none;
-  background-color: var(--background-color2);
-  color: black;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid #E3E3E3;
+  background-color: white;
   transition: all 0.3s ease 0s;
-  width: 130px;
+  width: 110px;
+  color: inherit;
 }
 
 body.dark-theme .textinput {
-  border-bottom: 1.5px solid var(--line-color);
-  background-color: var(--background-color2);
-  color: white;
+  border: 2px solid #444444;
+  background-color: black;
 }
 
 .textinput:hover {
-  border-bottom: 1.5px solid var(--c1);
+  border: 2px solid #0969DA;
+  box-shadow: 0px 0px 4px #AAAAAA;
 }
 
 body.dark-theme .textinput:hover {
-  border-bottom: 1.5px solid var(--c1);
+  border: 2px solid #48DEB1;
+  box-shadow: 0px 0px 4px #666666;
 }
 
 .textinput:focus {
-  border-radius: 0px;
-  border-bottom: 1.5px solid var(--c1);
+  border: 2px solid #0969DA;
 }
 
 body.dark-theme .textinput:focus {
-  border-bottom: 1.5px solid var(--c1);
+  border: 2px solid #48DEB1;
 }
 
 .control-label {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  color: #444;
+  font-family: 'Open Sans';
+  font-weight: 700;
   font-size: 9pt;
-}
-
-body.dark-theme .control-label {
-  color: #DDD;
 }
 
 .control-unit {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  color: #BBB;
-  font-size: 8pt;
-}
-
-body.dark-theme .control-unit {
-  color: #888;
+  color: #999;
+  font-size: 9pt;
 }
 
 .output-div {
