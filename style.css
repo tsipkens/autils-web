@@ -21,7 +21,7 @@
     --background-gradient: #20293A;
     --line-color: #555;
     --line-color2: white;
-    --c1: #48DEB1;
+    --c1: #FEDC3D;
   }
 }
 
@@ -374,21 +374,21 @@ body.dark-theme .textinput {
 }
 
 .textinput:hover {
-  border: 2px solid #0969DA;
+  border: 2px solid var(--c1);
   box-shadow: 0px 0px 4px #AAAAAA;
 }
 
 body.dark-theme .textinput:hover {
-  border: 2px solid #48DEB1;
+  border: 2px solid var(--c1);
   box-shadow: 0px 0px 4px #666666;
 }
 
 .textinput:focus {
-  border: 2px solid #0969DA;
+  border: 2px solid var(--c1);
 }
 
 body.dark-theme .textinput:focus {
-  border: 2px solid #48DEB1;
+  border: 2px solid var(--c1);
 }
 
 .control-label {
