@@ -47,17 +47,19 @@
 
             // Update background color
             if (dark) {
-                document.querySelector(':root').style.setProperty('--background-color0', '#20293A');
+                document.querySelector(':root').style.setProperty('--background-color0', '#0D1117');
                 document.querySelector(':root').style.setProperty('--background-color1', '#181C28');
                 document.querySelector(':root').style.setProperty('--background-color2', '#181C28');
                 document.querySelector(':root').style.setProperty('--line-color', '#444444');
-                document.querySelector(':root').style.setProperty('--background-gradient', '#20293A');
-                document.querySelector(':root').style.setProperty('--c1', '#FEDC3D');
+                document.querySelector(':root').style.setProperty('--line-color2', 'white');
+                document.querySelector(':root').style.setProperty('--background-gradient', '#0D1117');
+                document.querySelector(':root').style.setProperty('--c1', '#48DEB1');
             } else {
                 document.querySelector(':root').style.setProperty('--background-color0', '#FDFDFD');
                 document.querySelector(':root').style.setProperty('--background-color1', 'white');
                 document.querySelector(':root').style.setProperty('--background-color2', 'white');
                 document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
+                document.querySelector(':root').style.setProperty('--line-color2', 'black');
                 document.querySelector(':root').style.setProperty('--background-gradient', 'F7F7F7');
                 document.querySelector(':root').style.setProperty('--c1', '#C70039');
             }
@@ -79,11 +81,11 @@
         <div class="section">
 
             <div onclick="expandText(this);" class="h3-container">
-                <h3 class="active">
+                <h2 class="active">
                     Gas properties
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
-                </h3>
+                </h2>
 
             </div>
 
@@ -146,11 +148,11 @@
         <div class="section">
 
             <div onclick="expandText(this);" class="h3-container">
-                <h3 class="active">
+                <h2 class="active">
                     Mass-mobility relationship
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
-                </h3>
+                </h2>
             </div>
 
             <div class="sub-section" style="display:block;">
@@ -219,11 +221,11 @@
         <div class="section">
 
             <div onclick="expandText(this);" class="h3-container">
-                <h3 class="active">
+                <h2 class="active">
                     Equivalent sizes
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
-                </h3>
+                </h2>
             </div>
 
             <div class="sub-section" style="display:block;">
@@ -370,11 +372,11 @@
         <div class="section" id="dist-moments">
 
             <div onclick="expandText(this);" class="h3-container">
-                <h3 class="active">
+                <h2 class="active">
                     Distribution moments
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
-                </h3>
+                </h2>
             </div>
 
             <div class="sub-section" style="display:block;">
@@ -473,11 +475,11 @@
         <div class="section" id="average-charge">
 
             <div onclick="expandText(this);" class="h3-container" id="h3-ave-charge">
-                <h3 class="active">
+                <h2 class="active">
                     Average charge algorithms
                     <div class="plus"><i class="fas fa-chevron-down"></i></div>
                     <div class="minus"><i class="fas fa-chevron-up"></i></div>
-                </h3>
+                </h2>
             </div>
 
             <div class="sub-section" style="display:block;">
@@ -625,12 +627,8 @@
             for (ii = 0; ii < content2.length; ii++) {
                 content2[ii].style.display = "none";
             }
-            sec.style.paddingBottom = "0px";
             plus.style.display = "inline";
             minus.style.display = "none";
-            button.style.borderBottom = "none";
-            button.style.borderBottomLeftRadius = "7px";
-            button.style.borderBottomRightRadius = "7px";
             setTimeout(function () {
                 item.style.maxHeight = button.scrollHeight + "px";
             }, 500);
@@ -638,12 +636,8 @@
             for (ii = 0; ii < content2.length; ii++) {
                 content2[ii].style.display = "block";
             }
-            sec.style.paddingBottom = "10px";
             plus.style.display = "none";
             minus.style.display = "inline";
-            button.style.borderBottom = "solid 1px var(--line-color)";
-            button.style.borderBottomLeftRadius = "0px";
-            button.style.borderBottomRightRadius = "0px";
             setTimeout(function () {
                 item.style.maxHeight = item.scrollHeight + "px";
             }.bind(item), 40);

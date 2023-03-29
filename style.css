@@ -15,13 +15,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color0: #20293A;
+    --background-color0: #0D1117;
     --background-color1: #181C28;
     --background-color2: #181C28;
     --background-gradient: #20293A;
     --line-color: #555;
     --line-color2: white;
-    --c1: #FEDC3D;
+    --c1: #48DEB1;
   }
 }
 
@@ -103,19 +103,14 @@ h3 {
   font-size: 18pt;
 }
 .h3-container {
-  padding: 15px 25px;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-  border-bottom: solid 1px var(--line-color);
+  padding: 5px 0px;
+  margin: 50px 0px 15px 0px;
+  border-bottom: solid 2px var(--line-color2);
+  transition: all 0.3s ease 0s;
 }
 .h3-container:hover {
-  transition: all 0.3s ease 0s;
-  background-color: #FAFAFA;
   cursor: pointer;
-}
-body.dark-theme .h3-container:hover {
-  background-color: #000;
-  cursor: pointer;
+  color: var(--c1);
 }
 .plus {
   display: none; /* By default */
@@ -124,6 +119,7 @@ body.dark-theme .h3-container:hover {
   font-size: 10pt;
   float: right;
   padding-top: 6px;
+  padding-right: 5px;
 }
 .minus {
   display: inline; /* By default */
@@ -132,6 +128,7 @@ body.dark-theme .h3-container:hover {
   font-size: 10pt;
   float: right;
   padding-top: 6px;
+  padding-right: 5px;
 }
 
 body.dark-theme h3 {
@@ -334,27 +331,6 @@ body.dark-theme .footer a:hover {
 }
 
 
-div.section {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-radius: 5px;
-  background-color: var(--background-color1);
-  border: solid 1px var(--line-color);
-  box-shadow: 0px 0px 4px #DDD;
-}
-
-body.dark-theme div.section {
-  background-color: var(--background-color1);
-  border: solid 1px var(--line-color);
-  box-shadow: 0px 0px 4px #333;
-}
-
-div.sub-section {
-  display: block;
-  padding: 10px 25px 0px 25px;
-}
 
 
 /* For control components */
