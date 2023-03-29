@@ -4,7 +4,7 @@
 :root {
   color-scheme: light dark;
   /* both supported */
-  --background-color0: #FDFDFD;
+  --background-color: #FDFDFD;
   --background-color1: white;
   --background-color2: white;
   --background-gradient: #F7F7F7;
@@ -15,19 +15,23 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color0: #0D1117;
+    --background-color: #0D1117;
     --background-color1: #181C28;
     --background-color2: #181C28;
     --background-gradient: #20293A;
     --line-color: #555;
     --line-color2: white;
-    --c1: #FEDC3D;
+    --c2: #FEDC3D;
   }
 }
 
+/*------ Basic formatting ------*/
 * {
   padding: 0;
   margin: 0;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
@@ -38,69 +42,114 @@ body {
   font-weight: 400;
   font-size: 11.5pt;
   transition: 0.3s;
-  color: #111;
-  background-color: var(--background-color0);
-  background-image: var(--background-gradient);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  color: black;
+  background-color: var(--background-color);
 }
-
 body.dark-theme {
-  color: #DDD;
-  background-color: var(--background-color0);
-  background-image: var(--background-color0);
+  color: #CCC;
+  background-color: var(--background-color);
 }
 
 b {
-  /* Format all bolds */
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans';
   font-weight: 700;
 }
 
 p {
   text-align: left;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   margin: 0px;
 }
-.sub-note {
-  margin-top: 5px;
-  transition: all 1s ease 0s;
-  display: inline-block;
-  width: 170px;
-}
-.sub-note b {
-  cursor: pointer;
-}
-.sub-note b:hover {
-  color: var(--c1);
-}
-.sub-note i {
-  font-size: 8pt;
-  margin-right: 5px;
+@media screen and (min-width: 600px) {  /* for narrow displays */
+  p {
+    text-align: justify;
+  }
 }
 
-h1.title {
-  margin-top: 90px;
-  text-align: center;
-  font-family: 'Noto Sans', sans-serif;
-  font-size: 48pt;
-  font-weight: 800;
-  color: var(--c1);
+div.main {
+  margin: 0 auto;
+  width: 95%;
+  max-width: 900px;
+  padding-top: 110px;
+  padding-bottom: 50px;
+}
+div.pre-main {
+  padding-left: 18px;
+  padding-right: 5px;
 }
 
-h2.subtitle {
-  margin-bottom: 50px;
-  text-align: center;
-  font-size: 23pt;
-  line-height: 25pt;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+/* h1 is site specific */
+
+h2 {
+  font-size: 28pt;
+  padding-bottom: 15px;
+  padding-top: 120px;
+  font-family: 'Gotham';
+  font-weight: 600;
+}
+.head-div {  /* if site is printed */
+  page-break-after: avoid;
 }
 
 h3 {
+  margin-top: 35px;
   font-weight: 300;
   font-size: 18pt;
+}
+
+a {
+  color: var(--c1);
+  cursor: pointer;
+  transition: all 0.8s ease 0s;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--c5);
+  text-decoration: underline 1px;
+}
+body.dark-theme a {
+  color: var(--c2);
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+ol {
+  list-style: decimal-leading-zero;
+}
+ol li::marker {
+  color: #999;
+  font-weight: 300;
+  font-size: 10pt;
+}
+body.dark-theme ol li::marker {
+  color: white;
+}
+ol li:hover::marker {
+  color: black;
+}
+body.dark-theme ol li:hover::marker {
+  color: white;
+}
+
+#colorbar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--c1);
+  height: 5px;
+  z-index: 20;
+}
+body.dark-theme #colorbar {
+  background-color: var(--c2);
+}
+/*-----------------------------*/
+
+
+h2 {
+  padding: 6px 0px;  /* override above */
 }
 .h3-container {
   padding: 5px 0px;
@@ -131,40 +180,7 @@ h3 {
   padding-right: 5px;
 }
 
-body.dark-theme h3 {
-  color: white;
-}
 
-h4 {
-  font-size: 10pt;
-  padding-bottom: 4px;
-}
-
-a {
-  color: #222222;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-}
-
-body.dark-theme a {
-  color: #FFF;
-}
-
-a:hover {
-  color: var(--c1);
-}
-
-body.dark-theme a:hover {
-  color: var(--c1);
-}
-
-div.main {
-  margin: 0 auto;
-  width: 95%;
-  max-width: 800px;
-  padding-top: 50px;
-  padding-bottom: 50px
-}
 
 /*--- For light/dark toggle ---*/
 button.light-dark-toggle {

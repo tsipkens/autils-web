@@ -28,6 +28,8 @@
         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
     <!-- Load style -->
+    <link href="https://fonts.cdnfonts.com/css/gotham-narrow" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
     <meta name="theme-color" content="#121212">
@@ -47,7 +49,7 @@
 
             // Update background color
             if (dark) {
-                document.querySelector(':root').style.setProperty('--background-color0', '#0D1117');
+                document.querySelector(':root').style.setProperty('--background-color', '#0D1117');
                 document.querySelector(':root').style.setProperty('--background-color1', '#181C28');
                 document.querySelector(':root').style.setProperty('--background-color2', '#181C28');
                 document.querySelector(':root').style.setProperty('--line-color', '#444444');
@@ -55,13 +57,13 @@
                 document.querySelector(':root').style.setProperty('--background-gradient', '#0D1117');
                 document.querySelector(':root').style.setProperty('--c1', '#FEDC3D');
             } else {
-                document.querySelector(':root').style.setProperty('--background-color0', '#FDFDFD');
+                document.querySelector(':root').style.setProperty('--background-color', '#FDFDFD');
                 document.querySelector(':root').style.setProperty('--background-color1', 'white');
                 document.querySelector(':root').style.setProperty('--background-color2', 'white');
                 document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
                 document.querySelector(':root').style.setProperty('--line-color2', 'black');
                 document.querySelector(':root').style.setProperty('--background-gradient', 'F7F7F7');
-                document.querySelector(':root').style.setProperty('--c1', '#C70039');
+                document.querySelector(':root').style.setProperty('--c1', '#0969DA');
             }
         };
     </script>
