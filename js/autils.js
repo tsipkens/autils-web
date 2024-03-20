@@ -25,13 +25,16 @@ var Cc = function (d, T = null, p = null, gasProp = null) {
         A1 = 1.257;
         A2 = 0.4;
         A3 = 0.55;
+        console.log('Used Davies for slip correction.')
+
     } else { // Kim et al.
 
-        lam = mfp(T, p, gasProp) * 1e-9 // mean free path (convert from nm to m)
+        var lam = mfp(T, p, gasProp) * 1e-9 // mean free path (convert from nm to m)
 
         A1 = 1.165
         A2 = 0.483
         A3 = 0.997 / 2
+        console.log('Used Kim et al. for slip correction.')
     }
 
     Kn = Knudsen(lam, d); // Knudsen number
