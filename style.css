@@ -27,139 +27,11 @@
   }
 }
 
-/*------ Basic formatting ------*/
-* {
-  padding: 0;
-  margin: 0;
-}
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: auto 0px;
-  padding: 0px;
-  font-family: 'Open Sans', 'sans-serif';
-  font-weight: 400;
-  font-size: 11.5pt;
-  transition: 0.3s;
-  color: black;
-  background-color: var(--background-color);
-}
-body.dark-theme {
-  color: #CCC;
-  background-color: var(--background-color);
-}
-
-b {
-  font-family: 'Open Sans';
-  font-weight: 700;
-}
-
-p {
-  text-align: left;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  margin: 0px;
-}
-@media screen and (min-width: 600px) {  /* for narrow displays */
-  p {
-    text-align: justify;
-  }
-}
-
-div.main {
-  margin: 0 auto;
-  width: 95%;
-  max-width: 900px;
-  padding-top: 110px;
-  padding-bottom: 50px;
-}
-div.pre-main {
-  padding-left: 18px;
-  padding-right: 5px;
-}
-
-/* h1 is site specific */
-
-h2 {
-  font-size: 28pt;
-  padding-bottom: 15px;
-  padding-top: 120px;
-  font-family: 'Gotham';
-  font-weight: 600;
-}
-.head-div {  /* if site is printed */
-  page-break-after: avoid;
-}
-
-h3 {
-  margin-top: 35px;
-  font-weight: 300;
-  font-size: 18pt;
-}
-
-a {
-  color: var(--c1);
-  cursor: pointer;
-  transition: all 0.8s ease 0s;
-  text-decoration: none;
-}
-a:hover {
-  color: var(--c5);
-  text-decoration: underline 1px;
-}
-body.dark-theme a {
-  color: var(--c2);
-  cursor: pointer;
-}
-
-ul {
-  list-style: none;
-}
-ol {
-  list-style: decimal-leading-zero;
-}
-ol li::marker {
-  color: #999;
-  font-weight: 300;
-  font-size: 10pt;
-}
-body.dark-theme ol li::marker {
-  color: white;
-}
-ol li:hover::marker {
-  color: black;
-}
-body.dark-theme ol li:hover::marker {
-  color: white;
-}
-
-#colorbar {
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--c1);
-  height: 5px;
-  z-index: 20;
-}
-body.dark-theme #colorbar {
-  background-color: var(--c2);
-}
-/*-----------------------------*/
-
-
-h2 {
-  padding: 6px 0px;  /* override above */
-}
-.h3-container {
-  padding: 5px 0px;
-  margin: 50px 0px 15px 0px;
-  border-bottom: solid 2px var(--line-color2);
+.h2-container {
   transition: all 0.3s ease 0s;
 }
-.h3-container:hover {
+.h2-container:hover {
   cursor: pointer;
   color: var(--c1);
 }
@@ -182,83 +54,6 @@ h2 {
   padding-right: 5px;
 }
 
-
-
-/*--- For light/dark toggle ---*/
-button.light-dark-toggle {
-  font-family: inherit;
-  font-size: 16pt;
-  display: inline;
-  background-color: inherit;
-  width: 35px;
-  text-align: center;
-  vertical-align: middle;
-  padding: 5px;
-  cursor: pointer;
-  border: none;
-}
-
-body.dark-theme #sun {
-  display: inline-block;
-  color: var(--c2);
-}
-
-#sun {
-  display: none;
-}
-
-body.dark-theme #moon {
-  display: none;
-}
-
-#moon {
-  display: inline-block;
-  color: var(--c1);
-}
-/*-----------------------------*/
-
-
-
-#btn-toggle {
-  margin-bottom: 40px;
-}
-
-#btn-toggle a {
-  text-decoration: none;
-}
-
-#btn-toggle a div {
-  color: #CCC;
-  font-size: 18pt;
-  display: inline;
-  vertical-align: middle;
-  transition: all 0.3s ease 0s;
-  border: solid 1px var(--line-color);
-  border-radius: 40px;
-  padding: 7px 15px 5px 15px;
-  background-color: var(--background-color1);
-  margin: 0px;
-  box-shadow: 0px 0px 4px #DDD;
-}
-body.dark-theme #btn-toggle div {
-  color: #555;
-  border: solid 1px var(--line-color);
-  background-color: var(--background-color1);
-  box-shadow: 0px 0px 4px #222;
-}
-#btn-toggle div span {
-  padding-left: 5px;
-}
-body.dark-theme #sun {
-  color: #CCC;
-}
-#sun {
-  color: var(--c1);
-}
-body.dark-theme #moon {
-  color: var(--c1);
-}
-
 ol {
   padding-left: 2rem;
 }
@@ -275,27 +70,8 @@ a.anchor {
   visibility: hidden;
 }
 
-.footer {
-  margin-top: 70px;
-  padding-top: 20px;
-  margin-bottom: 0px;
-  padding-bottom: 60px;
-  font-size: 9pt;
-  color: #666;
-}
-.footer-note {
-  margin-bottom: 3px;
-  margin-top: 6px;
-}
 .footer sub {
   font-size: 6pt;
-}
-.footer a {
-  color: #666;
-  text-decoration: none;
-}
-.footer a:hover {
-  color: var(--c1);
 }
 body.dark-theme .footer {
   color: #AAA;
@@ -305,17 +81,6 @@ body.dark-theme .footer a {
 }
 body.dark-theme .footer a:hover {
   color: var(--c1);
-}
-
-.footer .num {
-  font-size: 8pt;
-  font-weight: 600;
-  color: var(--c1);
-}
-
-.footer p {
-  padding-top: 3px;
-  padding-bottom: 3px;
 }
 
 .footnote {
