@@ -366,9 +366,22 @@
                 </div>
 
                 <div class="control">
-                    <span class="control-label">Radius of gyration<br>
+                    <span class="control-label">Radius of gyration</span><br>
                     <div class="textoutput">
                         <div class="output-div" id="Rg-val">-</div> nm
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Number conc.</span>
+                    <span class="control-unit">#/cm<sup>3</sup></span> <br>
+                    <input class="textinput" id="Ns-val" type="number" step="0.01" value="1000" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Mass conc.</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="Ms-val">-</div> ug/m<sup>3</sup>
                     </div>
                 </div>
             </div>

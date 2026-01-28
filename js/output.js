@@ -525,6 +525,11 @@ var updater = function () {
     document.getElementById("Rg-val").innerHTML = (Rg * 1e9).toPrecision(4);
 
 
+    var Ns = Number(document.getElementById("Ns-val").value)
+    var Ms = Ns * m * 1e6 * 1e9  // convert to ug/m3
+    document.getElementById("Ms-val").innerHTML = (Ms).toPrecision(4);
+
+
     sg = Number(document.getElementById("sg-val").value);
     cmd = Number(document.getElementById("cmd-val").value) * 1e-9;
 
