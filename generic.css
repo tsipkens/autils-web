@@ -101,7 +101,7 @@
     text-decoration: none;
   }
   a:hover {
-    color: var(--c5);
+    color: var(--c1);
     text-decoration: underline 1px;
   }
   body.dark-theme a {
