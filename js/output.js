@@ -44,7 +44,7 @@ var dmax = 2e3;
 var d_vec = logspace(dmin, dmax, 225);
 
 // Define color scheme.
-var colors = ["#2525C6", "#1264B2", "#222222", "#B2325A"];
+var colors = ["#2525C6", "#1264B2", "#222222", "#FF0083"];
 var lcolors = ["", "rgba(18, 100, 178, 0.03)", "", "rgba(178, 50, 90, 0.03)"]
 
 var $container = $('#my_dataviz'),

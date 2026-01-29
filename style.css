@@ -10,7 +10,7 @@
   --background-gradient: #F7F7F7;
   --line-color: #CCC;
   --line-color2: black;
-  --c1: #0969DA;
+  --c1: #FF0083;
   --c2: #FEDC3D;
 }
 
@@ -111,6 +111,12 @@ body.dark-theme .footer a:hover {
   margin-top: 1px;
   margin-bottom: 1px;
   margin-left: 2px;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0.5px solid;
 }
 
 
