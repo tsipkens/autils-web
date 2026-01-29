@@ -381,7 +381,7 @@
                 <div class="control">
                     <span class="control-label">Number conc.</span>
                     <span class="control-unit">#/cm<sup>3</sup></span> <br>
-                    <input class="textinput" id="Ns-val" type="number" step="0.01" value="1000" onchange="updater()">
+                    <input class="textinput" id="Ns-val" type="number" step="1" value="1000" onchange="updater()">
                 </div>
 
                 <div class="control">
@@ -475,6 +475,19 @@
                     <span class="control-label">GSD (for m<sub>p</sub>)</span><br>
                     <div class="textoutput">
                         <div class="output-div" id="smp-val">-</div>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Number conc.</span>
+                    <span class="control-unit">#/cm<sup>3</sup></span> <br>
+                    <input class="textinput" id="N-val" type="number" step="1" value="1000" onchange="updater()">
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Mass conc.</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="M-val">-</div> ug/m<sup>3</sup>
                     </div>
                 </div>
 
@@ -619,7 +632,7 @@
 
 
             <div class="footer-note">
-                <p>Build: <span id="version-number">v2026.01.29.1038</span></p>
+                <p>Build: <span id="version-number">v2026.01.29.1053</span></p>
             </div>
             
 

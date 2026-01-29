@@ -549,6 +549,10 @@ var updater = function () {
     var sda = sdm2sda(cmd, sg, prop, true);
     document.getElementById("sda-val").innerHTML = sda.toPrecision(3);
 
+    var N = Number(document.getElementById("N-val").value)
+    var M = N * cmm * Math.exp(9 / 2 * Math.log(sg) ** 2) * 1e6 * 1e9 // Hatch-Choate for integral + convert to ug/m3
+    document.getElementById("M-val").innerHTML = (M).toPrecision(4);
+
     plotter(cmd, mmd, sg, prop); // update plot
 
     //== AVERAGE CHARGE ==//
