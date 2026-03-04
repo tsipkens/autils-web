@@ -446,7 +446,7 @@ var plotter = function (dg, mg, sg, prop) {
 
 //---------------------------------------------//
 // Display properties.
-var updater = function () {
+var updater = function (fl_mass=false) {
     console.log('New condition:')
 
     var T = Number(document.getElementById("T-val").value)
@@ -468,6 +468,14 @@ var updater = function () {
     var rhom = Number(document.getElementById("rhom-val").value)
     var prop = massMob(zet, rho100, 'rho100')
     prop['rhom'] = rhom
+
+    if (fl_mass) {
+        console.log('First, mass --> mobility.')
+
+        var m = Number(document.getElementById("m-val").value) * 1e-18
+        var dm = mp2dm(m, prop)
+        document.getElementById("dm-val").value = format10(dm * 1e9, 4)
+    }
 
     var chi100 = dm2chi(100e-9, prop, true);
     var chi100s = dm2chi(100e-9, prop, false);
@@ -494,7 +502,7 @@ var updater = function () {
     var D = dm2D(dm)
 
     document.getElementById("Kn-val").innerHTML = format10(Kn, 3)
-    document.getElementById("m-val").innerHTML = format10(m * 1e18, 4);
+    document.getElementById("m-val").value = format10(m * 1e18, 4);
     document.getElementById("rho-val").innerHTML = Math.round(rh);
     document.getElementById("chi-val").innerHTML = chi.toPrecision(3);
     document.getElementById("chis-val").innerHTML = chis.toPrecision(3);
