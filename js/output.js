@@ -474,7 +474,6 @@ var updater = function () {
 
     document.getElementById("m0-val").innerHTML = format10(prop['m0'] * 1e18, 3)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
-    document.getElementById("rho100-valo").innerHTML = Math.round(rho100)
     document.getElementById("chi100-valo").innerHTML = chi100.toPrecision(3)
     document.getElementById("chi100s-valo").innerHTML = chi100s.toPrecision(3)
 
