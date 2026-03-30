@@ -501,7 +501,7 @@ var updater = function (fl_mass=false) {
     var Zp = dm2Zp(dm)
     var D = dm2D(dm)
 
-    document.getElementById("Kn-val").innerHTML = format10(Kn, 3)
+    document.getElementById("Kn-val").innerHTML = format10(Kn, 4)
     document.getElementById("m-val").value = format10(m * 1e18, 4);
     document.getElementById("rho-val").innerHTML = Math.round(rh);
     document.getElementById("chi-val").innerHTML = chi.toPrecision(3);

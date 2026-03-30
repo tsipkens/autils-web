@@ -14,7 +14,7 @@ var mfp = function (T, p, gasProp) {
 
 var Knudsen = function (lam, d) {
     // lam is mean free path
-    return (2 * lam) / d
+    return (2 * lam) / d * 1e-9
 }
 
 var Cc = function (d, T = null, p = null, gasProp = null) {
