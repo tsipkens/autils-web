@@ -251,13 +251,6 @@
                 </div>
 
                 <div class="control">
-                    <span class="control-label">Knudsen number (Kn)</span> <br>
-                    <div class="textoutput">
-                        <div class="output-div" id="Kn-val">-</div>
-                    </div>
-                </div>
-
-                <div class="control">
                     <span class="control-label">Mass</span> <br>
                     <input class="textinput" id="m-val" type="number" step="0.1" value="0" onchange="updater(true)">
                     <span class="output-unit" id="m-unit">fg</span>
@@ -270,21 +263,6 @@
                 </div>
 
                 <div class="control">
-                    <span class="control-label">ρ<sub>eff</sub> @ d<sub>m</sub></span> <br>
-                    <div class="textoutput">
-                        <div class="output-div" id="rho-val">-</div>
-                        <span class="output-unit">kg/m<sup>3</sup></span>
-                    </div>
-                </div>
-
-                <div class="control">
-                    <span class="control-label">Packing facctor</span> <br>
-                    <div class="textoutput">
-                        <div class="output-div" id="packing-val">-</div>
-                    </div>
-                </div>
-
-                <div class="control">
                     <span class="control-label">Volume eq. diameter</span><br>
                     <div class="textoutput">
                         <div class="output-div" id="dve-val">-</div>
@@ -293,9 +271,43 @@
                 </div>
 
                 <div class="control">
+                    <span class="control-label">Aerodynamic diameter</span><br>
+                    <div class="textoutput">
+                        <div class="output-div" id="da-val">-</div> <span class='output-unit'>(<div class="output-div" id="das-val">-</div>)</span>
+                        <span class="output-unit">nm</span>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="control">
+                    <span class="control-label">ρ<sub>eff</sub> @ d<sub>m</sub></span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="rho-val">-</div>
+                        <span class="output-unit">kg/m<sup>3</sup></span>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <span class="control-label">Packing factor @ d<sub>m</sub></span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="packing-val">-</div>
+                    </div>
+                </div>
+
+                <div class="control">
                     <span class="control-label">χ @ d<sub>m</sub></span> <br>
                     <div class="textoutput">
                         <div class="output-div" id="chi-val">-</div> <span class='output-unit'>(<div class="output-div" id="chis-val">-</div>)</span>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="control">
+                    <span class="control-label">Knudsen number (Kn)</span> <br>
+                    <div class="textoutput">
+                        <div class="output-div" id="Kn-val">-</div>
                     </div>
                 </div>
 
@@ -310,14 +322,6 @@
                     <span class="control-label">Cunningham slip @ d<sub>a</sub></span> <br>
                     <div class="textoutput">
                         <div class="output-div" id="Cca-val">-</div>
-                    </div>
-                </div>
-
-                <div class="control">
-                    <span class="control-label">Aerodynamic diameter</span><br>
-                    <div class="textoutput">
-                        <div class="output-div" id="da-val">-</div> <span class='output-unit'>(<div class="output-div" id="das-val">-</div>)</span>
-                        <span class="output-unit">nm</span>
                     </div>
                 </div>
 
@@ -656,7 +660,7 @@
 
 
             <div class="footer-note">
-                <p>Build: <span id="version-number">v2026.03.30.1543</span></p>
+                <p>Build: <span id="version-number">v2026.03.30.1548</span></p>
             </div>
             
 
