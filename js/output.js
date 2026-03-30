@@ -488,7 +488,7 @@ var updater = function (fl_mass=false) {
 
     var dm = Number(document.getElementById("dm-val").value) * 1e-9
     var C = Cc(dm, T, p, gasProp);
-    var Kn = Knudsen(lam, dm)
+    var Kn = Knudsen(lam, dm * 1e9)
     var m = dm2mp(dm, prop)
     var rh = rho(dm, m)
     var chi = dm2chi(dm, prop, true)
