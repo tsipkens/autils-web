@@ -32,7 +32,7 @@ var format10 = function (no, pr) {
     no10 = Math.floor(no10)
     if (Math.abs(no10) > (pr - 1)) {
         var pre = no / (10 ** no10)
-        var html = pre.toPrecision(pr) + "×10<sup>" + no10.toString() + "</sup>"
+        var html = pre.toPrecision(pr) + "<span class='output-unit'> ×10<sup>" + no10.toString() + "</sup></span>"
     } else {
         var html = no.toPrecision(pr)
     }

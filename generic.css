@@ -60,7 +60,7 @@
     margin: 0 auto;
     width: 95%;
     max-width: 950px;
-    padding-top: 110px;
+    padding-top: 80px;
     padding-bottom: 50px;
   }
   div.pre-main {
@@ -233,7 +233,7 @@
   
   /*--- For light/dark toggle ---*/
   #light-dark-toggle-inpage {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     text-align: center;
   }
   
