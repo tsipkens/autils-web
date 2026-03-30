@@ -146,12 +146,12 @@ div.control {
   padding: 9px 0px 9px 0px;
 }
 
-/* .output-div sup {
-  font-size: 10pt;
-  vertical-align: top;
-  position: relative;
-  top: -0.6em;
-} */
+.output-unit sup {
+  font-size: 6pt;
+  /* vertical-align: top; */
+  /* position: relative; */
+  /* top: -0.3em; */
+}
 
 .textinput {
   font-family: 'Inter', Arial, sans-serif;
@@ -163,7 +163,7 @@ div.control {
   border-bottom: 2px solid black;
   /* background-color: white; */
   transition: all 0.3s ease 0s;
-  width: 110px;
+  width: 80px;
   color: inherit;
 }
 

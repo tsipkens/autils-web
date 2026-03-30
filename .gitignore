@@ -130,3 +130,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 imgs/CAAR.logo.v2.svg
+temp.html

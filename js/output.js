@@ -473,6 +473,11 @@ var updater = function (fl_mass=false) {
         console.log('First, mass --> mobility.')
 
         var m = Number(document.getElementById("m-val").value) * 1e-18
+
+        if (document.getElementById("m-unit").innerHTML == "ag") {
+            m = m * 1e-3  // account for the unit change, if present
+        }
+
         var dm = mp2dm(m, prop)
         document.getElementById("dm-val").value = format10(dm * 1e9, 4)
     }
@@ -502,7 +507,13 @@ var updater = function (fl_mass=false) {
     var D = dm2D(dm)
 
     document.getElementById("Kn-val").innerHTML = format10(Kn, 4)
-    document.getElementById("m-val").value = format10(m * 1e18, 4);
+    if (m * 1e18 <= 1e-2) {
+        document.getElementById("m-val").value = format10(m * 1e18 * 1e3, 3);
+        document.getElementById("m-unit").innerHTML = "ag"
+    } else {
+        document.getElementById("m-val").value = format10(m * 1e18, 3);
+        document.getElementById("m-unit").innerHTML = "fg"
+    }
     document.getElementById("rho-val").innerHTML = Math.round(rh);
     document.getElementById("chi-val").innerHTML = chi.toPrecision(3);
     document.getElementById("chis-val").innerHTML = chis.toPrecision(3);
