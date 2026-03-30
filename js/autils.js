@@ -34,7 +34,7 @@ var Cc = function (d, T = null, p = null, gasProp = null) {
         A1 = 1.165
         A2 = 0.483
         A3 = 0.997 / 2
-        console.log('Used Kim et al. for slip correction.')
+        // console.log('Used Kim et al. for slip correction.')
     }
 
     Kn = Knudsen(lam, d); // Knudsen number
@@ -106,25 +106,25 @@ var dve2dm = function (dve, prop) {
     return dm
 }
 
-var dm2chi = function (dm, prop, fl = true) {
+var dm2chi = function (dm, prop, fl = true, T = null, p = null, gasProp = null) {
     dve = dm2dve(dm, prop);
 
     chi = dm / dve;
 
     if (fl) {
-        chi = (dm / dve * Cc(dve) / Cc(dm))
+        chi = (dm / dve * Cc(dve, T, p, gasProp) / Cc(dm, T, p, gasProp))
     }
 
     return chi;
 }
 
-var dve2chi = function (dve, prop, fl = true) {
+var dve2chi = function (dve, prop, fl = true, T = null, p = null, gasProp = null) {
     dm = dve2dm(dve, prop);
 
     chi = dm / dve;
 
     if (fl) {
-        chi = (dm / dve * Cc(dve) / Cc(dm))
+        chi = (dm / dve * Cc(dve, T, p, gasProp) / Cc(dm, T, p, gasProp))
     }
 
     return chi;
@@ -146,15 +146,15 @@ var dm2dve = function (dm, rho = 1800, fl = true, chi = 1) {
 }
 */
 
-var da2dve = function (da, prop, fl = true) {
+var da2dve = function (da, prop, fl = true, T = null, p = null, gasProp = null) {
     da = da * 1e9
     if (fl) {
         var fun_a = function (dve) {
-            return ((dve * Math.sqrt(prop['rhom'] / rho0 / dve2chi(dve * 1e-9, prop, fl) * Cc(dve * 1e-9) / Cc(da * 1e-9)) - da)) ** 2
+            return ((dve * Math.sqrt(prop['rhom'] / rho0 / dve2chi(dve * 1e-9, prop, fl, T, p, gasProp) * Cc(dve * 1e-9, T, p, gasProp) / Cc(da * 1e-9, T, p, gasProp)) - da)) ** 2
         }
     } else {
         var fun_a = function (dve) {
-            return (da / Math.sqrt(prop['rhom'] / rho0 / dve2chi(dve * 1e-9, prop, fl)) - dve) ** 2
+            return (da / Math.sqrt(prop['rhom'] / rho0 / dve2chi(dve * 1e-9, prop, fl, T, p, gasProp)) - dve) ** 2
         }
     }
     var a = optimjs.minimize_Powell(fun_a, [da])
@@ -163,9 +163,9 @@ var da2dve = function (da, prop, fl = true) {
     return dve
 }
 
-var dm2da = function (dm, prop, fl = true) {
+var dm2da = function (dm, prop, fl = true, T = null, p = null, gasProp = null) {
     var dve = dm2dve(dm, prop)
-    var chi = dm2chi(dm, prop, fl)
+    var chi = dm2chi(dm, prop, fl, T, p, gasProp)
 
     // Compute simple volume-equivalent and aerodynamic diameters, 
     // that is without iteration. 
@@ -175,7 +175,7 @@ var dm2da = function (dm, prop, fl = true) {
         dve = dve * 1e9 // convert to nm for numerical stability
         da = da * 1e9
         var fun_a = function (da) {
-            return ((dve * Math.sqrt(prop['rhom'] / rho0 / chi * Cc(dve * 1e-9) / Cc(da * 1e-9)) - da)) ** 2
+            return ((dve * Math.sqrt(prop['rhom'] / rho0 / chi * Cc(dve * 1e-9, T, p, gasProp) / Cc(da * 1e-9, T, p, gasProp)) - da)) ** 2
         }
         var a = optimjs.minimize_Powell(fun_a, [da])
         da = a.argument[0] * 1e-9 // convert back to m
@@ -184,17 +184,17 @@ var dm2da = function (dm, prop, fl = true) {
     return da;
 }
 
-var da2dm = function (da, prop, fl = true) {
-    dve = da2dve(da, prop, fl)
+var da2dm = function (da, prop, fl = true, T = null, p = null, gasProp = null) {
+    dve = da2dve(da, prop, fl, T, p, gasProp)
 
     var dm = dve2dm(dve, prop, fl)
     return dm
 }
 
-var sdm2sda = function (cmd, sg, prop, fl = true) {
+var sdm2sda = function (cmd, sg, prop, fl = true, T = null, p = null, gasProp = null) {
     return Math.exp(
-        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.01), prop, fl)) -
-            Math.log(dm2da(Math.exp(Math.log(cmd) * 0.99), prop, fl))) /
+        (Math.log(dm2da(Math.exp(Math.log(cmd) * 1.01), prop, fl, T, p, gasProp)) -
+            Math.log(dm2da(Math.exp(Math.log(cmd) * 0.99), prop, fl, T, p, gasProp))) /
         (0.02 * Math.log(cmd)) *
         Math.log(sg)); // take about CMD
 }
@@ -210,19 +210,19 @@ var hci = function (mu, sg, q, a) {
 }
 
 // Mechanical mobility
-var dm2B = function (dm) {
+var dm2B = function (dm, T = null, p = null, gasProp = null) {
     var mu = 1.84198E-05
-    return (Cc(dm) / (3 * pi * mu * (dm))) * 1e-9
+    return (Cc(dm, T, p, gasProp) / (3 * pi * mu * (dm))) * 1e-9
 }
 
 // Electrical mobility
-var dm2Zp = function (dm) {
-    var B = dm2B(dm)
+var dm2Zp = function (dm, T = null, p = null, gasProp = null) {
+    var B = dm2B(dm, T, p, gasProp)
     return (B * 1e9) * e * 100 ** 2
 }
 
 // Diffusion
-var dm2D = function (dm, T = 298) {
-    var B = dm2B(dm)
+var dm2D = function (dm, T = 298, p = null, gasProp = null) {
+    var B = dm2B(dm, T, p, gasProp)
     return kB * T * (B / 1e-9) * (100 ** 2)
 }

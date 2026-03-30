@@ -387,7 +387,15 @@ var plotter = function (dg, mg, sg, prop) {
     //-- Update aerodynamic diameter axis --------------------//
     for (var ii = 0; ii < daValues.length; ii++) {
         var daVal = daValues[ii]
-        dm2daValues[ii] = da2dm(daVal * 1e-9, prop, true) * 1e9
+        
+        // Get gas properties, same as is done for number fields. 
+        var T = Number(document.getElementById("T-val").value)
+        var patm = Number(document.getElementById("p-val").value)
+        var p = patm * 101325
+        var gas = document.getElementById("gas-val").value
+        gasProp = gases[0][gas]
+
+        dm2daValues[ii] = da2dm(daVal * 1e-9, prop, true, T, p, gasProp) * 1e9
 
         // Remove entries out of the domain.
         if ((dm2daValues[ii] < xValues[0]) || (dm2daValues[ii] > xValues[xValues.length - 1])) {
@@ -482,8 +490,8 @@ var updater = function (fl_mass=false) {
         document.getElementById("dm-val").value = format10(dm * 1e9, 4)
     }
 
-    var chi100 = dm2chi(100e-9, prop, true);
-    var chi100s = dm2chi(100e-9, prop, false);
+    var chi100 = dm2chi(100e-9, prop, true, T, p, gasProp);
+    var chi100s = dm2chi(100e-9, prop, false, T, p, gasProp);
 
     document.getElementById("m0-val").innerHTML = format10(prop['m0'] * 1e18, 3)
     document.getElementById("m100-val").innerHTML = (prop['m100'] * 1e18).toPrecision(3)
@@ -496,15 +504,15 @@ var updater = function (fl_mass=false) {
     var Kn = Knudsen(lam, dm * 1e9)
     var m = dm2mp(dm, prop)
     var rh = rho(dm, m)
-    var chi = dm2chi(dm, prop, true)
-    var chis = dm2chi(dm, prop, false)
+    var chi = dm2chi(dm, prop, true, T, p, gasProp)
+    var chis = dm2chi(dm, prop, false, T, p, gasProp)
     var dve = dm2dve(dm, prop)
-    var da = dm2da(dm, prop, true, dve)
-    var das = dm2da(dm, prop, false, dve)
+    var da = dm2da(dm, prop, true, T, p, gasProp)
+    var das = dm2da(dm, prop, false, T, p, gasProp)
     var Ca = Cc(da, T, p, gasProp)
-    var B = dm2B(dm)
-    var Zp = dm2Zp(dm)
-    var D = dm2D(dm)
+    var B = dm2B(dm, T, p, gasProp)
+    var Zp = dm2Zp(dm, T, p, gasProp)
+    var D = dm2D(dm, T, p, gasProp)
 
     document.getElementById("Kn-val").innerHTML = format10(Kn, 4)
     if (m * 1e18 <= 1e-2) {
@@ -552,9 +560,9 @@ var updater = function (fl_mass=false) {
     sg = Number(document.getElementById("sg-val").value);
     cmd = Number(document.getElementById("cmd-val").value) * 1e-9;
 
-    var cmad = dm2da(cmd, prop, true)
+    var cmad = dm2da(cmd, prop, true, T, p, gasProp)
     var mmd = hc(cmd, sg, prop['zet']);
-    var mmad = dm2da(mmd, prop, true);
+    var mmad = dm2da(mmd, prop, true, T, p, gasProp);
     var cmm = dm2mp(cmd, prop);
     var mmm = dm2mp(mmd, prop);
     var smp = sdm2smp(sg, prop);
@@ -565,7 +573,7 @@ var updater = function (fl_mass=false) {
     document.getElementById("mmm-val").innerHTML = (mmm * 1e18).toPrecision(4);
     document.getElementById("smp-val").innerHTML = smp.toPrecision(3);
     
-    var sda = sdm2sda(cmd, sg, prop, true);
+    var sda = sdm2sda(cmd, sg, prop, true, T, p, gasProp);
     document.getElementById("sda-val").innerHTML = sda.toPrecision(3);
 
     var N = Number(document.getElementById("N-val").value)
