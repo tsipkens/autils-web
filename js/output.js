@@ -515,6 +515,7 @@ var updater = function (fl_mass=false) {
         document.getElementById("m-unit").innerHTML = "fg"
     }
     document.getElementById("rho-val").innerHTML = Math.round(rh);
+    document.getElementById("packing-val").innerHTML = (rh / prop['rhom']).toPrecision(3);
     document.getElementById("chi-val").innerHTML = chi.toPrecision(3);
     document.getElementById("chis-val").innerHTML = chis.toPrecision(3);
     document.getElementById("Cc-val").innerHTML = C.toPrecision(3);
