@@ -56,7 +56,7 @@
                 document.querySelector(':root').style.setProperty('--line-color', '#444444');
                 document.querySelector(':root').style.setProperty('--line-color2', 'white');
                 document.querySelector(':root').style.setProperty('--background-gradient', '#0D1117');
-                document.querySelector(':root').style.setProperty('--c1', '#FEDC3D');
+                document.querySelector(':root').style.setProperty('--c1', '#FF0083');
             } else {
                 document.querySelector(':root').style.setProperty('--background-color', '#FDFDFD');
                 document.querySelector(':root').style.setProperty('--background-color1', 'white');
@@ -98,13 +98,13 @@
             <div class="sub-section" style="display:block;">
                 <div class="control">
                     <span class="control-label">Temperature</span>
-                    <span class="control-unit">K</span> <br>
+                    <span class="output-unit">K</span> <br>
                     <input class="textinput" id="T-val" type="number" value="296.15" onchange="updater()">
                 </div>
 
                 <div class="control">
                     <span class="control-label">Pressure</span>
-                    <span class="control-unit">atm</span> <br>
+                    <span class="output-unit">atm</span> <br>
                     <input class="textinput" id="p-val" type="number" value="1" onchange="updater()">
                 </div>
 
@@ -133,7 +133,8 @@
                         </a>
                     </span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="mu-val">-</div> Pa·s
+                        <div class="output-div" id="mu-val">-</div>
+                        <span class="output-unit">Pa·s</span>
                     </div>
                 </div>
 
@@ -144,7 +145,8 @@
                         </a>
                     </span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="lam-val">-</div> nm
+                        <div class="output-div" id="lam-val">-</div> 
+                        <span class="output-unit">nm</span>
                     </div>
                 </div>
             </div>
@@ -175,7 +177,7 @@
             <div class="sub-section" style="display:block;">
                 <div class="control">
                     <span class="control-label">ρ<sub>eff,100</sub></span>
-                    <span class="control-unit">kg/m<sup>3</sup></span> <br>
+                    <span class="output-unit">kg/m<sup>3</sup></span> <br>
                     <input class="textinput" id="rho100-val" type="number" value="510" onchange="updater()">
                 </div>
 
@@ -194,14 +196,16 @@
                 <div class="control">
                     <span class="control-label">Pre-factor (k, m<sub>0</sub>)</span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="m0-val">-</div> fg
+                        <div class="output-div" id="m0-val">-</div>
+                        <span class="output-unit">fg</span>
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">m @ 100 nm (m<sub>100</sub>)</span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="m100-val">-</div> fg
+                        <div class="output-div" id="m100-val">-</div>
+                        <span class="output-unit">fg</span>
                     </div>
                 </div>
 
@@ -241,7 +245,7 @@
 
                 <div class="control">
                     <span class="control-label">Mobility diameter</span>
-                    <span class="control-unit">nm</span> <br>
+                    <span class="output-unit">nm</span> <br>
                     <input class="textinput" id="dm-val" type="number" step="0.1" value="100" onchange="updater()">
                 </div>
 
@@ -254,7 +258,7 @@
 
                 <div class="control">
                     <span class="control-label">Mass</span>
-                    <span class="control-unit">fg</span> <br>
+                    <span class="output-unit">fg</span> <br>
                     <input class="textinput" id="m-val" type="number" step="0.1" value="0" onchange="updater(true)">
                     <!--
                     <span class="control-label">Mass</span> <br>
@@ -267,14 +271,16 @@
                 <div class="control">
                     <span class="control-label">ρ<sub>eff</sub> @ d<sub>m</sub></span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="rho-val">-</div> kg/m<sup>3</sup>
+                        <div class="output-div" id="rho-val">-</div>
+                        <span class="output-unit">kg/m<sup>3</sup></span>
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">Volume eq. diameter</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="dve-val">-</div> nm
+                        <div class="output-div" id="dve-val">-</div>
+                        <span class="output-unit">nm</span>
                     </div>
                 </div>
 
@@ -302,28 +308,32 @@
                 <div class="control">
                     <span class="control-label">Aerodynamic diameter</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="da-val">-</div> (<div class="output-div" id="das-val">-</div>) nm
+                        <div class="output-div" id="da-val">-</div> (<div class="output-div" id="das-val">-</div>)
+                        <span class="output-unit">nm</span>
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">Mechanical mobility (B)</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="B-val">-</div> m/(N·ns)
+                        <div class="output-div" id="B-val">-</div>
+                        <span class="output-unit">m/(N·ns)</span>
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">Electrical mobility (Z<sub>p</sub>)</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="Zp-val">-</div> cm<sup>2</sup>/(V·s)
+                        <div class="output-div" id="Zp-val">-</div>
+                        <span class="output-unit">cm<sup>2</sup>/(V·s)</span>
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">Diffusion coefficient (D)</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="D-val">-</div> cm<sup>2</sup>/s
+                        <div class="output-div" id="D-val">-</div>
+                        <span class="output-unit">cm<sup>2</sup>/s</span>
                     </div>
                 </div>
 
@@ -331,7 +341,7 @@
 
                 <div class="control">
                     <span class="control-label">d<sub>p,100</sub></span>
-                    <span class="control-unit">nm</span> <br>
+                    <span class="output-unit">nm</span> <br>
                     <input class="textinput" id="dp100-val" type="number" step="0.1" value="17.8" onchange="updater()">
                 </div>
 
@@ -343,7 +353,8 @@
                 <div class="control">
                     <span class="control-label">d<sub>p</sub> @ d<sub>m</sub></span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="dp-val">-</div> nm
+                        <div class="output-div" id="dp-val">-</div>
+                        <span class="output-unit">nm
                     </div>
                 </div>
 
@@ -358,7 +369,7 @@
 
                 <div class="control">
                     <span class="control-label">k<sub>f</sub></span>
-                    <span class="control-unit">nm</span> <br>
+                    <span class="output-unit">nm</span> <br>
                     <input class="textinput" id="kf-val" type="number" step="0.1" value="1.3" onchange="updater()">
                 </div>
 
@@ -378,14 +389,15 @@
 
                 <div class="control">
                     <span class="control-label">Number conc.</span>
-                    <span class="control-unit">#/cm<sup>3</sup></span> <br>
+                    <span class="output-unit">#/cm<sup>3</sup></span> <br>
                     <input class="textinput" id="Ns-val" type="number" step="1" value="1000" onchange="updater()">
                 </div>
 
                 <div class="control">
                     <span class="control-label">Mass conc.</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="Ms-val">-</div> ug/m<sup>3</sup>
+                        <div class="output-div" id="Ms-val">-</div>
+                        <span class="output-unit">ug/m<sup>3</sup></span>
                     </div>
                 </div>
             </div>
@@ -413,7 +425,7 @@
             <div class="sub-section">
                 <div class="control">
                     <span class="control-label">CMD </span>
-                    <span class="control-unit">nm</span><br>
+                    <span class="output-unit">nm</span><br>
                     <input class="textinput" id="cmd-val" type="number" step="0.1" value="75" onchange="updater()">
                 </div>
 
@@ -430,21 +442,24 @@
                         </a>
                     </span> <br>
                     <div class="textoutput">
-                        <div class="output-div" id="mmd-val">-</div> nm
+                        <div class="output-div" id="mmd-val">-</div>
+                        <span class="output-unit">nm</span>
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">CMAD</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="cmad-val">-</div> nm
+                        <div class="output-div" id="cmad-val">-</div>
+                        <span class="output-unit">nm</span>
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">MMAD</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="mmad-val">-</div> nm
+                        <div class="output-div" id="mmad-val">-</div>
+                        <span class="output-unit">nm</span>
                     </div>
                 </div>
 
@@ -458,14 +473,16 @@
                 <div class="control">
                     <span class="control-label">CMM</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="cmm-val">-</div> fg
+                        <div class="output-div" id="cmm-val">-</div>
+                        <span class="output-unit">fg</span>
                     </div>
                 </div>
 
                 <div class="control">
                     <span class="control-label">MMM</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="mmm-val">-</div> fg
+                        <div class="output-div" id="mmm-val">-</div>
+                        <span class="output-unit">fg</span>
                     </div>
                 </div>
 
@@ -478,14 +495,15 @@
 
                 <div class="control">
                     <span class="control-label">Number conc.</span>
-                    <span class="control-unit">#/cm<sup>3</sup></span> <br>
+                    <span class="output-unit">#/cm<sup>3</sup></span> <br>
                     <input class="textinput" id="N-val" type="number" step="1" value="1000" onchange="updater()">
                 </div>
 
                 <div class="control">
                     <span class="control-label">Mass conc.</span><br>
                     <div class="textoutput">
-                        <div class="output-div" id="M-val">-</div> ug/m<sup>3</sup>
+                        <div class="output-div" id="M-val">-</div>
+                        <span class="output-unit">ug/m<sup>3</sup></span>
                     </div>
                 </div>
 
@@ -529,7 +547,7 @@
             <div class="sub-section">
                 <div class="control">
                     <span class="control-label">Mass-to-charge s.p., m* </span>
-                    <span class="control-unit">fg</span><br>
+                    <span class="output-unit">fg</span><br>
                     <input class="textinput" id="mstar-val" type="number" value="0.1" onchange="updater()">
                 </div>
 
@@ -630,7 +648,7 @@
 
 
             <div class="footer-note">
-                <p>Build: <span id="version-number">v2026.03.04.1556</span></p>
+                <p>Build: <span id="version-number">v2026.03.30.0030</span></p>
             </div>
             
 

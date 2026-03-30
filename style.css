@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 
 :root {
@@ -11,7 +12,7 @@
   --line-color: #CCC;
   --line-color2: black;
   --c1: #FF0083;
-  --c2: #FEDC3D;
+  --c2: #FF0083;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,8 +23,8 @@
     --background-gradient: #20293A;
     --line-color: #555;
     --line-color2: white;
-    --c1: #FEDC3D;
-    --c2: #FEDC3D;
+    --c1: #FF0083;
+    --c2: #FF0083;
   }
 }
 
@@ -37,7 +38,7 @@
 }
 .plus {
   display: none; /* By default */
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 16pt;
   float: right;
@@ -46,7 +47,7 @@
 }
 .minus {
   display: inline; /* By default */
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 16pt;
   float: right;
@@ -114,9 +115,14 @@ body.dark-theme .footer a:hover {
 }
 
 hr {
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+  /* border: 0.5px solid; */
+}
+
+.sub-section {
   margin-bottom: 10px;
-  border: 0.5px solid;
 }
 
 
@@ -127,69 +133,79 @@ div.control {
   padding: 0px;
   display: inline-block;
   vertical-align: text-top;
-  margin-bottom: 12px;
-  width: 170px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 220px;
 }
 
 .textoutput {
-  font-family: 'Open Sans', sans-serif;;
+  font-family: 'Inter', sans-serif;;
   font-weight: 400;
-  font-size: 11.5pt;
+  font-size: 18pt;
   line-height: 15pt;
+  padding: 9px 0px 9px 0px;
 }
-.textoutput sup {
-  font-size: 9pt;
+
+.output-div sup {
+  font-size: 10pt;
   vertical-align: top;
   position: relative;
   top: -0.6em;
 }
 
 .textinput {
-  font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 11pt;
-  border-radius: 3pt;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 18pt;
   font-weight: 400;
-  padding: 5px 10px 5px 10px;
-  border: 2px solid #E3E3E3;
-  background-color: white;
+  padding: 5px 0px 5px 0px;
+  /* border-radius: 3pt; */
+  border: none;
+  border-bottom: 2px solid black;
+  /* background-color: white; */
   transition: all 0.3s ease 0s;
-  width: 110px;
+  width: 130px;
   color: inherit;
 }
 
 body.dark-theme .textinput {
-  border: 2px solid #444444;
-  background-color: black;
+  border-bottom: 2px solid white;
+  background-color: var(--background-color);
 }
 
 .textinput:hover {
-  border: 2px solid var(--c1);
-  box-shadow: 0px 0px 4px #AAAAAA;
+  border-bottom: 2px solid var(--c1);
+  /* box-shadow: 0px 0px 4px #AAAAAA; */
 }
 
 body.dark-theme .textinput:hover {
-  border: 2px solid var(--c1);
-  box-shadow: 0px 0px 4px #666666;
+  border-bottom: 2px solid var(--c1);
+  /* box-shadow: 0px 0px 4px #666666; */
 }
 
 .textinput:focus {
-  border: 2px solid var(--c1);
+  border-bottom: 2px solid var(--c1);
 }
 
 body.dark-theme .textinput:focus {
-  border: 2px solid var(--c1);
+  border-bottom: 2px solid var(--c1);
 }
 
 .control-label {
-  font-family: 'Open Sans';
-  font-weight: 700;
+  font-family: 'Inter';
+  font-weight: 400;
   font-size: 9pt;
 }
 
 .control-unit {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   color: #999;
+  font-size: 9pt;
+}
+
+.output-unit {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
   font-size: 9pt;
 }
 
@@ -236,7 +252,7 @@ input[type="checkbox"]:checked:after {
 }
 
 select {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   font-size: 11pt;
   font-weight: 400;
   padding: 5px 10px 5px 10px;
@@ -262,7 +278,7 @@ select:focus {
 }
 
 option {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   font-size: 11pt;
   font-weight: 400;
 }
@@ -271,7 +287,7 @@ option {
 
 /* For plot elements */
 .axis {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   font-size: 10pt;
   font-weight: 400;
 }
