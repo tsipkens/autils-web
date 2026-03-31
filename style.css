@@ -168,7 +168,7 @@ div.control {
 
 body.dark-theme .textinput {
   border-bottom: 2px solid white;
-  background-color: var(--background-color);
+  background-color: inherit;
 }
 
 .textinput:hover {
