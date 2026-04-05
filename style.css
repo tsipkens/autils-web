@@ -7,7 +7,7 @@
   /* both supported */
   --background-color: #FDFDFD;
   --background-color1: white;
-  --background-color2: white;
+  --background-color2: #F7F7F9;
   --background-gradient: #F7F7F7;
   --line-color: #CCC;
   --line-color2: black;
@@ -19,7 +19,7 @@
   :root {
     --background-color: #0D1117;
     --background-color1: #181C28;
-    --background-color2: #181C28;
+    --background-color2: #222;
     --background-gradient: #20293A;
     --line-color: #555;
     --line-color2: white;
@@ -118,7 +118,7 @@ body.dark-theme .footer a:hover {
   display: block;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
-  gap: 8px;
+  gap: 10px;
 }
 
 .control-wrapper hr {
@@ -131,16 +131,20 @@ body.dark-theme .footer a:hover {
   display: block;
 }
 
-
-
-
 /* For control components */
 div.control {
   padding: 0px;
   display: inline-block;
   vertical-align: text-top;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  border: 1px solid var(--background-color);  /* var(--line-color2) */
+  background-color: var(--background-color2);
+  border-radius: 12px;
+  padding: 8px 11px 8px 11px;
+}
+
+div.control:hover {
+  transition: all 0.3s ease 0s;
+  border: 1px solid var(--line-color);
 }
 
 .textoutput {
@@ -148,7 +152,7 @@ div.control {
   font-weight: 600;
   font-size: 18pt;
   line-height: 15pt;
-  padding: 9px 0px 9px 0px;
+  padding: 10px 0px 9px 0px;
 }
 
 .output-unit sup {
