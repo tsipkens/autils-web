@@ -114,14 +114,21 @@ body.dark-theme .footer a:hover {
   margin-left: 2px;
 }
 
-hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
+.control-wrapper {
+  display: block;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 8px;
+}
+
+.control-wrapper hr {
   border: none;
+  grid-column: 1 / -1;
 }
 
 .sub-section {
   margin-bottom: 10px;
+  display: block;
 }
 
 
@@ -134,7 +141,6 @@ div.control {
   vertical-align: text-top;
   margin-bottom: 10px;
   margin-top: 10px;
-  width: 175px;
 }
 
 .textoutput {
@@ -163,7 +169,7 @@ div.control {
   background-color: inherit;
   /* background-color: white; */
   transition: all 0.3s ease 0s;
-  width: 90px;
+  width: 95px;
   color: inherit;
 }
 
