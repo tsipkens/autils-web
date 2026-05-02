@@ -58,7 +58,7 @@
                 document.querySelector(':root').style.setProperty('--background-gradient', '#0D1117');
                 document.querySelector(':root').style.setProperty('--c1', '#FF0083');
             } else {
-                document.querySelector(':root').style.setProperty('--background-color', '#F4F3F8');
+                document.querySelector(':root').style.setProperty('--background-color', 'white');
                 document.querySelector(':root').style.setProperty('--background-color1', 'white');
                 document.querySelector(':root').style.setProperty('--background-color2', 'white');
                 document.querySelector(':root').style.setProperty('--line-color', '#E3E3E3');
@@ -364,7 +364,7 @@
                     </div>
 
                     <div class="control">
-                        <span class="control-label">d<sub>p</sub> @ d<sub>m</sub></span> <br>
+                        <span class="control-label">d<sub>p</sub> @ d<sub>m</sub></span><br>
                         <div class="textoutput">
                             <div class="output-div" id="dp-val">-</div>
                             <span class="output-unit">nm
@@ -372,7 +372,7 @@
                     </div>
 
                     <div class="control">
-                        <span class="control-label">Number of primaries (N<sub>p</sub>)<br>
+                        <span class="control-label">Number of primaries (N<sub>p</sub>)</span><br>
                         <div class="textoutput">
                             <div class="output-div" id="Np-val">-</div>
                         </div>
@@ -394,7 +394,8 @@
                     <div class="control">
                         <span class="control-label">Radius of gyration</span><br>
                         <div class="textoutput">
-                            <div class="output-div" id="Rg-val">-</div><span class="output-unit">nm</span>
+                            <div class="output-div" id="Rg-val">-</div> 
+                            <span class="output-unit">nm</span>
                         </div>
                     </div>
 
@@ -525,7 +526,7 @@
             </div>
 
             <!-- Create a div where the graph will take place -->
-            <div class="sub-section">
+            <div class="sub-section" style="margin-top:30px;">
                 <div id="my_dataviz"></div>
             </div>
 
@@ -667,7 +668,7 @@
 
 
             <div class="footer-note">
-                <p>Build: <span id="version-number">v2026.04.21.2211</span></p>
+                <p>Build: <span id="version-number">v2026.05.02.0022</span></p>
             </div>
             
 
